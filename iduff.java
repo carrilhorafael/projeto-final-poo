@@ -1,5 +1,8 @@
 public class iduff{
-    public static void main (String[] args){
+    public static void createDatabaseArchives(){
         
+    }
+    public static void main (String[] args){
+
     }
 }
