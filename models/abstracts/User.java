@@ -1,4 +1,4 @@
-package generalclasses;
+package models.abstracts;
 import java.io.Serializable;
 import java.util.*;
 

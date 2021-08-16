@@ -1,8 +1,5 @@
-import java.io.IOException;
-import java.nio.file.*;
-
 import db.QueryInterface;
-import generalclasses.User;
+import models.abstracts.User;
 public class Iduff{
     public static void main (String[] args){
         QueryInterface.createDatabaseArchives();

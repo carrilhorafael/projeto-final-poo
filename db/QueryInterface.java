@@ -1,8 +1,8 @@
 package db;
 
-import java.io.*;  
+import java.io.*;
 
-import generalclasses.User;
+import models.abstracts.User;
 public class QueryInterface {
     private final static String DB_PATH = "/home/administrator/Documentos/poo/projeto-final-poo/db/";
     public static void createDatabaseArchives(){

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-import generalclasses.User;
+import models.abstracts.User;
 
 public class ViewOperation {
     private final static String div_string = "|| ------------------------------------------------------------------------------------------------------------------------------------------ ||";
