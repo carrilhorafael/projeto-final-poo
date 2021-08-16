@@ -2,7 +2,7 @@ package generalclasses;
 import java.io.Serializable;
 import java.util.*;
 
-import controllers.DataController;
+import db.QueryInterface;
 
 public class User implements Serializable{
     private String name, cpf, email, password, registration;
@@ -23,7 +23,7 @@ public class User implements Serializable{
         String email = teclado.next();
         System.out.print("Digite sua senha: ");
         String password = teclado.next();
-        User user = DataController.tryAuthenticate(email, password);
+        User user = QueryInterface.tryAuthenticate(email, password);
         if (user != null)
             return user;
         else {
@@ -41,9 +41,9 @@ public class User implements Serializable{
         usersRegistered.add(rafael2);
         usersRegistered.add(paula);
         usersRegistered.add(debora);
-        DataController.trySaveUser(rafael);
-        DataController.trySaveUser(debora);
-        DataController.trySaveUser(paula);
+        QueryInterface.trySaveUser(rafael);
+        QueryInterface.trySaveUser(debora);
+        QueryInterface.trySaveUser(paula);
     }
 
     // Getters
