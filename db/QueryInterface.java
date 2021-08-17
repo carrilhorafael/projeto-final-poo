@@ -19,7 +19,7 @@ public class QueryInterface {
     public static void trySaveUser(User user){
         try{
             BufferedWriter bw = new BufferedWriter(new FileWriter(DB_PATH+"users.txt", true));
-            bw.write("nome:" + user.getName() + ";cpf:" + user.getCpf() + ";email:" + user.getEmail() + ";password:" + user.getPassword() + ";registration:" + user.getRegistration());
+            bw.write(user.getName() + " " + user.getCpf() + " " + user.getEmail() + " " + user.getPassword() + " " + user.getRegistration());
             bw.newLine();
             bw.close();
             System.out.println("Usuário " + user.getName() + "(" + user.getEmail() + ") criado com sucesso");
@@ -34,13 +34,13 @@ public class QueryInterface {
             BufferedReader br = new BufferedReader(new FileReader(DB_PATH+"users.txt"));
             while (br.ready()){
                 String line = br.readLine();
-                String[]parameters = line.split(";");
-                String email_test = parameters[2].split(":")[1];
-                String password_test = parameters[3].split(":")[1];
+                String[]parameters = line.split(" ");
+                String email_test = parameters[2];
+                String password_test = parameters[3];
                 if (email_test.equals(email) && password_test.equals(password)){
-                    String name = parameters[0].split(":")[1];
-                    String cpf = parameters[1].split(":")[1];
-                    String registration = parameters[4].split(":")[1];
+                    String name = parameters[0];
+                    String cpf = parameters[1];
+                    String registration = parameters[4];
                     User user = new User(name, cpf, email, password, registration);
                     br.close();
                     return user;
