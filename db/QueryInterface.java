@@ -43,7 +43,7 @@ public abstract class QueryInterface {
     public static String find_by(String table, String parameter, String value){
         try{
             BufferedReader br = QueryInterface.accessReader(table);
-            String[] parameters = br.readLine().split(" | ");
+            String[] parameters = br.readLine().split(" \\| ");
             int i;
             for(i = 0; i < parameters.length; i++){
                 if (parameters[i].equals(parameter)){
@@ -52,8 +52,8 @@ public abstract class QueryInterface {
             }
             while (br.ready()){
                 String line = br.readLine();
-                String line_data = line.split(" | ")[i];
-                if (line_data == value){
+                String line_data = line.split(" \\| ")[i];
+                if (line_data.equals(value)){
                     return line;
                 }
             }
@@ -68,7 +68,7 @@ public abstract class QueryInterface {
         try{
             BufferedReader br = QueryInterface.accessReader(table);
             ArrayList<String> response = new ArrayList<>();
-            String[] parameters = br.readLine().split(" | ");
+            String[] parameters = br.readLine().split(" \\| ");
             int i;
             for(i = 0; i < parameters.length; i++){
                 if (parameters[i].equals(parameter)){
@@ -77,8 +77,8 @@ public abstract class QueryInterface {
             }
             while (br.ready()){
                 String line = br.readLine();
-                String line_data = line.split(" | ")[i];
-                if (line_data == value){
+                String line_data = line.split(" \\| ")[i];
+                if (line_data.equals(value)){
                     response.add(line);
                 }
             }
@@ -109,7 +109,7 @@ public abstract class QueryInterface {
             BufferedReader br = QueryInterface.accessReader(table);
             while(br.ready()){
                 String existing_line = br.readLine();
-                if (existing_line != line){
+                if (!existing_line.equals(line)){
                     backup.add(existing_line);
                 }
             }

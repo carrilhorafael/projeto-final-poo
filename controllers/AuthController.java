@@ -11,10 +11,12 @@ public class AuthController {
     
     public static User login(String email, String password){
         String user_stringified = QueryInterface.find_by("users", "email", email);
-        User user = new User(user_stringified);
-        if (user.authenticate(password))
-            return user;
-        else
-            return null;
+        if (user_stringified != null){
+            User user = new User(user_stringified);
+            
+            if (user.authenticate(password))
+                return user;
+        }
+        return null;
     }
 }

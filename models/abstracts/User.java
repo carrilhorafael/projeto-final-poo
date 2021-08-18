@@ -16,7 +16,8 @@ public class User extends QueryInterface implements Serializable{
         this.registration = registration;
     }
     public User(String line){
-        String[] parameters = line.split(" | ");
+        String[] parameters = line.split(" \\| ");
+        
         this.name = parameters[0];
         this.cpf = parameters[1];
         this.email = parameters[2];
@@ -29,7 +30,7 @@ public class User extends QueryInterface implements Serializable{
     }
     
     public boolean authenticate (String password){
-        return this.password == password; 
+        return this.password.equals(password); 
     }
 
     // Getters
