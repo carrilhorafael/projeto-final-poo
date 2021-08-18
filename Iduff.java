@@ -1,11 +1,15 @@
+import java.util.ArrayList;
+
 import db.QueryInterface;
 import models.abstracts.User;
 public class Iduff{
     public static void main (String[] args){
-        QueryInterface.createDatabaseArchives();
+        // QueryInterface.createDatabaseArchives();
         ViewOperation.welcome();
-        User.signUp();
-        ViewOperation.routerOperations();
+        String line = QueryInterface.find_by("users", "email", "rafael@email.com");
+        ArrayList<String> rafaeis = QueryInterface.where("users", "name", "Rafael");
+        // User.signUp();
+        // ViewOperation.routerOperations();
         
     }
 }
