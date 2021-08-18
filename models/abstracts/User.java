@@ -14,10 +14,23 @@ public class User extends QueryInterface implements Serializable{
         this.email = email;
         this.password = password;
         this.registration = registration;
-        
+    }
+    public User(String line){
+        String[] parameters = line.split(" | ");
+        this.name = parameters[0];
+        this.cpf = parameters[1];
+        this.email = parameters[2];
+        this.password = parameters[3];
+        this.registration = parameters[4];
     }
 
+    public String stringify(){
+        return this.name + " | " + this.cpf + " | " + this.email + " | " + this.password + " | " + this.registration;
+    }
     
+    public boolean authenticate (String password){
+        return this.password == password; 
+    }
 
     // Getters
     public String getCpf() {
