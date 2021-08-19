@@ -4,6 +4,7 @@ import controllers.AuthController;
 import controllers.SchoolYearController;
 import db.QueryInterface;
 import models.abstracts.User;
+import models.classes.Manager;
 import models.classes.SchoolYear;
 
 public class Iduff{

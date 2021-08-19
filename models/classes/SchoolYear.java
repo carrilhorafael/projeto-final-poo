@@ -19,6 +19,7 @@ public class SchoolYear {
     public String stringify(){
         return this.year + " | " + this.semester + " | " + this.status;
     }
+    
     // Getters
     public String getSemester() {
         return semester;
@@ -28,6 +29,17 @@ public class SchoolYear {
     }
     public String getStatus() {
         return status;
+    }
+
+    // Setters
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public void setYear(String year) {
+        this.year = year;
     }
 
 }
