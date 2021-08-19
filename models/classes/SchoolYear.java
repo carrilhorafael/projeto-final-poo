@@ -1,26 +1,32 @@
 package models.classes;
 
-import models.enumerators.StatusSchoolYear;
+public class SchoolYear {    
+    private String year, semester, status;
 
-public class SchoolYear {
-    
-    private int year, semester;
-    private StatusSchoolYear status;
-
-    public SchoolYear(int year, int semester, StatusSchoolYear status){
+    public SchoolYear(String year, String semester, String status){
         this.year = year;
         this.semester = semester;
         this.status = status;
     }
 
+    public SchoolYear(String sy_stringified){
+        String[] parameters = sy_stringified.split(" \\| ");
+        this.year = parameters[0];
+        this.semester = parameters[1];
+        this.status = parameters[2];
+    }
+
+    public String stringify(){
+        return this.year + " | " + this.semester + " | " + this.status;
+    }
     // Getters
-    public int getSemester() {
+    public String getSemester() {
         return semester;
     }
-    public int getYear() {
+    public String getYear() {
         return year;
     }
-    public StatusSchoolYear getStatus() {
+    public String getStatus() {
         return status;
     }
 

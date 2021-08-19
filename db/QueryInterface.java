@@ -64,6 +64,23 @@ public abstract class QueryInterface {
         return null;
     }
 
+    public static ArrayList<String> all(String table){
+        try{
+            BufferedReader br = QueryInterface.accessReader(table);
+            ArrayList<String> response = new ArrayList<>();
+            br.readLine();
+            while (br.ready()){
+                String line = br.readLine();
+                response.add(line);                
+            }
+            br.close();
+            return response;
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static ArrayList<String> where(String table, String parameter, String value){
         try{
             BufferedReader br = QueryInterface.accessReader(table);
