@@ -1,19 +1,22 @@
 package models.abstracts;
-import java.io.Serializable;
 import java.util.*;
 
-import db.QueryInterface;
+import models.classes.Manager;
 
-public class User extends QueryInterface implements Serializable{
-    private String name, cpf, email, password, registration;
-    public static Set<User> usersRegistered = new HashSet<>();
-    
-    public User(String name, String cpf, String email, String password, String registration){
+
+public abstract class User {
+    private String name, cpf, email, password, registration, state, birthdate, nationality;
+
+     
+    public User(String name, String cpf, String email, String password, String registration, String birthdate, String nationality, String state){
         this.name = name;
         this.cpf = cpf;
         this.email = email;
         this.password = password;
         this.registration = registration;
+        this.state = state;
+        this.birthdate = birthdate;
+        this.nationality = nationality;
     }
     public User(String line){
         String[] parameters = line.split(" \\| ");
@@ -26,7 +29,7 @@ public class User extends QueryInterface implements Serializable{
     }
 
     public String stringify(){
-        return this.name + " | " + this.cpf + " | " + this.email + " | " + this.password + " | " + this.registration;
+        return this.name + " | " + this.cpf + " | " + this.email + " | " + this.password + " | " + this.registration + " | " + this.birthdate + " | " + this.state + " | " + this.nationality + " | " + this.getClass().toString().split("\\.")[2];
     }
     
     public boolean authenticate (String password){

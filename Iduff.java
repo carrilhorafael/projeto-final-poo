@@ -8,13 +8,13 @@ import models.classes.SchoolYear;
 
 public class Iduff{
     public static void main (String[] args){
-        ViewOperation.welcome();
+        //ViewOperation.welcome();
         
         // USERS
         // Cadastro de usuários
-        String[] rafael_parameters = {"Rafael Carrilho", "111.111.111-11", "rafael@email.com", "123456", "123456"};
-        String[] paula_parameters = {"Paula Fernandes", "111.111.111-12", "paula@email.com", "123456", "123456"};
-        String[] debora_parameters = {"Débora Barbosa", "111.111.111-13", "debora@email.com", "123456", "123456"};
+        String[] rafael_parameters = {"Rafael Carrilho", "111.111.111-11", "rafael@email.com", "123456", "123456","234213", "brasil", "rj"};
+        String[] paula_parameters = {"Paula Fernandes", "111.111.111-12", "paula@email.com", "123456", "123456","234213", "brasil", "rj"};
+        String[] debora_parameters = {"Débora Barbosa", "111.111.111-13", "debora@email.com", "123456", "123456","234213", "brasil", "rj"};
         AuthController.register(rafael_parameters, 1);
         AuthController.register(paula_parameters, 1);
         AuthController.register(debora_parameters, 1);
@@ -40,6 +40,7 @@ public class Iduff{
         school_years.forEach(schoolyear -> {
             System.out.println(" -> " + schoolyear.getYear() + "." + schoolyear.getSemester());
         });
+    
         
         // Destruir primeiro processo seletivo
         if(SchoolYearController.destroy(school_years.get(1))){
