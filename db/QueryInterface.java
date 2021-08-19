@@ -28,9 +28,9 @@ public abstract class QueryInterface {
         return null;
     }  
 
-    private static BufferedWriter accessWriter(String table) throws IOException{
+    private static BufferedWriter accessWriter(String table, boolean rewriter) throws IOException{
         try{
-            BufferedWriter bw = new BufferedWriter(new FileWriter(DB_PATH + table + ".txt", true));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(DB_PATH + table + ".txt", rewriter));
             return bw;    
         }catch(FileNotFoundException e){
             e.printStackTrace();
@@ -109,7 +109,7 @@ public abstract class QueryInterface {
 
     public static boolean create(String table, String line){
         try{
-            BufferedWriter bw = QueryInterface.accessWriter(table);
+            BufferedWriter bw = QueryInterface.accessWriter(table, true);
             bw.write(line);
             bw.newLine();
             bw.close();
@@ -132,7 +132,8 @@ public abstract class QueryInterface {
             }
             
             br.close();
-            BufferedWriter bw = QueryInterface.accessWriter(table);    
+            BufferedWriter bw = QueryInterface.accessWriter(table, false);
+                
             backup.forEach(existing_line -> {
                 try{
                     bw.write(existing_line);
@@ -141,6 +142,7 @@ public abstract class QueryInterface {
                     e.printStackTrace();
                 }
             });
+            bw.close();
             return true;
         }
         catch(IOException e){

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 import controllers.AuthController;
 import controllers.SchoolYearController;
+import db.QueryInterface;
 import models.abstracts.User;
 import models.classes.SchoolYear;
 
@@ -28,5 +29,9 @@ public class Iduff{
         school_years.forEach(schoolyear -> {
             System.out.println(" -> " + schoolyear.getYear() + "." + schoolyear.getSemester());
         });
+        if(SchoolYearController.destroy(school_years.get(1))){
+            System.out.println("Ano letivo de " + school_years.get(1).getYear() + "." + school_years.get(1).getSemester() + " foi deletado");
+            school_years.remove(1);
+        }
     }
 }
