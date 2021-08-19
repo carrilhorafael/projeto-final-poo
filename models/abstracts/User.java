@@ -1,14 +1,11 @@
 package models.abstracts;
-import java.util.*;
-
-import models.classes.Manager;
 
 
 public abstract class User {
     private String name, cpf, email, password, registration, state, birthdate, nationality;
+    
 
-     
-    public User(String name, String cpf, String email, String password, String registration, String birthdate, String nationality, String state){
+    public User(String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
         this.name = name;
         this.cpf = cpf;
         this.email = email;
@@ -18,15 +15,7 @@ public abstract class User {
         this.birthdate = birthdate;
         this.nationality = nationality;
     }
-    public User(String line){
-        String[] parameters = line.split(" \\| ");
-        
-        this.name = parameters[0];
-        this.cpf = parameters[1];
-        this.email = parameters[2];
-        this.password = parameters[3];
-        this.registration = parameters[4];
-    }
+    
 
     public String stringify(){
         return this.name + " | " + this.cpf + " | " + this.email + " | " + this.password + " | " + this.registration + " | " + this.birthdate + " | " + this.state + " | " + this.nationality + " | " + this.getClass().toString().split("\\.")[2];

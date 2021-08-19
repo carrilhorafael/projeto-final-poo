@@ -15,12 +15,14 @@ public class AuthController {
     }
     
     public static User login(String email, String password){
-        String user_stringified = QueryInterface.find_by("users", "email", email);
-        if (user_stringified != null){
-            User user = new User(user_stringified);
-            
-            if (user.authenticate(password))
-                return user;
+        String[] user_stringified_params = QueryInterface.find_by("users", "email", email).split(" \\| ");
+        if (user_stringified_params != null){
+            String user_class = user_stringified_params[8];
+            if (user_class.equals("Manager")){
+                Manager manager = new Manager(user_stringified_params);                
+                if (manager.authenticate(password))
+                return manager;
+            }
         }
         return null;
     }
