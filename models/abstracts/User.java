@@ -29,7 +29,6 @@ public abstract class User {
     }
 
     public String stringify(){
-        System.out.println(this.getClass().toString().split("\\.")[2]);
         return this.name + " | " + this.cpf + " | " + this.email + " | " + this.password + " | " + this.registration + " | " + this.birthdate + " | " + this.state + " | " + this.nationality + " | " + this.getClass().toString().split("\\.")[2];
     }
     
