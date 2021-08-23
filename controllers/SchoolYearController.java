@@ -1,8 +1,9 @@
 package controllers;
 
 import java.util.ArrayList;
-import db.QueryInterface;
+
 import models.classes.SchoolYear;
+import models.interfaces.QueryInterface;
 
 public class SchoolYearController {
     public static boolean create (String year, String semester, String status){

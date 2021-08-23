@@ -1,6 +1,6 @@
 package models.classes;
 
-import db.QueryInterface;
+import models.interfaces.QueryInterface;
 
 public class Course {
     private String name, knowledge_area, campus, code;

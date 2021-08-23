@@ -1,11 +1,11 @@
-package db;
+package models.interfaces;
 
 import java.io.*;
 import java.util.ArrayList;
 
-public abstract class QueryInterface {
+public interface QueryInterface {
     // private final static String DB_PATH = "/home/deboraferreira/Área de Trabalho/poo-projetinho/projeto-final-poo/db/";
-    private final static String DB_PATH = "/home/administrator/Documentos/poo/projeto-final-poo/db/";
+    final static String DB_PATH = "/home/administrator/Documentos/poo/projeto-final-poo/db/";
     // public static void createDatabaseArchives(){
     //     File users = new File(DB_PATH+"users.txt"); 
     //     File classes = new File(DB_PATH+"classes.txt"); 

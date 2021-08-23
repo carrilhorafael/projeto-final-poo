@@ -1,8 +1,9 @@
 package controllers;
 
 import java.util.ArrayList;
-import db.QueryInterface;
+
 import models.classes.Course;
+import models.interfaces.QueryInterface;
 
 public class CourseController {
     public static boolean create (String[] parameters){

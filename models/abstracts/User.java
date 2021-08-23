@@ -1,6 +1,6 @@
 package models.abstracts;
 
-import db.QueryInterface;
+import models.interfaces.QueryInterface;
 
 public abstract class User {
     private String name, cpf, email, password, registration, state, birthdate, nationality;

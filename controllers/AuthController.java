@@ -1,8 +1,8 @@
 package controllers;
 
-import db.QueryInterface;
 import models.abstracts.User;
 import models.classes.Manager;
+import models.interfaces.QueryInterface;
 
 public class AuthController {
     public static boolean register(String[] parameters, int kind){
