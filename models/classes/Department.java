@@ -39,7 +39,7 @@ public class Department {
         return code;
     }
     public String getDepartmentCoordinator() {
-        return QueryInterface.find("users", Integer.toString(department_coordinator_id));
+        return QueryInterface.find("users", department_coordinator_id);
     }
     public int getId() {
         return id;

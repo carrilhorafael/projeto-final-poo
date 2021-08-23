@@ -70,14 +70,14 @@ public abstract class QueryInterface {
     }
 
     // Encontra uma instancia no table.txt com id == value
-    public static String find(String table, String value){
+    public static String find(String table, int value){
         try{
             BufferedReader br = QueryInterface.accessReader(table);
             br.readLine();
             while (br.ready()){
                 String line = br.readLine();
-                String line_id = line.split(" \\| ")[0];
-                if (line_id.equals(value)){
+                int line_id = Integer.parseInt(line.split(" \\| ")[0]);
+                if (line_id == value){
                     return line;
                 }
             }
