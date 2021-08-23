@@ -1,0 +1,1 @@
+id | name | knowledge_area | cht | department_id
