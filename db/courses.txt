@@ -1,0 +1,1 @@
+id | name | knowledge_area | campus | code | course_coordinator_id

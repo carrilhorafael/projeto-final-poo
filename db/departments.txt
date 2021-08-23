@@ -1,0 +1,1 @@
+id | name | knowledge_area | campus | code | department_coordinator_id

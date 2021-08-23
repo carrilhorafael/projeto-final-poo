@@ -1,1 +1,1 @@
-name | cpf | email | password | registration | birthdate | state | nationality | role
+id | name | cpf | email | password | registration | birthdate | state | nationality | role

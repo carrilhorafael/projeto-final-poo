@@ -1,14 +1,13 @@
 package models.abstracts;
-import java.util.*;
 
-import models.classes.Manager;
-
+import db.QueryInterface;
 
 public abstract class User {
-    private String name, cpf, email, password, registration, state, birthdate, nationality;
+    private String id, name, cpf, email, password, registration, state, birthdate, nationality;
+    private static String last_user_id = QueryInterface.last("users").split(" \\| ")[0];
+    private static int quantUsers = last_user_id == null? 0 : Integer.parseInt(last_user_id);
 
-     
-    public User(String name, String cpf, String email, String password, String registration, String birthdate, String nationality, String state){
+    public User(String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
         this.name = name;
         this.cpf = cpf;
         this.email = email;
@@ -17,19 +16,24 @@ public abstract class User {
         this.state = state;
         this.birthdate = birthdate;
         this.nationality = nationality;
+        quantUsers++;
+        this.id = Integer.toString(quantUsers);
     }
-    public User(String line){
-        String[] parameters = line.split(" \\| ");
-        
-        this.name = parameters[0];
-        this.cpf = parameters[1];
-        this.email = parameters[2];
-        this.password = parameters[3];
-        this.registration = parameters[4];
+    
+    public User(String id, String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+        this.password = password;
+        this.registration = registration;
+        this.state = state;
+        this.birthdate = birthdate;
+        this.nationality = nationality;
+        this.id = id;
     }
 
     public String stringify(){
-        return this.name + " | " + this.cpf + " | " + this.email + " | " + this.password + " | " + this.registration + " | " + this.birthdate + " | " + this.state + " | " + this.nationality + " | " + this.getClass().toString().split("\\.")[2];
+        return this.id + " | " + this.name + " | " + this.cpf + " | " + this.email + " | " + this.password + " | " + this.registration + " | " + this.birthdate + " | " + this.state + " | " + this.nationality + " | " + this.getClass().toString().split("\\.")[2];
     }
     
     public boolean authenticate (String password){
@@ -37,6 +41,9 @@ public abstract class User {
     }
 
     // Getters
+    public String getId(){
+        return id;
+    }
     public String getCpf() {
         return cpf;
     }

@@ -7,7 +7,7 @@ import models.classes.SchoolYear;
 public class SchoolYearController {
     public static boolean create (String year, String semester, String status){
         SchoolYear new_year = new SchoolYear(year, semester, status);
-        return QueryInterface.create("schoolyears", new_year.stringify());
+        return QueryInterface.save("schoolyears", new_year.stringify());
     }
 
     public static ArrayList <SchoolYear> index(){
