@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
 import controllers.AuthController;
+import controllers.CourseController;
 import controllers.SchoolYearController;
-import db.QueryInterface;
 import models.abstracts.User;
+import models.classes.Course;
 import models.classes.Manager;
 import models.classes.SchoolYear;
 
@@ -29,24 +30,55 @@ public class Iduff{
             System.out.println("Erro no Login - Verifique os parametros informados");
         }
 
-        // SCHOOL YEAR
-        // Criar 3 periodos letivos
-        if (SchoolYearController.create("2020", "2", "Closed")) System.out.println("Período letivo de 2020.2 criado com sucesso");
-        if (SchoolYearController.create("2021", "1", "Closed")) System.out.println("Período letivo de 2021.1 criado com sucesso");
-        if (SchoolYearController.create("2021", "2", "Planning")) System.out.println("Período letivo de 2021.2 criado com sucesso");
         
-        // Index dos periodos letivos
-        ArrayList<SchoolYear> school_years = SchoolYearController.index();
-        System.out.println("Anos letivos cadastrados:");
-        school_years.forEach(schoolyear -> {
-            System.out.println(" -> " + schoolyear.getYear() + "." + schoolyear.getSemester());
-        });
-    
-        
-        // Destruir primeiro processo seletivo
-        if(SchoolYearController.destroy(school_years.get(1))){
-            System.out.println("Ano letivo de " + school_years.get(1).getYear() + "." + school_years.get(1).getSemester() + " foi deletado");
-            school_years.remove(1);
+        if (userLogged instanceof Manager){
+            // SCHOOL YEAR
+            // Criar 3 periodos letivos
+            SchoolYearController.create("2020", "2", "Closed");
+            SchoolYearController.create("2021", "1", "Closed");
+            SchoolYearController.create("2021", "2", "Planning");
+            
+            // Index dos periodos letivos
+            ArrayList<SchoolYear> school_years = SchoolYearController.index();
+            System.out.println("Anos letivos cadastrados:");
+            school_years.forEach(schoolyear -> {
+                System.out.println(" -> " + schoolyear.getYear() + "." + schoolyear.getSemester());
+            });
+            
+            // Destruir primeiro processo seletivo
+            if(SchoolYearController.destroy(school_years.get(1))){
+                System.out.println("Ano letivo de " + school_years.get(1).getYear() + "." + school_years.get(1).getSemester() + " foi deletado");
+                school_years.remove(1);
+            }
+            
+            // COURSES
+            // Criar 5 cursos
+            String[] cc_parameters = {"Ciencia da Computação", "Tecnologia", "Praia Vermelha", "037"};
+            String[] si_parameters = {"Sistemas de Informação", "Tecnologia", "Praia Vermelha", "083"};
+            String[] ep_parameters = {"Engenharia de Produção", "Engenharia", "Praia Vermelha", "009"};
+            String[] fis_parameters = {"Fisica", "Ciencia da Natureza", "Praia Vermelha", "011"};
+            String[] mat_parameters = {"Matematica", "Ciencias exatas", "Praia Vermelha", "187"};
+            CourseController.create(cc_parameters);
+            CourseController.create(si_parameters);
+            CourseController.create(ep_parameters);
+            CourseController.create(fis_parameters);
+            CourseController.create(mat_parameters);
+            
+            // Index dos cursos
+            ArrayList<Course> courses = CourseController.index();
+            System.out.println("Cursos cadastrados:");
+            courses.forEach(each_course -> {
+                System.out.println("Curso: " + each_course.getName() + ", da area de conhecimento " + each_course.getKnowledgeArea() + " e de código " + each_course.getCode());
+            });
+            
+            // Destruir o primeiro curso
+            if(CourseController.destroy(courses.get(1))){
+                System.out.println("Curso " + courses.get(1).getName() + " foi deletado com sucesso");
+                courses.remove(1);
+            }
+
+        }else{
+            System.out.println("Ainda não foi gerado as telas para esse tipo de usuário");
         }
     }
 }

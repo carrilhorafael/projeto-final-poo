@@ -1,0 +1,8 @@
+name | knowledge_area | campus | code
+Ciencia da Computação | Tecnologia | Praia Vermelha | 037
+Fisica | Ciencia da Natureza | Praia Vermelha | 011
+Matematica | Ciencias exatas | Praia Vermelha | 187
+Ciencia da Computação | Tecnologia | Praia Vermelha | 037
+Sistemas de Informação | Tecnologia | Praia Vermelha | 083
+Fisica | Ciencia da Natureza | Praia Vermelha | 011
+Matematica | Ciencias exatas | Praia Vermelha | 187
