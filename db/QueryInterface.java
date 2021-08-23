@@ -146,7 +146,8 @@ public abstract class QueryInterface {
         }
         return false;
     }
-
+    
+    // Deleta uma instancia em table.txt
     public static boolean delete(String table, String line){
         ArrayList<String> backup = new ArrayList<>();
         try{
@@ -175,6 +176,23 @@ public abstract class QueryInterface {
         catch(IOException e){
             e.printStackTrace();
             return false;
+        }
+    }
+    
+    // Retorna a ultima instancia da table.txt
+    public static String last(String table){
+        try{
+            BufferedReader bw = QueryInterface.accessReader(table);
+            bw.readLine();
+            String response = null;
+            while(bw.ready()){
+                response = bw.readLine();
+            }
+            bw.close();
+            return response;
+        }catch(IOException e){
+            e.printStackTrace();
+            return null;
         }
     }
 }
