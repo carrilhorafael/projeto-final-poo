@@ -5,7 +5,7 @@ import db.QueryInterface;
 public class Course {
     private String id, name, knowledge_area, campus, code, course_coordinator_id;
     private static String last_course_id = QueryInterface.last("courses").split(" \\| ")[0];
-    private static int quantCourses = last_course_id == null? 0 : Integer.parseInt(last_course_id);
+    private static int quant_courses = last_course_id == null? 0 : Integer.parseInt(last_course_id);
 
     public Course (String name, String knowledge_area, String campus, String code, String course_coordinator_id){
         this.name = name;
@@ -13,8 +13,8 @@ public class Course {
         this.campus = campus;
         this.code = code;
         this.course_coordinator_id = course_coordinator_id;
-        quantCourses++;
-        this.id = Integer.toString(quantCourses);
+        quant_courses++;
+        this.id = Integer.toString(quant_courses);
     }
 
     public Course (String course_stringified){

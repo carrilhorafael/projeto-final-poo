@@ -5,7 +5,7 @@ import db.QueryInterface;
 public abstract class User {
     private String id, name, cpf, email, password, registration, state, birthdate, nationality;
     private static String last_user_id = QueryInterface.last("users").split(" \\| ")[0];
-    private static int quantUsers = last_user_id == null? 0 : Integer.parseInt(last_user_id);
+    private static int quant_users = last_user_id == null? 0 : Integer.parseInt(last_user_id);
 
     public User(String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
         this.name = name;
@@ -16,8 +16,8 @@ public abstract class User {
         this.state = state;
         this.birthdate = birthdate;
         this.nationality = nationality;
-        quantUsers++;
-        this.id = Integer.toString(quantUsers);
+        quant_users++;
+        this.id = Integer.toString(quant_users);
     }
     
     public User(String id, String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
