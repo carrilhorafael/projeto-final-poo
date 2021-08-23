@@ -26,6 +26,10 @@ public class Department {
         this.code = parameters[4];
         this.department_coordinator_id = parameters[5];
     }
+    
+    public String stringify(){
+        return this.id + " | " + this.name + " | " + this.knowledge_area + " | " + this.campus + " | " + this.code + " | " + this.department_coordinator_id;
+    }
 
     public String getCampus() {
         return campus;
