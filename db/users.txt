@@ -1,7 +1,1 @@
-name | cpf | email | password | registration | birthdate | state | nationality | role
-Rafael Carrilho | 111.111.111-11 | rafael@email.com | 123456 | 123456 | 234213 | rj | brasil | Manager
-Paula Fernandes | 111.111.111-12 | paula@email.com | 123456 | 123456 | 234213 | rj | brasil | Manager
-Débora Barbosa | 111.111.111-13 | debora@email.com | 123456 | 123456 | 234213 | rj | brasil | Manager
-Rafael Carrilho | 111.111.111-11 | rafael@email.com | 123456 | 123456 | 234213 | rj | brasil | Manager
-Paula Fernandes | 111.111.111-12 | paula@email.com | 123456 | 123456 | 234213 | rj | brasil | Manager
-Débora Barbosa | 111.111.111-13 | debora@email.com | 123456 | 123456 | 234213 | rj | brasil | Manager
+id | name | cpf | email | password | registration | birthdate | state | nationality | role
