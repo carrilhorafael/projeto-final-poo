@@ -6,7 +6,7 @@ public abstract class User {
     private String name, cpf, email, password, registration, state, birthdate, nationality;
     private int id;
     private static String last_user_id = QueryInterface.last("users").split(" \\| ")[0];
-    private static int quant_users = last_user_id == null? 0 : Integer.parseInt(last_user_id);
+    private static int next_user_id = last_user_id == null? 1 : Integer.parseInt(last_user_id + 1);
 
     public User(String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
         this.name = name;
@@ -17,8 +17,8 @@ public abstract class User {
         this.state = state;
         this.birthdate = birthdate;
         this.nationality = nationality;
-        quant_users++;
-        this.id = quant_users;
+        this.id = next_user_id;
+        next_user_id++;
     }
     
     public User(String id, String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){

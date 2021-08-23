@@ -6,8 +6,8 @@ import models.classes.Course;
 import models.interfaces.QueryInterface;
 
 public class CourseController {
-    public static boolean create (String[] parameters){
-        Course course = new Course(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4]);
+    public static boolean create (String name, String knowledge_area, String campus, String code, int course_coordinator_id){
+        Course course = new Course(name, knowledge_area, campus, code, course_coordinator_id);
         return QueryInterface.save("courses", course.stringify());
     }
 

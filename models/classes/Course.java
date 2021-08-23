@@ -6,7 +6,7 @@ public class Course {
     private String name, knowledge_area, campus, code;
     private int id, course_coordinator_id;
     private static String last_course_id = QueryInterface.last("courses").split(" \\| ")[0];
-    private static int quant_courses = last_course_id == null? 0 : Integer.parseInt(last_course_id);
+    private static int next_course_id = last_course_id == null? 1 : Integer.parseInt(last_course_id + 1);
 
     public Course (String name, String knowledge_area, String campus, String code, int course_coordinator_id){
         this.name = name;
@@ -14,8 +14,8 @@ public class Course {
         this.campus = campus;
         this.code = code;
         this.course_coordinator_id = course_coordinator_id;
-        quant_courses++;
-        this.id = quant_courses;
+        this.id = next_course_id;
+        next_course_id++;
     }
 
     public Course (String course_stringified){

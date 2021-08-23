@@ -6,14 +6,15 @@ public class Classroom {
     private String code, room;
     private int id, teacher_id, subject_id;
     private static String last_classroom_id = QueryInterface.last("classrooms").split(" \\| ")[0];
-    private static int quant_classrooms = last_classroom_id == null ? 0 : Integer.parseInt(last_classroom_id);
+    private static int next_classroom_id = last_classroom_id == null ? 1 : Integer.parseInt(last_classroom_id + 1);
+    
     public Classroom (String code, String room, int teacher_id, int subject_id){
         this.code = code;
         this.room = room;
         this.teacher_id = teacher_id;
         this.subject_id = subject_id;
-        quant_classrooms++;
-        this.id = quant_classrooms;
+        this.id = next_classroom_id;
+        next_classroom_id++;
     }
 
     public Classroom (String classroom_stringified){
