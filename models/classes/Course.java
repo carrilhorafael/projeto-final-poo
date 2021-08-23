@@ -1,25 +1,33 @@
 package models.classes;
 
-public class Course {
-    private String name, knowledge_area, campus, code;
+import db.QueryInterface;
 
-    public Course (String name, String knowledge_area, String campus, String code){
+public class Course {
+    private String id, name, knowledge_area, campus, code, course_coordinator_id;
+    private static int quantCourses = 0;
+
+    public Course (String name, String knowledge_area, String campus, String code, String course_coordinator_id){
         this.name = name;
         this.knowledge_area = knowledge_area;
         this.campus = campus;
         this.code = code;
+        this.course_coordinator_id = course_coordinator_id;
+        quantCourses++;
+        this.id = Integer.toString(quantCourses);
     }
 
     public Course (String course_stringified){
         String[] parameters = course_stringified.split(" \\| "); 
-        this.name = parameters[0];
-        this.knowledge_area = parameters[1];
-        this.campus = parameters[2];
-    this.code = parameters[3];
+        this.id = parameters[0];
+        this.name = parameters[1];
+        this.knowledge_area = parameters[2];
+        this.campus = parameters[3];
+        this.code = parameters[4];
+        this.course_coordinator_id = parameters[5];
     }
 
     public String stringify(){
-        return this.name + " | " + this.knowledge_area + " | " + this.campus + " | " + this.code;
+        return this.id + " | " + this.name + " | " + this.knowledge_area + " | " + this.campus + " | " + this.code + " | " + this.course_coordinator_id;
     }
 
     // Getters
@@ -34,5 +42,8 @@ public class Course {
     }
     public String getName() {
         return name;
+    }
+    public String getCourseCoordinator() {
+        return QueryInterface.find("users", course_coordinator_id);
     }
 }

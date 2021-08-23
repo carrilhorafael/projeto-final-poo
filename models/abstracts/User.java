@@ -3,7 +3,7 @@ package models.abstracts;
 
 public abstract class User {
     private String id, name, cpf, email, password, registration, state, birthdate, nationality;
-    private int quantUser = 0;
+    private static int quantUsers = 0;
 
     public User(String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
         this.name = name;
@@ -14,8 +14,8 @@ public abstract class User {
         this.state = state;
         this.birthdate = birthdate;
         this.nationality = nationality;
-        this.id = Integer.toString(quantUser + 1);
-        quantUser++;
+        quantUsers++;
+        this.id = Integer.toString(quantUsers);
     }
     
     public User(String id, String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
