@@ -18,7 +18,8 @@ public abstract class QueryInterface {
     //     e.printStackTrace();
     //     }         
     // }
-
+    
+    // Abre um arquivo table.txt para leitura
     private static BufferedReader accessReader(String table){
         try{
             BufferedReader br = new BufferedReader(new FileReader(DB_PATH + table + ".txt"));
@@ -28,7 +29,9 @@ public abstract class QueryInterface {
         }
         return null;
     }  
-
+    
+    // Abre um arquivo table.txt para escrita. 
+    // Caso a boolean rewrite seja false, o arquivo será aberto para rescrita, caso contrario, manterá a informação já escrita.
     private static BufferedWriter accessWriter(String table, boolean rewriter) throws IOException{
         try{
             BufferedWriter bw = new BufferedWriter(new FileWriter(DB_PATH + table + ".txt", rewriter));
@@ -41,6 +44,7 @@ public abstract class QueryInterface {
         return null;
     }
 
+    // Encontra uma instancia no table.txt onde this.parameter == value
     public static String find_by(String table, String parameter, String value){
         try{
             BufferedReader br = QueryInterface.accessReader(table);
@@ -65,6 +69,26 @@ public abstract class QueryInterface {
         return null;
     }
 
+    // Encontra uma instancia no table.txt com id == value
+    public static String find(String table, String value){
+        try{
+            BufferedReader br = QueryInterface.accessReader(table);
+            br.readLine();
+            while (br.ready()){
+                String line = br.readLine();
+                String line_id = line.split(" \\| ")[0];
+                if (line_id.equals(value)){
+                    return line;
+                }
+            }
+            br.close();          
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // Retorna um ArrayList com todas as instancias de table.txt
     public static ArrayList<String> all(String table){
         try{
             BufferedReader br = QueryInterface.accessReader(table);
@@ -82,6 +106,7 @@ public abstract class QueryInterface {
         return null;
     }
 
+    // Retorna um ArrayList com todas as instancias de table.txt onde this.parameter == value.
     public static ArrayList<String> where(String table, String parameter, String value){
         try{
             BufferedReader br = QueryInterface.accessReader(table);
@@ -108,7 +133,8 @@ public abstract class QueryInterface {
         return null;
     }
 
-    public static boolean create(String table, String line){
+    // Salva uma instancia stringified em table.txt
+    public static boolean save(String table, String line){
         try{
             BufferedWriter bw = QueryInterface.accessWriter(table, true);
             bw.write(line);

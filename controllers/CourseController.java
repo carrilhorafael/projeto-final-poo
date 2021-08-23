@@ -7,7 +7,7 @@ import models.classes.Course;
 public class CourseController {
     public static boolean create (String[] parameters){
         Course course = new Course(parameters[0], parameters[1], parameters[2], parameters[3]);
-        return QueryInterface.create("courses", course.stringify());
+        return QueryInterface.save("courses", course.stringify());
     }
 
     public static ArrayList <Course> index(){

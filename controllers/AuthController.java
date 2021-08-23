@@ -9,7 +9,7 @@ public class AuthController {
         if (kind == 1){
             Manager manager = new Manager(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7]);
             
-            return QueryInterface.create("users", manager.stringify());
+            return QueryInterface.save("users", manager.stringify());
         }
         return false;
     }
