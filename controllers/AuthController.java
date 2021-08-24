@@ -1,6 +1,8 @@
 package controllers;
 
 import models.abstracts.User;
+import models.classes.CourseCoordinator;
+import models.classes.DepartmentCoordinator;
 import models.classes.Manager;
 import models.interfaces.QueryInterface;
 
@@ -14,6 +16,14 @@ public class AuthController {
                 Manager manager = new Manager(user_stringified_params);                
                 if (manager.authenticate(password))
                 return manager;
+            }else if (user_class.equals("DepartmentCoordinator")){
+                DepartmentCoordinator department_coordinator = new DepartmentCoordinator(user_stringified_params);                
+                if (department_coordinator.authenticate(password))
+                return department_coordinator;
+            }else if (user_class.equals("CourseCoordinator")){
+                CourseCoordinator course_coordinator = new CourseCoordinator(user_stringified_params);                
+                if (course_coordinator.authenticate(password))
+                return course_coordinator;
             }
         }
         return null;
