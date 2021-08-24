@@ -4,6 +4,7 @@ import controllers.AuthController;
 import controllers.CoursesController;
 import controllers.DepartmentsController;
 import controllers.SchoolYearsController;
+import controllers.UsersController;
 import models.abstracts.User;
 import models.classes.Course;
 import models.classes.Department;
@@ -15,7 +16,7 @@ public class Iduff{
         // USERS
         // Cadastro do administrador
         String[] rafael_parameters = {"Rafael Carrilho", "111.111.111-11", "rafael@email.com", "123456", "111.111.111", "16022000", "RJ" , "Brasil"};
-        AuthController.register(rafael_parameters, 1);
+        UsersController.register(rafael_parameters, 1);
         
         // Login do usuário administrador Rafael
         User userLogged = AuthController.login("rafael@email.com", "123456");
@@ -30,7 +31,7 @@ public class Iduff{
             // DEPARTMENTS
             // Cadastro do Coordenador de Departamento
             String[] debora_parameters = {"Débora Barbosa", "111.111.111-13", "debora@email.com", "123456", "123456", "234213", "brasil", "rj"};
-            AuthController.register(debora_parameters, 1);
+            UsersController.register(debora_parameters, 1);
             
             // Cadastra 3 departamentos
             String[] gma_params = {"GMA", "Matemática", "Gragoatá", "111", "2"};
@@ -56,7 +57,7 @@ public class Iduff{
             // COURSES
             // Cadastra um coordenador de curso            
             String[] paula_parameters = {"Paula Fernandes", "111.111.111-12", "paula@email.com", "123456", "111.111.112", "23/02/2000", "RJ" , "Brasil"};
-            AuthController.register(paula_parameters, 1);
+            UsersController.register(paula_parameters, 1);
             
             // Criar 5 cursos
             String[] cc_parameters = {"Ciencia da Computação", "Tecnologia", "Praia Vermelha", "037", "3"};
