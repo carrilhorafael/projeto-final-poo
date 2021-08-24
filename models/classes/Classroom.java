@@ -6,7 +6,7 @@ public class Classroom {
     private String code, room;
     private int id, teacher_id, subject_id;
     private static String last_classroom = QueryInterface.last("classrooms");
-    private static int next_classroom_id = last_classroom == null ? 1 : Integer.parseInt(last_classroom_id.split(" \\| ")[0]) + 1;
+    private static int next_classroom_id = last_classroom == null ? 1 : Integer.parseInt(last_classroom.split(" \\| ")[0]) + 1;
     
     public Classroom (String code, String room, int teacher_id, int subject_id){
         this.code = code;
