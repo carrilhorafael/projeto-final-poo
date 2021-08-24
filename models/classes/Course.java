@@ -5,8 +5,8 @@ import models.interfaces.QueryInterface;
 public class Course {
     private String name, knowledge_area, campus, code;
     private int id, course_coordinator_id;
-    private static String last_course_id = QueryInterface.last("courses").split(" \\| ")[0];
-    private static int next_course_id = last_course_id == null? 1 : Integer.parseInt(last_course_id + 1);
+    private static String last_course = QueryInterface.last("courses");
+    private static int next_course_id = last_course == null? 1 : Integer.parseInt(last_course.split(" \\| ")[0]) + 1;
 
     public Course (String name, String knowledge_area, String campus, String code, int course_coordinator_id){
         this.name = name;

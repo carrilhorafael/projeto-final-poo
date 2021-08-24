@@ -5,8 +5,8 @@ import models.interfaces.QueryInterface;
 public class SchoolYear {    
     private String year, semester, status;
     private int id;
-    private static String last_school_year_id = QueryInterface.last("schoolyears").split(" \\| ")[0];
-    private static int next_school_year_id = last_school_year_id == null ? 1 : Integer.parseInt(last_school_year_id + 1);
+    private static String last_school_year = QueryInterface.last("schoolyears");
+    private static int next_school_year_id = last_school_year == null ? 1 : Integer.parseInt(last_school_year.split(" \\| ")[0]) + 1;
 
     public SchoolYear(String year, String semester, String status){
         this.year = year;
