@@ -1,12 +1,13 @@
 package controllers;
 
 import java.util.ArrayList;
-import db.QueryInterface;
-import models.classes.Course;
 
-public class CourseController {
+import models.classes.Course;
+import models.interfaces.QueryInterface;
+
+public class CoursesController {
     public static boolean create (String[] parameters){
-        Course course = new Course(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4]);
+        Course course = new Course(parameters[0], parameters[1], parameters[2], parameters[3], Integer.parseInt(parameters[4]));
         return QueryInterface.save("courses", course.stringify());
     }
 
@@ -24,7 +25,6 @@ public class CourseController {
     }
 
     public static boolean destroy(Course course){
-        boolean response = QueryInterface.delete("courses", course.stringify());
-        return response;
+        return QueryInterface.delete("courses", course.stringify());
     }
 }

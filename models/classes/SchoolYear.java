@@ -1,23 +1,31 @@
 package models.classes;
 
+import models.interfaces.QueryInterface;
+
 public class SchoolYear {    
     private String year, semester, status;
+    private int id;
+    private static String last_school_year = QueryInterface.last("schoolyears");
+    private static int next_school_year_id = last_school_year == null ? 1 : Integer.parseInt(last_school_year.split(" \\| ")[0]) + 1;
 
     public SchoolYear(String year, String semester, String status){
         this.year = year;
         this.semester = semester;
         this.status = status;
+        this.id = next_school_year_id;
+        next_school_year_id++;
     }
 
     public SchoolYear(String sy_stringified){
         String[] parameters = sy_stringified.split(" \\| ");
-        this.year = parameters[0];
-        this.semester = parameters[1];
-        this.status = parameters[2];
+        this.id = Integer.parseInt(parameters[0]);
+        this.year = parameters[1];
+        this.semester = parameters[2];
+        this.status = parameters[3];
     }
 
     public String stringify(){
-        return this.year + " | " + this.semester + " | " + this.status;
+        return this.id + " | " + this.year + " | " + this.semester + " | " + this.status;
     }
     
     // Getters

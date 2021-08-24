@@ -1,1 +1,1 @@
-id | name | knowledge_area | cht | department_id
+id | name | knowledge_area | ch | department_id | school_year_id

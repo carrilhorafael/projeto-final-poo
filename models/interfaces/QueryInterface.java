@@ -1,11 +1,11 @@
-package db;
+package models.interfaces;
 
 import java.io.*;
 import java.util.ArrayList;
 
-public abstract class QueryInterface {
+public interface QueryInterface {
     // private final static String DB_PATH = "/home/deboraferreira/Área de Trabalho/poo-projetinho/projeto-final-poo/db/";
-    private final static String DB_PATH = "/home/administrator/Documentos/poo/projeto-final-poo/db/";
+    final static String DB_PATH = "/home/administrator/Documentos/poo/projeto-final-poo/db/";
     // public static void createDatabaseArchives(){
     //     File users = new File(DB_PATH+"users.txt"); 
     //     File classes = new File(DB_PATH+"classes.txt"); 
@@ -70,14 +70,14 @@ public abstract class QueryInterface {
     }
 
     // Encontra uma instancia no table.txt com id == value
-    public static String find(String table, String value){
+    public static String find(String table, int value){
         try{
             BufferedReader br = QueryInterface.accessReader(table);
             br.readLine();
             while (br.ready()){
                 String line = br.readLine();
-                String line_id = line.split(" \\| ")[0];
-                if (line_id.equals(value)){
+                int line_id = Integer.parseInt(line.split(" \\| ")[0]);
+                if (line_id == value){
                     return line;
                 }
             }

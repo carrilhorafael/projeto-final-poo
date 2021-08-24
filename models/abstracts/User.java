@@ -1,11 +1,12 @@
 package models.abstracts;
 
-import db.QueryInterface;
+import models.interfaces.QueryInterface;
 
 public abstract class User {
-    private String id, name, cpf, email, password, registration, state, birthdate, nationality;
-    private static String last_user_id = QueryInterface.last("users").split(" \\| ")[0];
-    private static int quantUsers = last_user_id == null? 0 : Integer.parseInt(last_user_id);
+    private String name, cpf, email, password, registration, state, birthdate, nationality;
+    private int id;
+    private static String last_user = QueryInterface.last("users");
+    private static int next_user_id = last_user == null? 1 : Integer.parseInt(last_user.split(" \\| ")[0]) + 1;
 
     public User(String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
         this.name = name;
@@ -16,8 +17,8 @@ public abstract class User {
         this.state = state;
         this.birthdate = birthdate;
         this.nationality = nationality;
-        quantUsers++;
-        this.id = Integer.toString(quantUsers);
+        this.id = next_user_id;
+        next_user_id++;
     }
     
     public User(String id, String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
@@ -29,7 +30,7 @@ public abstract class User {
         this.state = state;
         this.birthdate = birthdate;
         this.nationality = nationality;
-        this.id = id;
+        this.id = Integer.parseInt(id);
     }
 
     public String stringify(){
@@ -41,7 +42,7 @@ public abstract class User {
     }
 
     // Getters
-    public String getId(){
+    public int getId(){
         return id;
     }
     public String getCpf() {
