@@ -3,17 +3,30 @@ package controllers;
 import java.util.ArrayList;
 
 import models.abstracts.User;
+import models.classes.CourseCoordinator;
+import models.classes.DepartmentCoordinator;
 import models.classes.Manager;
 import models.interfaces.QueryInterface;
 
 public class UsersController {
     public static boolean register(String[] parameters, int kind){
         if (kind == 1){
-            Manager manager = new Manager(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7]);
-            
+            Manager manager = new Manager(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7]);   
             return QueryInterface.save("users", manager.stringify());
+        }else if (kind == 2){
+            DepartmentCoordinator department_coordinator = new DepartmentCoordinator(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7]);   
+            return QueryInterface.save("users", department_coordinator.stringify());
+        }else if (kind == 3){
+            CourseCoordinator course_coordinator = new CourseCoordinator(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7]);   
+            return QueryInterface.save("users", course_coordinator.stringify());
+        }else if (kind == 4){
+            return true;
+        }else if (kind == 5){
+            return true;
         }
-        return false;
+        else{
+            return false;
+        }
     }
     
 

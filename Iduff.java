@@ -31,7 +31,7 @@ public class Iduff{
             // DEPARTMENTS
             // Cadastro do Coordenador de Departamento
             String[] debora_parameters = {"Débora Barbosa", "111.111.111-13", "debora@email.com", "123456", "123456", "234213", "brasil", "rj"};
-            UsersController.register(debora_parameters, 1);
+            UsersController.register(debora_parameters, 2);
             
             // Cadastra 3 departamentos
             String[] gma_params = {"GMA", "Matemática", "Gragoatá", "111", "2"};
@@ -57,7 +57,7 @@ public class Iduff{
             // COURSES
             // Cadastra um coordenador de curso            
             String[] paula_parameters = {"Paula Fernandes", "111.111.111-12", "paula@email.com", "123456", "111.111.112", "23/02/2000", "RJ" , "Brasil"};
-            UsersController.register(paula_parameters, 1);
+            UsersController.register(paula_parameters, 3);
             
             // Criar 5 cursos
             String[] cc_parameters = {"Ciencia da Computação", "Tecnologia", "Praia Vermelha", "037", "3"};
