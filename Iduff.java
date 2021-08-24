@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 import controllers.AuthController;
-import controllers.CourseController;
-import controllers.SchoolYearController;
+import controllers.CoursesController;
+import controllers.SchoolYearsController;
 import models.abstracts.User;
 import models.classes.Course;
 import models.classes.Manager;
@@ -34,19 +34,19 @@ public class Iduff{
         if (userLogged instanceof Manager){
             // SCHOOL YEAR
             // Criar 3 periodos letivos
-            SchoolYearController.create("2020", "2", "Closed");
-            SchoolYearController.create("2021", "1", "Closed");
-            SchoolYearController.create("2021", "2", "Planning");
+            SchoolYearsController.create("2020", "2", "Closed");
+            SchoolYearsController.create("2021", "1", "Closed");
+            SchoolYearsController.create("2021", "2", "Planning");
             
             // Index dos periodos letivos
-            ArrayList<SchoolYear> school_years = SchoolYearController.index();
+            ArrayList<SchoolYear> school_years = SchoolYearsController.index();
             System.out.println("Anos letivos cadastrados:");
             school_years.forEach(schoolyear -> {
                 System.out.println(" -> " + schoolyear.getYear() + "." + schoolyear.getSemester());
             });
             
             // Destruir primeiro processo seletivo
-            if(SchoolYearController.destroy(school_years.get(1))){
+            if(SchoolYearsController.destroy(school_years.get(1))){
                 System.out.println("Ano letivo de " + school_years.get(1).getYear() + "." + school_years.get(1).getSemester() + " foi deletado");
                 school_years.remove(1);
             }
@@ -58,21 +58,21 @@ public class Iduff{
             String[] ep_parameters = {"Engenharia de Produção", "Engenharia", "Praia Vermelha", "009"};
             String[] fis_parameters = {"Fisica", "Ciencia da Natureza", "Praia Vermelha", "011"};
             String[] mat_parameters = {"Matematica", "Ciencias exatas", "Praia Vermelha", "187"};
-            CourseController.create(cc_parameters);
-            CourseController.create(si_parameters);
-            CourseController.create(ep_parameters);
-            CourseController.create(fis_parameters);
-            CourseController.create(mat_parameters);
+            CoursesController.create(cc_parameters);
+            CoursesController.create(si_parameters);
+            CoursesController.create(ep_parameters);
+            CoursesController.create(fis_parameters);
+            CoursesController.create(mat_parameters);
             
             // Index dos cursos
-            ArrayList<Course> courses = CourseController.index();
+            ArrayList<Course> courses = CoursesController.index();
             System.out.println("Cursos cadastrados:");
             courses.forEach(each_course -> {
                 System.out.println("Curso: " + each_course.getName() + ", da area de conhecimento " + each_course.getKnowledgeArea() + " e de código " + each_course.getCode());
             });
             
             // Destruir o primeiro curso
-            if(CourseController.destroy(courses.get(1))){
+            if(CoursesController.destroy(courses.get(1))){
                 System.out.println("Curso " + courses.get(1).getName() + " foi deletado com sucesso");
                 courses.remove(1);
             }

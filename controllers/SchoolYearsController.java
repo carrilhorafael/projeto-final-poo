@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import models.classes.SchoolYear;
 import models.interfaces.QueryInterface;
 
-public class SchoolYearController {
+public class SchoolYearsController {
     public static boolean create (String year, String semester, String status){
         SchoolYear new_year = new SchoolYear(year, semester, status);
         return QueryInterface.save("schoolyears", new_year.stringify());
