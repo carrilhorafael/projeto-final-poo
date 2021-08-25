@@ -24,7 +24,7 @@ public class DepartmentsController {
         return null;
     }
 
-    public static boolean destroy(Department department){
-        return QueryInterface.delete("departments", department.stringify());
+    public static boolean destroy(int department_id){
+        return QueryInterface.delete("departments", department_id);
     }
 }

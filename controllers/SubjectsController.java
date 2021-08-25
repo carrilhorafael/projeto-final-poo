@@ -24,7 +24,7 @@ public class SubjectsController {
         return null;
     }
 
-    public static boolean destroy(Subject subject){
-        return QueryInterface.delete("subjects", subject.stringify());
+    public static boolean destroy(int subject_id){
+        return QueryInterface.delete("subjects", subject_id);
     }
 }

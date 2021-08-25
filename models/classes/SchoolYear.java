@@ -38,6 +38,9 @@ public class SchoolYear {
     public String getStatus() {
         return status;
     }
+    public int getId() {
+        return id;
+    }
 
     // Setters
     public void setSemester(String semester) {

@@ -2,7 +2,6 @@ package controllers;
 
 import java.util.ArrayList;
 
-import models.abstracts.User;
 import models.classes.CourseCoordinator;
 import models.classes.DepartmentCoordinator;
 import models.classes.Manager;
@@ -43,7 +42,7 @@ public class UsersController {
     //     return null;
     // }
 
-    public static boolean destroy(User user){
-        return QueryInterface.delete("classrooms", user.stringify());
+    public static boolean destroy(int user_id){
+        return QueryInterface.delete("classrooms", user_id);
     }
 }

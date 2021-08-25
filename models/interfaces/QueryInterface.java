@@ -148,13 +148,14 @@ public interface QueryInterface {
     }
     
     // Deleta uma instancia em table.txt
-    public static boolean delete(String table, String line){
+    public static boolean delete(String table, int id){
         ArrayList<String> backup = new ArrayList<>();
         try{
             BufferedReader br = QueryInterface.accessReader(table);
             while(br.ready()){
                 String existing_line = br.readLine();
-                if (!existing_line.equals(line)){
+                int line_id = Integer.parseInt(existing_line.split(" \\| ")[0]);
+                if (line_id != id){
                     backup.add(existing_line);
                 }
             }

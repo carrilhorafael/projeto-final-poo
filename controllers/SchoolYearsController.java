@@ -24,8 +24,7 @@ public class SchoolYearsController {
         return null;
     }
 
-    public static boolean destroy(SchoolYear schoolYear){
-        boolean response = QueryInterface.delete("schoolyears", schoolYear.stringify());
-        return response;
+    public static boolean destroy(int school_year_id){
+        return QueryInterface.delete("schoolyears", school_year_id);
     }
 }
