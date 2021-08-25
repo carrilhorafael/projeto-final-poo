@@ -7,10 +7,12 @@ import views.CoursesTerminalView;
 import views.DepartmentsTerminalView;
 import views.LoginTerminalView;
 import views.SchoolYearsTerminalView;
+import views.SubjectsTerminalView;
 
 public class ViewOperation {
     private final static String div_string = "|| ------------------------------------------------------------------------------------------------------------------------------------------ ||";
     public static Scanner teclado = new Scanner(System.in);
+    
     public static void welcome() {
         System.out.println(div_string);
         System.out.println("           Bem vindo ao sistema de gerenciamento de graduação da UFF construido por Débora Barbosa, Paula Fernandes e Rafael Carrilho!          ");
@@ -59,7 +61,7 @@ public class ViewOperation {
                     
                     } else if (operation == 2){
                         do{
-                            DepartmentsTerminalView.show();
+                            DepartmentsTerminalView.index();
                             String[] departments_options = {"Criar coordenador de departamento", "Criar departamento", "Deletar departamento", "Voltar"};
                             operation = showOptions(departments_options);
                             if (operation == 1){
@@ -94,12 +96,32 @@ public class ViewOperation {
                     }
                 }else if (loggedUser instanceof DepartmentCoordinator){
                     System.out.println("Você está logado como "+ loggedUser.getName() + ". PERMISSÃO: Coordenador de Departamento");
-                    String[] manager_options = {"Matérias", "Professores", "Cursos"};
-                    operation = showOptions(manager_options);
+                    String[] dep_coordinator_options = {"Meus departamentos", "Matérias", "Professores"};
+                    operation = showOptions(dep_coordinator_options);
                     if (operation == 1){
-                        
+                        do{
+                            DepartmentsTerminalView.show(loggedUser);
+                            String[] dep_options = {"Deletar departamento", "Voltar"};
+                            operation = showOptions(dep_options);
+                            if (operation == 1){                 
+                                DepartmentsTerminalView.delete();
+                            }else if(operation != 0 && operation != 2){
+                                throwOperationError();
+                            }
+                        }while(operation != 2 && operation != 0);
                     }else if(operation == 2){
-
+                        do{
+                            SubjectsTerminalView.index();
+                            String[] subject_options = {"Criar matéria", "Deletar matéria", "Voltar"};
+                            operation = showOptions(subject_options);
+                            if (operation == 1){
+                                SubjectsTerminalView.create();
+                            }else if(operation == 2){                            
+                                SubjectsTerminalView.delete();
+                            }else if(operation != 0 && operation != 3){
+                                throwOperationError();
+                            }
+                        }while(operation != 3 && operation != 0);
                     }else if(operation == 3){
 
                     }else if(operation != 0){
@@ -117,7 +139,7 @@ public class ViewOperation {
         int response;
         System.out.println("Você tem as seguintes opções: ");
         for (int i = 0; i < options.length; i++){
-            System.out.print(i + " - " + options[i]);
+            System.out.print((i+1) + " - " + options[i]);
             if (i != options.length-1)
                 System.out.print(" | ");
         }
