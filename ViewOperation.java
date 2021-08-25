@@ -96,7 +96,7 @@ public class ViewOperation {
                     }
                 }else if (loggedUser instanceof DepartmentCoordinator){
                     System.out.println("Você está logado como "+ loggedUser.getName() + ". PERMISSÃO: Coordenador de Departamento");
-                    String[] dep_coordinator_options = {"Meus departamentos", "Matérias", "Professores"};
+                    String[] dep_coordinator_options = {"Meus departamentos", "Matérias"};
                     operation = showOptions(dep_coordinator_options);
                     if (operation == 1){
                         do{
@@ -122,14 +122,9 @@ public class ViewOperation {
                                 throwOperationError();
                             }
                         }while(operation != 3 && operation != 0);
-                    }else if(operation == 3){
-
                     }else if(operation != 0){
                         throwOperationError();
-                    }
-                    
-                }else if (loggedUser instanceof CourseCoordinator){
-
+                    }   
                 }
             }
             
@@ -143,7 +138,7 @@ public class ViewOperation {
             if (i != options.length-1)
                 System.out.print(" | ");
         }
-        System.out.print(" ||| 0 - Sair");
+        System.out.println(" ||| 0 - Sair");
         response = teclado.nextInt();
         return response;
     }

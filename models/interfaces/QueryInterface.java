@@ -152,6 +152,7 @@ public interface QueryInterface {
         ArrayList<String> backup = new ArrayList<>();
         try{
             BufferedReader br = QueryInterface.accessReader(table);
+            backup.add(br.readLine());
             while(br.ready()){
                 String existing_line = br.readLine();
                 int line_id = Integer.parseInt(existing_line.split(" \\| ")[0]);

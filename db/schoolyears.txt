@@ -1,1 +1,1 @@
-year | semester | status
+id | year | semester | status
