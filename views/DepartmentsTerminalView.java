@@ -19,7 +19,7 @@ public class DepartmentsTerminalView {
         System.out.println("Atualmente os seguintes Departamentos estão cadastrados: ");
         ArrayList<Department> departments = DepartmentsController.index();
         departments.forEach(each_department -> {
-            System.out.println("-> " + each_department.getName() + ". Area de conhecimento: " + each_department.getKnowledgeArea() + ". Coordenador(a): " + each_department.getDepartmentCoordinator());
+            System.out.println("-> " + each_department.getName() + ". Area de conhecimento: " + each_department.getKnowledgeArea() + ". Coordenador(a): " + each_department.getDepartmentCoordinator().getName());
         });
     }
 

@@ -1,1 +1,3 @@
 id | name | knowledge_area | campus | code | department_coordinator_id
+1 | GMA | Matematica | Gragoata | 001 | 2
+2 | TSC | Tecnologia | Praia Vermelha | 031 | 3

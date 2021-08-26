@@ -8,7 +8,7 @@ import models.interfaces.QueryInterface;
 public class SubjectsController {
     public static boolean create (String[] parameters){
         Subject subject = new Subject(parameters[0], parameters[1], parameters[2], Integer.parseInt(parameters[3]), Integer.parseInt(parameters[4]));
-        return QueryInterface.save("subject", subject.stringify());
+        return QueryInterface.save("subjects", subject.stringify());
     }
 
     public static ArrayList <Subject> index(){

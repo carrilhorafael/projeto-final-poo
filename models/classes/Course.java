@@ -48,7 +48,9 @@ public class Course {
     public String getName() {
         return name;
     }
-    public String getCourseCoordinator() {
-        return QueryInterface.find("users", course_coordinator_id);
+    public CourseCoordinator getCourseCoordinator() {
+        String[] parameters = QueryInterface.find("users", course_coordinator_id).split(" \\| "); 
+        CourseCoordinator course_coordinator = new CourseCoordinator(parameters);
+        return course_coordinator;
     }
 }

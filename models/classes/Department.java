@@ -38,8 +38,10 @@ public class Department {
     public String getCode() {
         return code;
     }
-    public String getDepartmentCoordinator() {
-        return QueryInterface.find("users", department_coordinator_id);
+    public DepartmentCoordinator getDepartmentCoordinator() {
+        String[] parameters = QueryInterface.find("users", department_coordinator_id).split(" \\| ");
+        DepartmentCoordinator department_coordinator = new DepartmentCoordinator(parameters);
+        return department_coordinator;
     }
     public int getId() {
         return id;

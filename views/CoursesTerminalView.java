@@ -13,8 +13,8 @@ public class CoursesTerminalView {
     
     public static void show(){
         System.out.println(div_string);
-        System.out.println("Você está na página de Departamentos."); 
-        System.out.println("Atualmente os seguintes Departamentos estão cadastrados: ");
+        System.out.println("Você está na página de Cursos."); 
+        System.out.println("Atualmente os seguintes Cursos estão cadastrados: ");
         ArrayList<Course> courses = CoursesController.index();
         courses.forEach(each_course -> {
             System.out.println("-> " + each_course.getName() + ". Area de conhecimento: " + each_course.getKnowledgeArea() + ". Coordenador(a): " + each_course.getCourseCoordinator());
