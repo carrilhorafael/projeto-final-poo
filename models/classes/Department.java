@@ -5,8 +5,7 @@ import models.interfaces.QueryInterface;
 public class Department {
     private String name, knowledge_area, campus, code;
     private int id, department_coordinator_id;
-    private static String last_department = QueryInterface.last("departments");
-    private static int next_department_id = last_department == null ? 1 : Integer.parseInt(last_department.split(" \\| ")[0]) + 1;
+    private static int next_department_id = Integer.parseInt(QueryInterface.find("ids", 1).split(" \\| ")[2]);
 
     public Department (String name, String knowledge_area, String campus, String code, int department_coordinator_id){
         this.name = name;

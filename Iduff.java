@@ -1,5 +1,7 @@
 
+import controllers.DepartmentsController;
 import controllers.UsersController;
+import models.classes.Teacher;
 import models.interfaces.QueryInterface;
 
 public class Iduff{
@@ -13,5 +15,5 @@ public class Iduff{
         }
         
         ViewOperation.routerOperations();       
-    }
+	}      
 }

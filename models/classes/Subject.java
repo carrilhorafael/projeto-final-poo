@@ -5,8 +5,7 @@ import models.interfaces.QueryInterface;
 public class Subject {
     private String name, ch, knowledge_area;
     private int id, department_id, school_year_id;
-    private static String last_subject = QueryInterface.last("subjects");
-    private static int next_subject_id = last_subject == null ? 1 : Integer.parseInt(last_subject.split(" \\| ")[0]) + 1;
+    private static int next_subject_id = Integer.parseInt(QueryInterface.last("ids").split(" \\| ")[4]);
 
     public Subject (String name, String knowledge_area, String ch, int department_id, int school_year_id){
         this.name = name;
