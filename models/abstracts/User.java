@@ -5,7 +5,7 @@ import models.interfaces.QueryInterface;
 public abstract class User {
     private String name, cpf, email, password, registration, state, birthdate, nationality;
     private int id;
-    private static int next_user_id = Integer.parseInt(QueryInterface.find("ids", 1).split(" \\| ")[1]);
+    private static int next_user_id = Integer.parseInt(QueryInterface.last("ids").split(" \\| ")[1]);
 
     public User(String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
         this.name = name;

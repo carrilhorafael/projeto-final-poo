@@ -5,7 +5,7 @@ import models.interfaces.QueryInterface;
 public class Classroom {
     private String code, room;
     private int id, teacher_id, subject_id;
-    private static int next_classroom_id = Integer.parseInt(QueryInterface.find("ids", 1).split(" \\| ")[6]);
+    private static int next_classroom_id = Integer.parseInt(QueryInterface.last("ids").split(" \\| ")[6]);
     
     public Classroom (String code, String room, int teacher_id, int subject_id){
         this.code = code;
