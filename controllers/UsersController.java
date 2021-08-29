@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import models.classes.CourseCoordinator;
 import models.classes.DepartmentCoordinator;
 import models.classes.Manager;
+import models.classes.Teacher;
 import models.interfaces.QueryInterface;
 
 public class UsersController {
@@ -19,7 +20,12 @@ public class UsersController {
             CourseCoordinator course_coordinator = new CourseCoordinator(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7]);   
             return QueryInterface.save("users", course_coordinator.stringify());
         }else if (kind == 4){
-            return true;
+            Teacher teacher = new Teacher(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7], parameters[8]);
+            if (QueryInterface.save("users", teacher.stringify())){
+                String teachers_department = teacher.getId() + " | " + teacher.getDepartment().getId();
+                return QueryInterface.save("teachersdepartments", teachers_department);
+            }
+            return false;
         }else if (kind == 5){
             return true;
         }

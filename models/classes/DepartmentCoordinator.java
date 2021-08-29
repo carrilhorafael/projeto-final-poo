@@ -14,15 +14,9 @@ public class DepartmentCoordinator extends User{
         super(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7], parameters[8]);
     }
 
-    public ArrayList<Department> getDepartments(){
-        ArrayList<String> departments_stringified = QueryInterface.where("departments", "department_coordinator_id", Integer.toString(this.getId()));
-        ArrayList<Department> response = new ArrayList<>();
-        if (departments_stringified != null) {
-            departments_stringified.forEach(ds -> {
-                Department department = new Department(ds);
-                response.add(department);
-            });
-        }
-        return response;
+    public Department getDepartment(){
+        String department_stringified = QueryInterface.find_by("departments", "department_coordinator_id", Integer.toString(this.getId()));
+        Department department = new Department(department_stringified);
+        return department;
     }
 }

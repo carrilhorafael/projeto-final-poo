@@ -1,2 +1,1 @@
 id | name | knowledge_area | campus | code | course_coordinator_id
-1 | Sistemas de Informação | Tecnologia | Sistemas de Informação | 087 | 5

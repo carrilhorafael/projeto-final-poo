@@ -1,12 +1,13 @@
 package models.classes;
 
+import java.util.ArrayList;
+
 import models.interfaces.QueryInterface;
 
 public class Department {
     private String name, knowledge_area, campus, code;
     private int id, department_coordinator_id;
-    private static String last_department = QueryInterface.last("departments");
-    private static int next_department_id = last_department == null ? 1 : Integer.parseInt(last_department.split(" \\| ")[0]) + 1;
+    private static int next_department_id = Integer.parseInt(QueryInterface.last("ids").split(" \\| ")[2]);
 
     public Department (String name, String knowledge_area, String campus, String code, int department_coordinator_id){
         this.name = name;
@@ -51,5 +52,15 @@ public class Department {
     }
     public String getName() {
         return name;
+    }
+    public ArrayList<Teacher> getTeachers(){
+        ArrayList<String> teachers_ids = QueryInterface.where("teachersdepartments", "department_id", Integer.toString(this.getId()));
+        ArrayList<Teacher> teachers = new ArrayList<>();
+        teachers_ids.forEach(ti -> {
+            String teacher_stringified = QueryInterface.find("users", Integer.parseInt(ti.split(" \\| ")[0]));
+            Teacher teacher = new Teacher(teacher_stringified.split(" \\| "));
+            teachers.add(teacher);
+        });
+        return teachers;
     }
 }
