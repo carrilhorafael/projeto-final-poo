@@ -96,14 +96,16 @@ public class ViewOperation {
                     }
                 }else if (loggedUser instanceof DepartmentCoordinator){
                     System.out.println("Você está logado como "+ loggedUser.getName() + ". PERMISSÃO: Coordenador de Departamento");
-                    String[] dep_coordinator_options = {"Meus departamentos", "Matérias"};
+                    String[] dep_coordinator_options = {"Meu departamento", "Matérias"};
                     operation = showOptions(dep_coordinator_options);
                     if (operation == 1){
                         do{
-                            DepartmentsTerminalView.show(loggedUser);
-                            String[] dep_options = {"Deletar departamento", "Voltar"};
+                            DepartmentsTerminalView.show();
+                            String[] dep_options = {"Criar professor para o departamento", "Deletar departamento", "Voltar"};
                             operation = showOptions(dep_options);
-                            if (operation == 1){                 
+                            if(operation == 1){
+                                DepartmentsTerminalView.createTeacher();
+                            }else if (operation == 2){                 
                                 DepartmentsTerminalView.delete();
                             }else if(operation != 0 && operation != 2){
                                 throwOperationError();

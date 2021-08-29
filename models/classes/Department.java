@@ -1,5 +1,7 @@
 package models.classes;
 
+import java.util.ArrayList;
+
 import models.interfaces.QueryInterface;
 
 public class Department {
@@ -50,5 +52,15 @@ public class Department {
     }
     public String getName() {
         return name;
+    }
+    public ArrayList<Teacher> getTeachers(){
+        ArrayList<String> teachers_ids = QueryInterface.where("teachersdepartments", "department_id", Integer.toString(this.getId()));
+        ArrayList<Teacher> teachers = new ArrayList<>();
+        teachers_ids.forEach(ti -> {
+            String teacher_stringified = QueryInterface.find("users", Integer.parseInt(ti.split(" \\| ")[0]));
+            Teacher teacher = new Teacher(teacher_stringified.split(" \\| "));
+            teachers.add(teacher);
+        });
+        return teachers;
     }
 }

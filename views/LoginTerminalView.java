@@ -16,7 +16,8 @@ public class LoginTerminalView {
         String email = teclado.next();
         System.out.print("Digite sua senha: ");
         String password = teclado.next();
-        User userLogged = AuthController.login(email, password);
+        AuthController.login(email, password);
+        User userLogged = AuthController.getLogged();
         // Teste de logado (pode se tornar um try catch)
         if (userLogged != null){
             System.out.println("Você está logado como " + userLogged.getName());
