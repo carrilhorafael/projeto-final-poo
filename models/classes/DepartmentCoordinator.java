@@ -3,20 +3,41 @@ package models.classes;
 import java.util.ArrayList;
 
 import models.abstracts.User;
-import models.interfaces.QueryInterface;
+import models.interfaces.ActiveRecord;
 
 public class DepartmentCoordinator extends User{
-    public DepartmentCoordinator(String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality) {
-        super(name, cpf, email, password, registration, birthdate, state, nationality);        
+    public DepartmentCoordinator() {
+        super();
     }
 
     public DepartmentCoordinator(String[] parameters){
         super(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7], parameters[8]);
     }
 
+    public static DepartmentCoordinator create(String name, String cpf, String email, String password, String registration, String birthdate, String state, String nationality){
+        DepartmentCoordinator coordinator = new DepartmentCoordinator();
+        coordinator.setName(name);
+        coordinator.setCpf(cpf);
+        coordinator.setEmail(email);
+        coordinator.setPassword(password);
+        coordinator.setRegistration(registration);
+        coordinator.setBirthdate(birthdate);
+        coordinator.setState(state);
+        coordinator.setNationality(nationality);
+        return coordinator;
+    }
+
+    public static DepartmentCoordinator serialize(String coordinator_stringified){
+        DepartmentCoordinator coordinator = new DepartmentCoordinator(coordinator_stringified.split(" \\| "));
+        return coordinator;
+    }
+    public void delete(){
+        ActiveRecord.delete("users", this.getId());
+    }
+
     public Department getDepartment(){
-        String department_stringified = QueryInterface.find_by("departments", "department_coordinator_id", Integer.toString(this.getId()));
-        Department department = new Department(department_stringified);
+        String department_stringified = ActiveRecord.find_by("departments", "department_coordinator_id", Integer.toString(this.getId()));
+        Department department = Department.serialize(department_stringified);
         return department;
     }
 }

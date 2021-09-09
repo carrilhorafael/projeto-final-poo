@@ -3,9 +3,9 @@ package models.interfaces;
 import java.io.*;
 import java.util.ArrayList;
 
-public interface QueryInterface {
+public interface ActiveRecord {
     // private final static String DB_PATH = "/home/deboraferreira/Área de Trabalho/poo-projetinho/projeto-final-poo/db/";
-    final static String DB_PATH = "/home/administrator/Documentos/poo/projeto-final-poo/db/";
+    final static String DB_PATH = "/media/administrator/'HDD Linux'/pessoais/projeto-final-poo/db/";
     // public static void createDatabaseArchives(){
     //     File users = new File(DB_PATH+"users.txt"); 
     //     File classes = new File(DB_PATH+"classes.txt"); 

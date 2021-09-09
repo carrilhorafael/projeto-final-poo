@@ -1,22 +1,18 @@
 package models.classes;
 
-import models.interfaces.QueryInterface;
+import java.util.ArrayList;
+
+import models.interfaces.ActiveRecord;
 
 public class SchoolYear {    
     private String year, semester, status;
     private int id;
-    private static int next_school_year_id = Integer.parseInt(QueryInterface.last("ids").split(" \\| ")[5]);
+    private ArrayList<String> errors;
+    private static int next_school_year_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[5]);
 
-    public SchoolYear(String year, String semester, String status){
-        this.year = year;
-        this.semester = semester;
-        this.status = status;
-        this.id = next_school_year_id;
-        next_school_year_id++;
-    }
+    private SchoolYear(){}
 
-    public SchoolYear(String sy_stringified){
-        String[] parameters = sy_stringified.split(" \\| ");
+    private SchoolYear(String[] parameters){
         this.id = Integer.parseInt(parameters[0]);
         this.year = parameters[1];
         this.semester = parameters[2];
@@ -25,6 +21,41 @@ public class SchoolYear {
 
     public String stringify(){
         return this.id + " | " + this.year + " | " + this.semester + " | " + this.status;
+    }
+    
+    public boolean save(){
+        if(this.errors.isEmpty()){
+            this.id = next_school_year_id;
+            next_school_year_id++;
+            return ActiveRecord.save("schoolyears", this.stringify());
+        }else return false;
+    }
+
+    public void delete(){
+        ActiveRecord.delete("schoolyears", this.id);
+    }
+
+    public static SchoolYear create(String year, String semester, String status){
+        SchoolYear school_year = new SchoolYear();
+        school_year.setYear(year);
+        school_year.setSemester(semester);
+        school_year.setStatus(status);
+        school_year.verifyUniqueness();
+        return school_year;
+    }
+
+    public static SchoolYear serialize(String school_year_stringified){
+        SchoolYear school_year = new SchoolYear(school_year_stringified.split(" \\| "));
+        return school_year;
+    }
+
+    public static ArrayList<SchoolYear> arraySerialize(ArrayList<String> school_year_stringifieds){
+        ArrayList<SchoolYear> school_years = new ArrayList<>();
+        school_year_stringifieds.forEach(sy -> {
+            SchoolYear school_year = SchoolYear.serialize(sy);
+            school_years.add(school_year);
+        });
+        return school_years;
     }
     
     // Getters
@@ -42,14 +73,52 @@ public class SchoolYear {
     }
 
     // Setters
+    public boolean validateSemester(String semester){
+        boolean response = true;
+        if(semester.isBlank()){
+            this.errors.add("O semestre do periodo letivo não pode ficar em branco");
+            response = false;
+        }
+        return response;
+    }
+    public boolean validateYear(String year){
+        boolean response = true;
+        if(year.isBlank()){
+            this.errors.add("O ano do periodo letivo não pode ficar em branco");
+            response = false;
+        }
+        return response;
+    }
+    public boolean validateStatus(String status){
+        boolean response = true;
+        if(status.isBlank()){
+            this.errors.add("O status do período letivo não pode ficar em branco.");
+            response = false;
+        }else {
+            if(!(status.equals("Planejamento") || status.equals("Ativo") || status.equals("Fechado") || status.equals("Inscrições"))){
+                this.errors.add("Essa opção não existe para status do periodo letivo");
+                response = false;
+            }else if(status.equals("Planejamento") && (ActiveRecord.find_by("schoolyears", "status", "Planejamento") != null)){
+                this.errors.add("Já existe um ano letivo em planejamento");
+                response = false;
+            }
+        }
+        return response;
+    }
+    public void verifyUniqueness(){
+        ArrayList<SchoolYear> school_years = SchoolYear.arraySerialize(ActiveRecord.where("schoolyears", "year", this.year));
+        school_years.forEach(sy -> {
+            if(sy.getSemester().equals(this.semester)) this.errors.add("O ano letivo já existe.");
+        });
+    }
     public void setSemester(String semester) {
-        this.semester = semester;
+        if(validateSemester(semester)) this.semester = semester;
     }
     public void setStatus(String status) {
-        this.status = status;
+        if(validateStatus(status)) this.status = status;
     }
     public void setYear(String year) {
-        this.year = year;
+        if(validateYear(year)) this.year = year;
     }
 
 }
