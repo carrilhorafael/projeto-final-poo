@@ -12,6 +12,6 @@ public class Iduff{
             UsersController.register(rafael_parameters, 1);
         }
         
-        ViewOperation.routerOperations();       
+        ViewOperation.routerOperations();
     }
 }
