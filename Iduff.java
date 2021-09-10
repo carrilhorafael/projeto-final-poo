@@ -1,8 +1,7 @@
 
 import activerecord.ActiveRecord;
-import controllers.DepartmentsController;
 import controllers.UsersController;
-import models.Teacher;
+import views.HomeView;
 
 public class Iduff{
     public static void main (String[] args){
@@ -13,7 +12,6 @@ public class Iduff{
             String[] rafael_parameters = {"Rafael Carrilho", "111.111.111-11", "rafael@email.com", "123456", "111.111.111", "16022000", "RJ" , "Brasil"};
             UsersController.register(rafael_parameters, 1);
         }
-
-        ViewOperation.routerOperations();
-	}
+        new HomeView();
+    }
 }

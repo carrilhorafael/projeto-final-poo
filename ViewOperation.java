@@ -1,14 +1,11 @@
 import java.util.Scanner;
-
-import models.CourseCoordinator;
+import models.abstracts.User;
 import models.DepartmentCoordinator;
 import models.Manager;
-import models.abstracts.User;
 import views.CoursesTerminalView;
-import views.DepartmentsTerminalView;
-import views.LoginTerminalView;
-import views.SchoolYearsTerminalView;
-import views.SubjectsTerminalView;
+import views.TerminalViews.DepartmentsTerminalView;
+import views.TerminalViews.SchoolYearsTerminalView;
+import views.TerminalViews.SubjectsTerminalView;
 
 public class ViewOperation {
     private final static String div_string = "|| ------------------------------------------------------------------------------------------------------------------------------------------ ||";
@@ -34,7 +31,7 @@ public class ViewOperation {
                 String[] guest_options = {"Login"};
                 operation = showOptions(guest_options);
                 if (operation == 1){
-                    loggedUser = LoginTerminalView.loginView();
+                    // loggedUser = LoginTerminalView.loginView();
                     if (loggedUser != null)
                         authenticated = true;
                 }
@@ -97,16 +94,14 @@ public class ViewOperation {
                     }
                 }else if (loggedUser instanceof DepartmentCoordinator){
                     System.out.println("Você está logado como "+ loggedUser.getName() + ". PERMISSÃO: Coordenador de Departamento");
-                    String[] dep_coordinator_options = {"Meu departamento", "Matérias"};
+                    String[] dep_coordinator_options = {"Meus departamentos", "Matérias"};
                     operation = showOptions(dep_coordinator_options);
                     if (operation == 1){
                         do{
-                            DepartmentsTerminalView.show();
-                            String[] dep_options = {"Criar professor para o departamento", "Deletar departamento", "Voltar"};
+                            DepartmentsTerminalView.show(loggedUser);
+                            String[] dep_options = {"Deletar departamento", "Voltar"};
                             operation = showOptions(dep_options);
-                            if(operation == 1){
-                                DepartmentsTerminalView.createTeacher();
-                            }else if (operation == 2){
+                            if (operation == 1){
                                 DepartmentsTerminalView.delete();
                             }else if(operation != 0 && operation != 2){
                                 throwOperationError();

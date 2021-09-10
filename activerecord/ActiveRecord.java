@@ -5,19 +5,7 @@ import java.util.ArrayList;
 
 public interface ActiveRecord {
     // private final static String DB_PATH = "/home/deboraferreira/Área de Trabalho/poo-projetinho/projeto-final-poo/db/";
-    final static String DB_PATH = "/media/administrator/'HDD Linux'/pessoais/projeto-final-poo/db/";
-    // public static void createDatabaseArchives(){
-    //     File users = new File(DB_PATH+"users.txt");
-    //     File classes = new File(DB_PATH+"classes.txt");
-    //     try{
-
-    //         users.createNewFile();
-    //         classes.createNewFile();
-
-    //     } catch (IOException e){
-    //     e.printStackTrace();
-    //     }
-    // }
+    final static String DB_PATH = "/media/administrator/HDD Linux/pessoais/projeto-final-poo/db/";
 
     // Abre um arquivo table.txt para leitura
     private static BufferedReader accessReader(String table){

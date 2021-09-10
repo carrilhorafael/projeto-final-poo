@@ -30,6 +30,7 @@ public class Student extends User{
     }
 
     public static Student serialize(String student_stringified){
+        if(student_stringified == null || !student_stringified.split(" \\| ")[9].equals("Student")) return null;
         Student student = new Student(student_stringified.split(" \\| "));
         return student;
     }
