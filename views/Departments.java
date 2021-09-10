@@ -21,6 +21,8 @@ public class Departments {
 	private JLabel title;
 	private JLabel dptsCadastrados;
 	private JTable table;
+	private JButton createBtn;
+	private JButton deleteBtn;
 
 	/**
 	 * Launch the application.
@@ -94,22 +96,26 @@ public class Departments {
 		lblTestinho.setBounds(36, 437, 397, 20);
 		frame.getContentPane().add(lblTestinho);
 		
-		JButton btnNewButton = new JButton("Criar Departamento");
-		btnNewButton.setForeground(UIManager.getColor("OptionPane.messageForeground"));
-		btnNewButton.setBackground(UIManager.getColor("OptionPane.questionDialog.titlePane.background"));
-		btnNewButton.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		btnNewButton.setBounds(602, 403, 273, 37);
-		frame.getContentPane().add(btnNewButton);
-		
-		JButton btnDeletarDepartamento = new JButton("Deletar Departamento");
-		btnDeletarDepartamento.addActionListener(new ActionListener() {
+		createBtn = new JButton("Criar departamento");
+		createBtn.setForeground(Color.WHITE);
+		createBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnDeletarDepartamento.setForeground(UIManager.getColor("Button.foreground"));
-		btnDeletarDepartamento.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		btnDeletarDepartamento.setBackground(UIManager.getColor("OptionPane.questionDialog.titlePane.background"));
-		btnDeletarDepartamento.setBounds(602, 471, 273, 37);
-		frame.getContentPane().add(btnDeletarDepartamento);
+		createBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		createBtn.setBackground(new Color(32, 178, 170));
+		createBtn.setBounds(602, 403, 268, 44);
+		frame.getContentPane().add(createBtn);
+		
+		deleteBtn = new JButton("Deletar departamento");
+		deleteBtn.setForeground(Color.WHITE);
+		deleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		deleteBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		deleteBtn.setBackground(new Color(32, 178, 170));
+		deleteBtn.setBounds(602, 480, 268, 44);
+		frame.getContentPane().add(deleteBtn);
 	}
 }
