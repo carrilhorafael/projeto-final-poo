@@ -28,6 +28,8 @@ public class createDepartment {
 	private JLabel lblCoordenador;
 	private JTextField coordenador;
 	private JButton createBtn;
+	private JButton backToHome;
+	private JButton btnCreateCoord;
 
 	/**
 	 * Launch the application.
@@ -79,7 +81,7 @@ public class createDepartment {
 		name.setColumns(10);
 		frame.getContentPane().add(name);
 		
-		lblArea = new JLabel("Nome do Departamento:");
+		lblArea = new JLabel("\u00C1rea de conhecimento:");
 		lblArea.setBounds(519, 117, 402, 20);
 		lblArea.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		frame.getContentPane().add(lblArea);
@@ -116,7 +118,7 @@ public class createDepartment {
 		frame.getContentPane().add(coordenador);
 		
 		JButton createBtn = new JButton("Criar departamento");
-		createBtn.setBounds(359, 373, 268, 44);
+		createBtn.setBounds(359, 374, 268, 44);
 		createBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		createBtn.setBackground(new Color(32, 178, 170));
 		createBtn.addActionListener(new ActionListener() {
@@ -124,5 +126,21 @@ public class createDepartment {
 			}
 		});
 		frame.getContentPane().add(createBtn);
+		
+		JButton backToHome = new JButton("Voltar para o início");
+		backToHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		backToHome.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		backToHome.setBackground(new Color(32, 178, 170));
+		backToHome.setBounds(359, 558, 268, 44);
+		frame.getContentPane().add(backToHome);
+		
+		btnCreateCoord = new JButton("Criar Coordenador");
+		btnCreateCoord.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		btnCreateCoord.setBackground(new Color(32, 178, 170));
+		btnCreateCoord.setBounds(359, 468, 268, 44);
+		frame.getContentPane().add(btnCreateCoord);
 	}
 }
