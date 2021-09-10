@@ -76,6 +76,16 @@ public class Classroom {
     public Teacher getTeacher() {
         return teacher;
     }
+    public ArrayList<Student> getStudents(){
+        ArrayList<String> subscription_stringifieds = ActiveRecord.where("subscriptions", "classroom_id", Integer.toString(this.id));
+        ArrayList<Student> students = new ArrayList<>();
+        subscription_stringifieds.forEach(ss -> {
+            String student_stringified = ActiveRecord.find("users", Integer.parseInt(ss.split(" \\| ")[1]));
+            Student student = Student.serialize(student_stringified);
+            students.add(student);
+        });
+        return students;
+    }
     public ArrayList<String> getErrors() {
         return errors;
     }
