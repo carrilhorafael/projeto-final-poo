@@ -1,16 +1,16 @@
-package models.classes;
+package models;
 
 import java.util.ArrayList;
 
+import activerecord.ActiveRecord;
 import models.abstracts.User;
-import models.interfaces.ActiveRecord;
 
 public class DepartmentCoordinator extends User{
-    public DepartmentCoordinator() {
+    private DepartmentCoordinator() {
         super();
     }
 
-    public DepartmentCoordinator(String[] parameters){
+    private DepartmentCoordinator(String[] parameters){
         super(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7], parameters[8]);
     }
 

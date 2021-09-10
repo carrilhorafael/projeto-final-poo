@@ -1,4 +1,4 @@
-package models.interfaces;
+package activerecord;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -7,35 +7,35 @@ public interface ActiveRecord {
     // private final static String DB_PATH = "/home/deboraferreira/Área de Trabalho/poo-projetinho/projeto-final-poo/db/";
     final static String DB_PATH = "/media/administrator/'HDD Linux'/pessoais/projeto-final-poo/db/";
     // public static void createDatabaseArchives(){
-    //     File users = new File(DB_PATH+"users.txt"); 
-    //     File classes = new File(DB_PATH+"classes.txt"); 
-    //     try{  
+    //     File users = new File(DB_PATH+"users.txt");
+    //     File classes = new File(DB_PATH+"classes.txt");
+    //     try{
 
     //         users.createNewFile();
-    //         classes.createNewFile();  
-            
-    //     } catch (IOException e){  
+    //         classes.createNewFile();
+
+    //     } catch (IOException e){
     //     e.printStackTrace();
-    //     }         
+    //     }
     // }
-    
+
     // Abre um arquivo table.txt para leitura
     private static BufferedReader accessReader(String table){
         try{
             BufferedReader br = new BufferedReader(new FileReader(DB_PATH + table + ".txt"));
-            return br;    
+            return br;
         }catch(FileNotFoundException e){
             e.printStackTrace();
         }
         return null;
-    }  
-    
-    // Abre um arquivo table.txt para escrita. 
+    }
+
+    // Abre um arquivo table.txt para escrita.
     // Caso a boolean rewrite seja false, o arquivo será aberto para rescrita, caso contrario, manterá a informação já escrita.
     private static BufferedWriter accessWriter(String table, boolean rewriter) throws IOException{
         try{
             BufferedWriter bw = new BufferedWriter(new FileWriter(DB_PATH + table + ".txt", rewriter));
-            return bw;    
+            return bw;
         }catch(FileNotFoundException e){
             e.printStackTrace();
         }catch(IOException e){
@@ -62,7 +62,7 @@ public interface ActiveRecord {
                     return line;
                 }
             }
-            br.close();          
+            br.close();
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -81,7 +81,7 @@ public interface ActiveRecord {
                     return line;
                 }
             }
-            br.close();          
+            br.close();
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -96,7 +96,7 @@ public interface ActiveRecord {
             br.readLine();
             while (br.ready()){
                 String line = br.readLine();
-                response.add(line);                
+                response.add(line);
             }
             br.close();
             return response;
@@ -126,7 +126,7 @@ public interface ActiveRecord {
                 }
             }
             br.close();
-            return response;          
+            return response;
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -147,7 +147,7 @@ public interface ActiveRecord {
         }
         return false;
     }
-    
+
     // Editar uma instancia em table.txt
     public static boolean update(String table, int id, String parameters, String value){
         ArrayList<String> backup = new ArrayList<>();
@@ -164,14 +164,14 @@ public interface ActiveRecord {
             }
             while(br.ready()){
                 String existing_line = br.readLine();
-                String[] existing_line_array = existing_line.split(" \\| "); 
+                String[] existing_line_array = existing_line.split(" \\| ");
                 int line_id = Integer.parseInt(existing_line_array[0]);
                 if (line_id == id){
                     String new_line = "";
                     for (int j = 0; j < existing_line_array.length; j++){
-                        if (i == j) 
+                        if (i == j)
                             new_line = new_line + value;
-                        else 
+                        else
                             new_line = new_line + existing_line_array[j];
                         if (j < existing_line_array.length - 1){
                             new_line = new_line + " | ";
@@ -213,10 +213,10 @@ public interface ActiveRecord {
                     backup.add(existing_line);
                 }
             }
-            
+
             br.close();
             BufferedWriter bw = accessWriter(table, false);
-                
+
             backup.forEach(existing_line -> {
                 try{
                     bw.write(existing_line);
@@ -233,7 +233,7 @@ public interface ActiveRecord {
             return false;
         }
     }
-    
+
     // Retorna a ultima instancia da table.txt
     public static String last(String table){
         try{

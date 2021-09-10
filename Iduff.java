@@ -1,8 +1,8 @@
 
+import activerecord.ActiveRecord;
 import controllers.DepartmentsController;
 import controllers.UsersController;
-import models.classes.Teacher;
-import models.interfaces.ActiveRecord;
+import models.Teacher;
 
 public class Iduff{
     public static void main (String[] args){

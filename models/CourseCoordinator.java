@@ -1,16 +1,16 @@
-package models.classes;
+package models;
 
 import java.util.ArrayList;
 
+import activerecord.ActiveRecord;
 import models.abstracts.User;
-import models.interfaces.ActiveRecord;
 
 public class CourseCoordinator extends User {
-    public CourseCoordinator() {
+    private CourseCoordinator() {
         super();
     }
 
-    public CourseCoordinator(String[] parameters){
+    private CourseCoordinator(String[] parameters){
         super(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5], parameters[6], parameters[7], parameters[8]);
     }
 
@@ -35,7 +35,7 @@ public class CourseCoordinator extends User {
     public void delete(){
         ActiveRecord.delete("users", this.getId());
     }
-    
+
     public Course getCourse(){
         String course_stringified = ActiveRecord.find_by("courses", "course_coordinator_id", Integer.toString(this.getId()));
         Course response = Course.serialize(course_stringified);

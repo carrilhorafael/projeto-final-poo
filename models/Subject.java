@@ -1,8 +1,8 @@
-package models.classes;
+package models;
 
 import java.util.ArrayList;
 
-import models.interfaces.ActiveRecord;
+import activerecord.ActiveRecord;
 
 public class Subject {
     private String name;
@@ -78,6 +78,9 @@ public class Subject {
     }
     public String getName() {
         return name;
+    }
+    public ArrayList<String> getErrors() {
+        return errors;
     }
 
     // Setters e validators

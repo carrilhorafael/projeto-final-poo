@@ -1,8 +1,9 @@
 import java.util.Scanner;
+
+import models.CourseCoordinator;
+import models.DepartmentCoordinator;
+import models.Manager;
 import models.abstracts.User;
-import models.classes.CourseCoordinator;
-import models.classes.DepartmentCoordinator;
-import models.classes.Manager;
 import views.CoursesTerminalView;
 import views.DepartmentsTerminalView;
 import views.LoginTerminalView;
@@ -12,20 +13,20 @@ import views.SubjectsTerminalView;
 public class ViewOperation {
     private final static String div_string = "|| ------------------------------------------------------------------------------------------------------------------------------------------ ||";
     public static Scanner teclado = new Scanner(System.in);
-    
+
     public static void welcome() {
         System.out.println(div_string);
         System.out.println("           Bem vindo ao sistema de gerenciamento de graduação da UFF construido por Débora Barbosa, Paula Fernandes e Rafael Carrilho!          ");
         System.out.println("     Use as entradas do terminal explicitadas para passar pelas funcionalidades. Se quiser encerrar a execução, digite 0 no menu de controle.     ");
-        System.out.println(div_string); 
+        System.out.println(div_string);
     }
 
-    
+
     public static void routerOperations(){
         int operation = 0;
         boolean authenticated = false;
         User loggedUser = null;
-        
+
         do{
             System.out.println(div_string);
             if(!authenticated){
@@ -34,7 +35,7 @@ public class ViewOperation {
                 operation = showOptions(guest_options);
                 if (operation == 1){
                     loggedUser = LoginTerminalView.loginView();
-                    if (loggedUser != null) 
+                    if (loggedUser != null)
                         authenticated = true;
                 }
                 else if(operation != 0)
@@ -58,7 +59,7 @@ public class ViewOperation {
                                 throwOperationError();
                             }
                         }while(operation != 3 && operation != 0);
-                    
+
                     } else if (operation == 2){
                         do{
                             DepartmentsTerminalView.index();
@@ -68,13 +69,13 @@ public class ViewOperation {
                                 DepartmentsTerminalView.createCoordinator();
                             }else if(operation == 2){
                                 DepartmentsTerminalView.create();
-                            }else if(operation == 3){                            
+                            }else if(operation == 3){
                                 DepartmentsTerminalView.delete();
                             }else if(operation != 0 && operation != 4){
                                 throwOperationError();
                             }
                         }while(operation != 4 && operation != 0);
-                        
+
                     } else if (operation == 3){
                         do{
                             CoursesTerminalView.show();
@@ -84,13 +85,13 @@ public class ViewOperation {
                                 CoursesTerminalView.createCoordinator();
                             }else if(operation == 2){
                                 CoursesTerminalView.create();
-                            }else if(operation == 3){                            
+                            }else if(operation == 3){
                                 CoursesTerminalView.delete();
                             }else if(operation != 0 && operation != 4){
                                 throwOperationError();
                             }
                         }while(operation != 4 && operation != 0);
-                        
+
                     } else if (operation != 0){
                         throwOperationError();
                     }
@@ -105,7 +106,7 @@ public class ViewOperation {
                             operation = showOptions(dep_options);
                             if(operation == 1){
                                 DepartmentsTerminalView.createTeacher();
-                            }else if (operation == 2){                 
+                            }else if (operation == 2){
                                 DepartmentsTerminalView.delete();
                             }else if(operation != 0 && operation != 2){
                                 throwOperationError();
@@ -118,7 +119,7 @@ public class ViewOperation {
                             operation = showOptions(subject_options);
                             if (operation == 1){
                                 SubjectsTerminalView.create();
-                            }else if(operation == 2){                            
+                            }else if(operation == 2){
                                 SubjectsTerminalView.delete();
                             }else if(operation != 0 && operation != 3){
                                 throwOperationError();
@@ -126,10 +127,10 @@ public class ViewOperation {
                         }while(operation != 3 && operation != 0);
                     }else if(operation != 0){
                         throwOperationError();
-                    }   
+                    }
                 }
             }
-            
+
         }while(operation != 0);
     }
     public static int showOptions(String[] options){

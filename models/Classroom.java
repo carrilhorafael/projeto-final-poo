@@ -1,8 +1,8 @@
-package models.classes;
+package models;
 
 import java.util.ArrayList;
 
-import models.interfaces.ActiveRecord;
+import activerecord.ActiveRecord;
 
 public class Classroom {
     private String code, room;
@@ -11,10 +11,10 @@ public class Classroom {
     private Subject subject;
     private ArrayList<String> errors;
     private static int next_classroom_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[6]);
-    
+
     private Classroom (){}
-        
-    public Classroom (String[] parameters){ 
+
+    public Classroom (String[] parameters){
         this.id = Integer.parseInt(parameters[0]);
         this.code = parameters[1];
         this.room = parameters[2];
@@ -30,8 +30,8 @@ public class Classroom {
         }else return false;
     }
 
-    public boolean delete(){
-        return ActiveRecord.delete("classroom", this.id);
+    public void delete(){
+        ActiveRecord.delete("classroom", this.id);
     }
 
     public static Classroom create(String code, String room, int teacher_id, int subject_id){
@@ -42,7 +42,7 @@ public class Classroom {
         classroom.setSubject(subject_id);
         return classroom;
     }
-    
+
     public String stringify(){
         return this.id + " | " + this.code + " | " + this.room + " | " + this.teacher.getId() + " | " + this.subject.getId();
     }
@@ -75,6 +75,9 @@ public class Classroom {
     }
     public Teacher getTeacher() {
         return teacher;
+    }
+    public ArrayList<String> getErrors() {
+        return errors;
     }
 
     // Validators e Setters
@@ -129,7 +132,7 @@ public class Classroom {
         if(validateTeacher(user_stringified)){
             Teacher teacher = Teacher.serialize(user_stringified);
             this.teacher = teacher;
-        } 
+        }
     }
     public void setSubject(int subject_id){
         String subject_stringified = ActiveRecord.find("subjects", subject_id);

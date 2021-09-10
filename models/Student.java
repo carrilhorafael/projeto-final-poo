@@ -1,7 +1,7 @@
-package models.classes;
+package models;
 
+import activerecord.ActiveRecord;
 import models.abstracts.User;
-import models.interfaces.ActiveRecord;
 
 public class Student extends User{
     private Course course;

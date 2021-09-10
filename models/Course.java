@@ -1,18 +1,18 @@
-package models.classes;
+package models;
 
 import java.util.ArrayList;
 
-import models.interfaces.ActiveRecord;
+import activerecord.ActiveRecord;
 
 public class Course {
     private String name, knowledge_area, campus, code;
-    private int id; 
+    private int id;
     private CourseCoordinator course_coordinator;
     private ArrayList<String> errors;
     private static int next_course_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[3]);
 
     private Course (){}
-        
+
     private Course (String[] parameters){
         this.id = Integer.parseInt(parameters[0]);
         this.name = parameters[1];
@@ -27,7 +27,7 @@ public class Course {
             this.id = next_course_id;
             next_course_id++;
             return ActiveRecord.save("courses", this.stringify());
-        }else return false;    
+        }else return false;
     }
 
     public void delete(){
@@ -40,10 +40,10 @@ public class Course {
         return course;
     }
 
-    public static ArrayList<Course> arraySerialize(ArrayList<String> course_coordinators){
+    public static ArrayList<Course> arraySerialize(ArrayList<String> course_stringifieds){
         ArrayList<Course> courses = new ArrayList<>();
-        course_coordinators.forEach(cc -> {
-            Course course = Course.serialize(cc);
+        course_stringifieds.forEach(cs -> {
+            Course course = Course.serialize(cs);
             courses.add(course);
         });
         return courses;
@@ -82,6 +82,10 @@ public class Course {
     public CourseCoordinator getCourseCoordinator() {
         return course_coordinator;
     }
+    public ArrayList<String> getErrors() {
+        return errors;
+    }
+
 
     // Validators e setters
     public boolean validateName(String name){

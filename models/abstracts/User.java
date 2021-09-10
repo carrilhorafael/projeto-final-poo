@@ -2,7 +2,7 @@ package models.abstracts;
 
 import java.util.ArrayList;
 
-import models.interfaces.ActiveRecord;
+import activerecord.ActiveRecord;
 
 public abstract class User {
     private String name, cpf, email, password, registration, state, birthdate, nationality;
@@ -35,7 +35,7 @@ public abstract class User {
             return ActiveRecord.save("users", this.stringify());
         }return false;
     }
-    
+
 
     public boolean authenticate (String password){
         return this.password.equals(password);
@@ -59,6 +59,9 @@ public abstract class User {
     }
     public String getRegistration() {
         return registration;
+    }
+    public ArrayList<String> getErrors() {
+        return errors;
     }
 
     // validators e setters

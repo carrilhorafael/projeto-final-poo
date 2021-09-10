@@ -1,8 +1,8 @@
-package models.classes;
+package models;
 
 import java.util.ArrayList;
 
-import models.interfaces.ActiveRecord;
+import activerecord.ActiveRecord;
 
 public class Department {
     private String name, knowledge_area, campus, code;
@@ -13,7 +13,7 @@ public class Department {
 
     private Department (){}
 
-    private Department (String[] parameters){ 
+    private Department (String[] parameters){
         this.id = Integer.parseInt(parameters[0]);
         this.name = parameters[1];
         this.knowledge_area = parameters[2];
@@ -21,7 +21,7 @@ public class Department {
         this.code = parameters[4];
         this.department_coordinator = DepartmentCoordinator.serialize(ActiveRecord.find("users", Integer.parseInt(parameters[5])));
     }
-    
+
     public String stringify(){
         return this.id + " | " + this.name + " | " + this.knowledge_area + " | " + this.campus + " | " + this.code + " | " + this.department_coordinator.getId();
     }
@@ -94,6 +94,9 @@ public class Department {
         ArrayList<String> subject_stringifieds = ActiveRecord.where("subjects", "department_id", Integer.toString(this.id));
         return Subject.arraySerialize(subject_stringifieds);
     }
+    public ArrayList<String> getErrors() {
+        return errors;
+    }
 
     // Validators e Setters
     public boolean validateName(String name){
@@ -129,7 +132,7 @@ public class Department {
         return response;
     }
     public boolean validateCoordinator(String coordinator_stringified){
-        boolean response = true; 
+        boolean response = true;
         if(coordinator_stringified == null){
             this.errors.add("Coordenador deve existir");
             response = false;

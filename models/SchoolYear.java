@@ -1,10 +1,10 @@
-package models.classes;
+package models;
 
 import java.util.ArrayList;
 
-import models.interfaces.ActiveRecord;
+import activerecord.ActiveRecord;
 
-public class SchoolYear {    
+public class SchoolYear {
     private String year, semester, status;
     private int id;
     private ArrayList<String> errors;
@@ -22,7 +22,7 @@ public class SchoolYear {
     public String stringify(){
         return this.id + " | " + this.year + " | " + this.semester + " | " + this.status;
     }
-    
+
     public boolean save(){
         if(this.errors.isEmpty()){
             this.id = next_school_year_id;
@@ -57,7 +57,7 @@ public class SchoolYear {
         });
         return school_years;
     }
-    
+
     // Getters
     public String getSemester() {
         return semester;
@@ -70,6 +70,9 @@ public class SchoolYear {
     }
     public int getId() {
         return id;
+    }
+    public ArrayList<String> getErrors() {
+        return errors;
     }
 
     // Setters
