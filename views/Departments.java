@@ -11,6 +11,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Departments {
 
@@ -77,7 +80,36 @@ public class Departments {
 		));
 		table.setFont(new Font("Fira Code", Font.BOLD, 16));
 		table.setEnabled(false);
-		table.setBounds(45, 136, 895, 327);
+		table.setBounds(36, 135, 895, 256);
 		frame.getContentPane().add(table);
+		
+		JLabel lblOsDepartamentosQue = new JLabel("Os departamentos que voc\u00EA coordena s\u00E3o:");
+		lblOsDepartamentosQue.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		lblOsDepartamentosQue.setBounds(36, 405, 397, 20);
+		frame.getContentPane().add(lblOsDepartamentosQue);
+		
+		JLabel lblTestinho = new JLabel("Testinho");
+		lblTestinho.setForeground(UIManager.getColor("OptionPane.questionDialog.border.background"));
+		lblTestinho.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		lblTestinho.setBounds(36, 437, 397, 20);
+		frame.getContentPane().add(lblTestinho);
+		
+		JButton btnNewButton = new JButton("Criar Departamento");
+		btnNewButton.setForeground(UIManager.getColor("OptionPane.messageForeground"));
+		btnNewButton.setBackground(UIManager.getColor("OptionPane.questionDialog.titlePane.background"));
+		btnNewButton.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		btnNewButton.setBounds(602, 403, 273, 37);
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnDeletarDepartamento = new JButton("Deletar Departamento");
+		btnDeletarDepartamento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnDeletarDepartamento.setForeground(UIManager.getColor("Button.foreground"));
+		btnDeletarDepartamento.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		btnDeletarDepartamento.setBackground(UIManager.getColor("OptionPane.questionDialog.titlePane.background"));
+		btnDeletarDepartamento.setBounds(602, 471, 273, 37);
+		frame.getContentPane().add(btnDeletarDepartamento);
 	}
 }
