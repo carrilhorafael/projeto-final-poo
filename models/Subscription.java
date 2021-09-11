@@ -19,7 +19,7 @@ public class Subscription {
         Subscription subscription = new Subscription();
         subscription.setStudent(student_id);
         subscription.setClassroom(classroom_id);
-        // verifySchoolYearStatus();
+        subscription.verifySchoolYearStatus();
         return subscription;
     }
     public boolean save(){
@@ -65,9 +65,14 @@ public class Subscription {
     }
 
     // Setters e Validators
-    // public boolean verifySchoolYearStatus(){
+    public void verifySchoolYearStatus(){
+        String planning_school_year = ActiveRecord.find_by("schoolyears", "status", "Planejamento");
+        SchoolYear school_year = SchoolYear.serialize(planning_school_year);
+        if(school_year == null){
+            this.errors.add("Não existe um ano letivo em planejamento");
+        }
+    }
 
-    // }
     public boolean validateStudent(Student student){
         boolean response = true;
         if (student == null){

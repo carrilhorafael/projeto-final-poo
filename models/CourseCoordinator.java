@@ -1,6 +1,5 @@
 package models;
 
-import java.util.ArrayList;
 
 import activerecord.ActiveRecord;
 import models.abstracts.User;

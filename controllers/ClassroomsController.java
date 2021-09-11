@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import activerecord.ActiveRecord;
 import models.Classroom;
 import models.CourseCoordinator;
+import models.Student;
+import models.Subscription;
 
 public class ClassroomsController extends ApplicationController{
     public static Classroom create (String[] parameters){
@@ -52,6 +54,23 @@ public class ClassroomsController extends ApplicationController{
         if(!raise_permissions("classrooms::destroy")) return;
         Classroom classroom = setClassroom(classroom_id);
         classroom.delete();
+    }
+
+    public static Subscription subscribe(int classroom_id){
+        if(!raise_permissions("classrooms::subscribe")) return null;
+        Student user_logged = (Student)AuthController.getUserLogged();
+        Subscription subscription = Subscription.create(
+            user_logged.getId(), // int student_id
+            classroom_id  // int classroom_id
+        );
+        if (subscription.save()){
+            return subscription;
+        }else{
+            subscription.getErrors().forEach(error -> {
+                System.out.println("(422)" + error);
+            });
+            return subscription;
+        }
     }
 
     private static Classroom setClassroom(int classroom_id){
