@@ -35,8 +35,8 @@ public class Department {
     }
 
     public void delete(){
-        this.getTeachers().forEach(teacher -> {teacher.delete();});
-        this.getSubjects().forEach(subject -> {subject.delete();});
+        this.getTeachers().forEach(teacher -> teacher.delete());
+        this.getSubjects().forEach(subject -> subject.delete());
         ActiveRecord.delete("departments", this.id);
     }
 

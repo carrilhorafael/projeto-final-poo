@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import activerecord.ActiveRecord;
 import models.Course;
 import models.CourseCoordinator;
-import models.DepartmentCoordinator;
 import models.Student;
 
 public class CoursesController extends ApplicationController{

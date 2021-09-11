@@ -45,6 +45,7 @@ public class SchoolYear {
     }
 
     public static SchoolYear serialize(String school_year_stringified){
+        if(school_year_stringified == null) return null;
         SchoolYear school_year = new SchoolYear(school_year_stringified.split(" \\| "));
         return school_year;
     }

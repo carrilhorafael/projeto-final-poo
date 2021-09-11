@@ -38,6 +38,7 @@ public class Subject {
     }
 
     public void delete(){
+        this.getClassrooms().forEach(classroom -> classroom.delete());
         ActiveRecord.delete("subjects", this.id);
     }
 
@@ -81,6 +82,11 @@ public class Subject {
     }
     public ArrayList<String> getErrors() {
         return errors;
+    }
+    public ArrayList<Classroom> getClassrooms(){
+        ArrayList<String> classroom_stringifieds = ActiveRecord.where("classrooms", "subject_id", Integer.toString(this.id));
+        ArrayList<Classroom> classrooms = Classroom.arraySerialize(classroom_stringifieds);
+        return classrooms;
     }
 
     // Setters e validators

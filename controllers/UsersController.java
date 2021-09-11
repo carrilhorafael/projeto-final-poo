@@ -15,16 +15,16 @@ public class UsersController extends ApplicationController{
         if (kind == 1){
             return createManager(parameters);
         }else if (kind == 2){
-            if (raise_permitions("departmentcoordinators::register")) return null;
+            if (raise_permissions("departmentcoordinators::register")) return null;
             return createDepartmentCoordinator(parameters);
         }else if (kind == 3){
-            if (raise_permitions("coursecoordinators::register")) return null;
+            if (raise_permissions("coursecoordinators::register")) return null;
             return createCourseCoordinator(parameters);
         }else if (kind == 4){
-            if (raise_permitions("teachers::register")) return null;
+            if (raise_permissions("teachers::register")) return null;
             return createTeacher(parameters);
         }else if (kind == 5){
-            if (raise_permitions("student::register")) return null;
+            if (raise_permissions("student::register")) return null;
             return createStudent(parameters);
         }
         else{
@@ -59,7 +59,7 @@ public class UsersController extends ApplicationController{
             parameters[4], // String registration
             parameters[5], // String birthdate
             parameters[6], // String state
-            parameters[7],  // String nationality
+            parameters[7], // String nationality
             Integer.parseInt(parameters[8]) // int course_id
         );
         if (student.save()){
@@ -83,7 +83,7 @@ public class UsersController extends ApplicationController{
             parameters[4], // String registration
             parameters[5], // String birthdate
             parameters[6], // String state
-            parameters[7],  // String nationality
+            parameters[7], // String nationality
             Integer.parseInt(parameters[8]) // int department_id
         );
         if (teacher.save()){

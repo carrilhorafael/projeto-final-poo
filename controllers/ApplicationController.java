@@ -50,12 +50,17 @@ public class ApplicationController {
         "classrooms::index",
         "classrooms::show",
         "classrooms::update",
+        "subjects::index",
+        "subjects::show",
+
     };
     private final static String[] student_routes = {
         "courses::show",
         "classrooms::index",
         "classrooms::show",
         "classrooms::subscribe",
+        "subjects::index",
+        "subjects::show",
     };
     public static boolean raise_permissions(String route){
         if (AuthController.getUserLogged() == null) return false;
