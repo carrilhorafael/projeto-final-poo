@@ -8,6 +8,7 @@ public class Classroom {
     private String code, room;
     private int id;
     private Teacher teacher;
+    private Course course;
     private Subject subject;
     private ArrayList<String> errors;
     private static int next_classroom_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[6]);
@@ -20,6 +21,7 @@ public class Classroom {
         this.room = parameters[2];
         this.teacher = Teacher.serialize(ActiveRecord.find("users", Integer.parseInt(parameters[3])));
         this.subject = Subject.serialize(ActiveRecord.find("subjects", Integer.parseInt(parameters[4])));
+        this.course = Course.serialize(ActiveRecord.find("courses", Integer.parseInt(parameters[5])));
     }
 
     public boolean save(){
@@ -34,20 +36,22 @@ public class Classroom {
         ActiveRecord.delete("classroom", this.id);
     }
 
-    public static Classroom create(String code, String room, int teacher_id, int subject_id){
+    public static Classroom create(String code, String room, int teacher_id, int subject_id, int course_id){
         Classroom classroom = new Classroom();
         classroom.setCode(code);
         classroom.setRoom(room);
         classroom.setTeacher(teacher_id);
         classroom.setSubject(subject_id);
+        classroom.setCourse(course_id);
         return classroom;
     }
 
     public String stringify(){
-        return this.id + " | " + this.code + " | " + this.room + " | " + this.teacher.getId() + " | " + this.subject.getId();
+        return this.id + " | " + this.code + " | " + this.room + " | " + this.teacher.getId() + " | " + this.subject.getId()+ " | " + this.course.getId();
     }
 
     public static Classroom serialize(String classroom_stringified){
+        if (classroom_stringified == null) return null;
         Classroom classroom = new Classroom(classroom_stringified.split(" \\| "));
         return classroom;
     }
@@ -75,6 +79,9 @@ public class Classroom {
     }
     public Teacher getTeacher() {
         return teacher;
+    }
+    public Course getCourse() {
+        return course;
     }
     public ArrayList<Student> getStudents(){
         ArrayList<String> subscription_stringifieds = ActiveRecord.where("subscriptions", "classroom_id", Integer.toString(this.id));
@@ -112,21 +119,26 @@ public class Classroom {
         }
         return response;
     }
-    public boolean validateTeacher(String teacher_stringified){
+    public boolean validateTeacher(Teacher teacher){
         boolean response = true;
-        if(teacher_stringified == null){
+        if(teacher == null){
             this.errors.add("Professor deve existir");
-            response = false;
-        }else if(teacher_stringified.split(" \\| ")[9].equals("Teacher")){
-            this.errors.add("O id informado não pertence a um professor");
             response = false;
         }
         return response;
     }
-    public boolean validateSubject(String subject_stringified){
+    public boolean validateSubject(Subject subject){
         boolean response = true;
-        if(subject_stringified == null){
+        if(subject == null){
             this.errors.add("Matéria deve existir");
+            response = false;
+        }
+        return response;
+    }
+    public boolean validateCourse(Course course){
+        boolean response = true;
+        if(course == null){
+            this.errors.add("Curso deve existir");
             response = false;
         }
         return response;
@@ -139,17 +151,19 @@ public class Classroom {
     }
     public void setTeacher(int teacher_id){
         String user_stringified = ActiveRecord.find("users", teacher_id);
-        if(validateTeacher(user_stringified)){
-            Teacher teacher = Teacher.serialize(user_stringified);
-            this.teacher = teacher;
-        }
+        Teacher teacher = Teacher.serialize(user_stringified);
+        if(validateTeacher(teacher)) this.teacher = teacher;
     }
     public void setSubject(int subject_id){
         String subject_stringified = ActiveRecord.find("subjects", subject_id);
-        if(validateSubject(subject_stringified)) {
-            Subject subject = Subject.serialize(subject_stringified);
-            this.subject = subject;
-        }
+        Subject subject = Subject.serialize(subject_stringified);
+        if(validateSubject(subject)) this.subject = subject;
+
+    }
+    public void setCourse(int course_id) {
+        String course_stringified = ActiveRecord.find("courses", course_id);
+        Course course = Course.serialize(course_stringified);
+        if(validateCourse(course)) this.course = course;
     }
 
 

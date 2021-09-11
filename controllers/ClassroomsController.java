@@ -8,7 +8,7 @@ import models.CourseCoordinator;
 
 public class ClassroomsController extends ApplicationController{
     public static Classroom create (String[] parameters){
-        if(!raise_permitions("classrooms::create")) return null;
+        if(!raise_permissions("classrooms::create")) return null;
         Classroom classroom = Classroom.create(
             parameters[0], // String code
             parameters[1], // String room
@@ -26,13 +26,13 @@ public class ClassroomsController extends ApplicationController{
     }
 
     public static Classroom show(int classroom_id){
-        if(!raise_permitions("classrooms::show")) return null;
+        if(!raise_permissions("classrooms::show")) return null;
         Classroom classroom = setClassroom(classroom_id);
         return classroom;
     }
 
     public static Classroom update(int classroom_id, String parameter, String value){
-        if(!raise_permitions("classrooms::update")) return null;
+        if(!raise_permissions("classrooms::update")) return null;
         if (ActiveRecord.update("classrooms", classroom_id, parameter, value)){
             Classroom classroom = setClassroom(classroom_id);
             return classroom;
@@ -41,15 +41,14 @@ public class ClassroomsController extends ApplicationController{
     }
 
     public static ArrayList <Classroom> index(){
-        if(!raise_permitions("classrooms::index")) return null;
-        String course_id_stringified = Integer.toString(((CourseCoordinator)AuthController.user_logged).getCourse().getId());
-        ArrayList<String> classroom_stringifieds = ActiveRecord.where("classrooms", "course_id", course_id_stringified);
-        ArrayList<Classroom> response = Classroom.arraySerialize(classroom_stringifieds);
+        if(!raise_permissions("classrooms::index")) return null;
+        CourseCoordinator user_logged = (CourseCoordinator);
+        ArrayList<Classroom> response = user_logged.getCourse().getClassrooms();
         return response;
     }
 
     public static void destroy(int classroom_id){
-        if(!raise_permitions("classrooms::destroy")) return;
+        if(!raise_permissions("classrooms::destroy")) return;
         Classroom classroom = setClassroom(classroom_id);
         classroom.delete();
     }

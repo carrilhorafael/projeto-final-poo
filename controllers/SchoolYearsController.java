@@ -7,7 +7,7 @@ import models.SchoolYear;
 
 public class SchoolYearsController extends ApplicationController{
     public static SchoolYear create (String[] parameters){
-        if(!raise_permitions("schoolyears::create")) return null;
+        if(!raise_permissions("schoolyears::create")) return null;
         SchoolYear schoolyear = SchoolYear.create(parameters[0], parameters[1], parameters[2]);
         if (schoolyear.save()){
             return schoolyear;
@@ -20,26 +20,26 @@ public class SchoolYearsController extends ApplicationController{
     }
 
     public static ArrayList <SchoolYear> index(){
-        if(!raise_permitions("schoolyears::index")) return null;
+        if(!raise_permissions("schoolyears::index")) return null;
         ArrayList<String> schoolyear_stringifieds = ActiveRecord.all("schoolyears");
         ArrayList<SchoolYear> response = SchoolYear.arraySerialize(schoolyear_stringifieds);
         return response;
     }
 
     public static SchoolYear show(int schoolyear_id){
-        if(!raise_permitions("schoolyears::show")) return null;
+        if(!raise_permissions("schoolyears::show")) return null;
         SchoolYear response = setSchoolYear(schoolyear_id);
         return response;
     }
 
     public static void destroy(int schoolyear_id){
-        if(!raise_permitions("schoolyears::destroy")) return;
+        if(!raise_permissions("schoolyears::destroy")) return;
         SchoolYear schoolyear = setSchoolYear(schoolyear_id);
         schoolyear.delete();
     }
 
     public static SchoolYear update(int schoolyear_id, String parameter, String value){
-        if(!raise_permitions("schoolyears::update")) return null;
+        if(!raise_permissions("schoolyears::update")) return null;
         if (ActiveRecord.update("schoolyears", schoolyear_id, parameter, value)){
             SchoolYear schoolyear = setSchoolYear(schoolyear_id);
             return schoolyear;

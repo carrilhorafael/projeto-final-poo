@@ -29,6 +29,7 @@ public class Manager extends User {
     }
 
     public static Manager serialize(String manager_stringified){
+        if(manager_stringified == null || !manager_stringified.split(" \\| ")[9].equals("Manager")) return null;
         Manager manager = new Manager(manager_stringified.split(" \\| "));
         return manager;
     }

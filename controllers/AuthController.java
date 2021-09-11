@@ -9,7 +9,7 @@ import models.Teacher;
 import models.abstracts.User;
 
 public class AuthController {
-    public static User user_logged;
+    private static User user_logged;
 
     public static void login(String email, String password){
         String user_stringified = ActiveRecord.find_by("users", "email", email);
@@ -32,5 +32,8 @@ public class AuthController {
                 if(student.authenticate(password)) AuthController.user_logged = student;
             }
         }
+    }
+    public static User getUserLogged() {
+        return user_logged;
     }
 }

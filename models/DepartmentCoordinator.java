@@ -28,6 +28,7 @@ public class DepartmentCoordinator extends User{
     }
 
     public static DepartmentCoordinator serialize(String coordinator_stringified){
+        if(coordinator_stringified == null || !coordinator_stringified.split(" \\| ")[9].equals("DepartmentCoordinator")) return null;
         DepartmentCoordinator coordinator = new DepartmentCoordinator(coordinator_stringified.split(" \\| "));
         return coordinator;
     }

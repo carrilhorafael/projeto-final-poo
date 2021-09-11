@@ -36,6 +36,7 @@ public class Course {
     }
 
     public static Course serialize(String course_stringified){
+        if (course_stringified == null) return null;
         Course course = new Course(course_stringified.split(" \\| "));
         return course;
     }
@@ -81,6 +82,9 @@ public class Course {
     }
     public CourseCoordinator getCourseCoordinator() {
         return course_coordinator;
+    }
+    public ArrayList<Classroom> getClassrooms(){
+        ArrayList<String> classrooms_stringifieds = ActiveRecord.where("classrooms", "course_id", Integer.)
     }
     public ArrayList<String> getErrors() {
         return errors;

@@ -20,7 +20,7 @@ public class DepartmentsController extends ApplicationController{
     }
 
     public static ArrayList <Department> index(){
-        if(!raise_permitions("departments::index")) return null;
+        if(!raise_permissions("departments::index")) return null;
         ArrayList<String> department_stringifieds = ActiveRecord.all("departments");
         ArrayList<Department> response = Department.arraySerialize(department_stringifieds);
         return response;

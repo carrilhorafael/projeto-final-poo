@@ -28,6 +28,7 @@ public class CourseCoordinator extends User {
     }
 
     public static CourseCoordinator serialize(String coordinator_stringified){
+        if(coordinator_stringified == null || !coordinator_stringified.split(" \\| ")[9].equals("CourseCoordinator")) return null;
         CourseCoordinator coordinator = new CourseCoordinator(coordinator_stringified.split(" \\| "));
         return coordinator;
     }
