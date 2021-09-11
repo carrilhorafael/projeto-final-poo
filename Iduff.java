@@ -1,17 +1,17 @@
 
 import activerecord.ActiveRecord;
 import controllers.UsersController;
-import views.HomeView;
+import views.LoginView;
+import views.SchoolYearsView;
 
 public class Iduff{
     public static void main (String[] args){
-        ViewOperation.welcome();;
         // USERS
         // Cadastro do administrador
         if (ActiveRecord.find_by("users", "role", "Manager") == null){
-            String[] rafael_parameters = {"Rafael Carrilho", "111.111.111-11", "rafael@email.com", "123456", "111.111.111", "16022000", "RJ" , "Brasil"};
+            String[] rafael_parameters = {"Rafael Carrilho", "111.111.111-11", "rafael@id.uff.br", "12345678", "111.111.111", "16/02/2000", "RJ" , "Brasil"};
             UsersController.register(rafael_parameters, 1);
         }
-        new HomeView();
+        new LoginView();
     }
 }

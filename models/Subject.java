@@ -9,7 +9,7 @@ public class Subject {
     private int id, ch;
     private Department department;
     private SchoolYear school_year;
-    private ArrayList<String> errors;
+    private ArrayList<String> errors = new ArrayList<>();
     private static int next_subject_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[4]);
 
     private Subject (){

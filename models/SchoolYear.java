@@ -7,7 +7,7 @@ import activerecord.ActiveRecord;
 public class SchoolYear {
     private String year, semester, status;
     private int id;
-    private ArrayList<String> errors;
+    private ArrayList<String> errors = new ArrayList<>();
     private static int next_school_year_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[5]);
 
     private SchoolYear(){}

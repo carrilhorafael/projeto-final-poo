@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 import activerecord.ActiveRecord;
 import models.abstracts.User;
 
@@ -40,6 +42,11 @@ public class Teacher extends User {
 
     public Department getDepartment() {
         return department;
+    }
+    public ArrayList<Classroom> getClassrooms(){
+        ArrayList<String> classroom_stringifieds = ActiveRecord.where("classrooms", "teacher", Integer.toString(this.getId()));
+        ArrayList<Classroom> classroom = Classroom.arraySerialize(classroom_stringifieds);
+        return classroom;
     }
     public boolean validateDepartment(Department department){
         boolean response = true;

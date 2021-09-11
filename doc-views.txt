@@ -1,0 +1,114 @@
+API Documentation
+/controllers/
+    AuthController
+        login:
+            formato: AuthController.login(email, password);
+            transação(sucesso):
+                - seta uma variável de classe user_logged que pode ser acessada de qualquer lugar com o método getUserLogged();
+                - retorna true;
+            rollback(fracasso):
+                - retorna false;
+        logout:
+            formato: AuthController.logout()
+            transação(sucesso):
+                - zera a variável de classe user_logged;
+                - retorna true;
+            rollback(fracasso):
+                - retorna false;
+    ClassroomController
+        create
+            permitted_users: CourseCoordinator
+            formato: ClassroomController.create(parameters);
+            parameters: [code, room, teacher_id, subject_id, course_id]
+            validações:
+                code: não pode ficar em branco;
+                room: não pode ficar em branco e precisa ser numérico;
+                teacher: não pode ser nulo;
+                subject: não pode ser nulo;
+                course: não pode ser nulo;
+            transação(sucesso):
+                - cria uma nova instância de classroom.
+                - guarda no banco de dados.
+                - retorna a nova instancia de classroom.
+            rollback(fracasso):
+                caso o usuário não seja autorizado para criar turma:
+                    - retorna null sem realizar nenhuma alteração;
+                caso falhe em validações:
+                    - printa todos os erros no terminal
+                    - retorna uma instancia temporária de Classroom
+                        através do método getErrors() da instancia é possível pegar a lista de erros de validações.
+        show
+            permitted_users: CourseCoordinator, Teacher, Student
+            formato: ClassroomController.show(classroom_id)
+            transação(sucesso):
+                retorna a Classroom com classroom_id.
+            rollback(fracasso):
+                caso não autorizado ou caso não encontre tal classroom:
+                    retorna null;
+        index
+            permitted_users: CourseCoordinator, Teacher, Student
+            formato: ClassroomController.index()
+            transação(sucesso):
+                para CourseCoordinator;
+                    retorna todas as Classrooms do curso que ele coordena.
+                para Teacher:
+                    retorna todas as Classrooms que ele leciona.
+                para Student:
+                    retorna todas as Classrooms cadastradas.
+        update
+            permitted_users: CourseCoordinator
+            formato: ClassroomController.update(classroom_id, parameter, value)
+            parameters:
+                classroom_id: id da Classroom que será editada
+                parameter: chave da instancia que será editada
+                value: novo valor a ser editado
+            transação(sucesso):
+                - edita a instancia classroom_id
+                - retorna a instancia editada
+            rollback(fracasso):
+                - caso não seja autorizado:
+                    return null
+                - caso a turma não faça parte do curso do coordenador logado:
+                    return null
+                - caso não passe em alguma validação
+                    (feature em desenvolvimento)
+        destroy
+            permitted_users: CourseCoordinator
+            formato: ClassroomController.destroy(classroom_id)
+            transação(sucesso):
+                - deleta todas as inscrições para aquela turma.
+                - deleta a instancia de classroom do banco de dados.
+                - não há retorno
+            rollback:
+                em qualquer caso:
+                    retorna antes de executar qualquer alteração.
+        subscribe
+            permitted_users: Student
+            formato: ClassroomController.subscribe(classroom_id)
+            transação(sucesso):
+                - cria uma inscrição do aluno na turma
+                - retorna a inscrição
+            rollback:
+                caso o usuário não seja autorizado para criar turma:
+                    - retorna null sem realizar nenhuma alteração;
+                caso falhe em validações:
+                    - printa todos os erros no terminal
+                    - retorna uma instancia temporária de Subscription
+                        através do método getErrors() da instancia é possível pegar a lista de erros de validações.
+        evaluate:
+            permitted_users: Teacher
+            formato: ClassroomController.evaluate(subscription_id, avaliation, grade)
+            parameters:
+                avaliation é a prova a adicionar nota. Pode ser "n1", "n2", ou "n3".
+                grade é a nota a ser adicionada.
+            transação(sucesso):
+                - edita a instancia subscription_id
+                - retorna a instancia editada
+            rollback(fracasso):
+                - caso não seja autorizado:
+                    return null
+                - caso o professor não lecione a turma:
+                    return null
+                - caso não passe em alguma validação
+                    (feature em desenvolvimento)
+

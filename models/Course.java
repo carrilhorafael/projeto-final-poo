@@ -8,7 +8,7 @@ public class Course {
     private String name, knowledge_area, campus, code;
     private int id;
     private CourseCoordinator course_coordinator;
-    private ArrayList<String> errors;
+    private ArrayList<String> errors = new ArrayList<>();
     private static int next_course_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[3]);
 
     private Course (){}

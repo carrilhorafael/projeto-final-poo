@@ -10,7 +10,7 @@ public class Classroom {
     private Teacher teacher;
     private Course course;
     private Subject subject;
-    private ArrayList<String> errors;
+    private ArrayList<String> errors = new ArrayList<>();
     private static int next_classroom_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[6]);
 
     private Classroom (){}

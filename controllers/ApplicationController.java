@@ -10,6 +10,11 @@ import models.Teacher;
 
 public class ApplicationController {
     private final static String[] manager_routes = {
+        "schoolyears::create",
+        "schoolyears::index",
+        "schoolyears::show",
+        "schoolyears::destroy",
+        "schoolyears::update",
         "courses::create",
         "courses::index",
         "courses::show",
@@ -50,6 +55,7 @@ public class ApplicationController {
         "classrooms::index",
         "classrooms::show",
         "classrooms::update",
+        "classrooms::evaluate",
         "subjects::index",
         "subjects::show",
 

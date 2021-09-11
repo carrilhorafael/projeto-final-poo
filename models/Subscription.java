@@ -1,5 +1,6 @@
 package models;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import activerecord.ActiveRecord;
@@ -7,8 +8,9 @@ import activerecord.ActiveRecord;
 public class Subscription {
     private Classroom classroom;
     private Student student;
+    private int n1, n2, n3;
     private int id;
-    private ArrayList<String> errors;
+    private ArrayList<String> errors = new ArrayList<>();
     private static int next_subscription_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[7]);
 
     private Subscription(){}
@@ -19,6 +21,9 @@ public class Subscription {
         Subscription subscription = new Subscription();
         subscription.setStudent(student_id);
         subscription.setClassroom(classroom_id);
+        subscription.setGrade("n1", 0);
+        subscription.setGrade("n2", 0);
+        subscription.setGrade("n3", 0);
         subscription.verifySchoolYearStatus();
         return subscription;
     }
@@ -35,7 +40,7 @@ public class Subscription {
     }
 
     public String stringify(){
-        return this.id + " | " + this.student.getId() + " | " + this.classroom.getId();
+        return this.id + " | " + this.student.getId() + " | " + this.classroom.getId() + " | " + this.n1 + " | " + this.n2 + " | " + this.n3;
     }
 
     public static Subscription serialize(String subscription_stringified){
@@ -54,6 +59,18 @@ public class Subscription {
 
 
     // Getters
+    public int getId() {
+        return id;
+    }
+    public int getN1() {
+        return n1;
+    }
+    public int getN2() {
+        return n2;
+    }
+    public int getN3() {
+        return n3;
+    }
     public Classroom getClassroom() {
         return classroom;
     }
@@ -62,6 +79,9 @@ public class Subscription {
     }
     public ArrayList<String> getErrors() {
         return errors;
+    }
+    public Double getMedia(){
+        return Double.valueOf(new DecimalFormat("#,##0.00").format((this.n1 + this.n2 + this.n3) / 3));
     }
 
     // Setters e Validators
@@ -77,6 +97,14 @@ public class Subscription {
         boolean response = true;
         if (student == null){
             this.errors.add("Aluno não pode ficar em branco");
+            response = false;
+        }
+        return response;
+    }
+    public boolean validateGrade(int grade){
+        boolean response = true;
+        if (grade <= 0 && grade > 10){
+            this.errors.add("Esse não é um valor possivel para notas");
             response = false;
         }
         return response;
@@ -98,5 +126,16 @@ public class Subscription {
         String classroom_stringified = ActiveRecord.find("users", classroom_id);
         Classroom classroom = Classroom.serialize(classroom_stringified);
         if(validateClassroom(classroom)) this.classroom = classroom;
+    }
+    public void setGrade(String node, int grade){
+        if(validateGrade(grade)){
+            if(node == "n1"){
+                this.n1 = grade;
+            }else if(node == "n2"){
+                this.n2 = grade;
+            }else{
+                this.n3 = grade;
+            }
+        }
     }
 }

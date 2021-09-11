@@ -8,7 +8,7 @@ public class Department {
     private String name, knowledge_area, campus, code;
     private int id;
     private DepartmentCoordinator department_coordinator;
-    private ArrayList<String> errors;
+    private ArrayList<String> errors = new ArrayList<>();
     private static int next_department_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[2]);
 
     private Department (){}

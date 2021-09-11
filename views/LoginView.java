@@ -1,104 +1,81 @@
 package views;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import java.awt.Color;
-
 import controllers.AuthController;
+import models.Manager;
 
-import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
 
 public class LoginView {
 
-	private JFrame frame;
-	private JLabel entrar;
-	private JLabel lblNomeDeUsurio;
-	private JTextField email;
-	private JLabel passwordLabel;
-	private JPasswordField passwordField;
+	private JFrame frame = new JFrame("IDUFF - Faça Login");
 
-	/** Launch the application. */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginView window = new LoginView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/** Create the application */
 	public LoginView() {
-		initialize();
-		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setExtendedState( frame.getExtendedState()|JFrame.MAXIMIZED_BOTH );
+		initialize(frame.getContentPane());
+
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
 	}
 
 	/** Initialize the contents of the frame */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1000, 800);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	private void initialize(final Container container) {
+		final JPanel titleSection = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JLabel entrarLabel = new JLabel("Entrar");
+		entrarLabel.setFont(new Font("Bebas Neue", Font.PLAIN, 36));
+		titleSection.add(entrarLabel);
 
-		entrar = new JLabel("Entrar");
-		entrar.setBounds(451, 115, 86, 44);
-		entrar.setHorizontalAlignment(SwingConstants.CENTER);
-		entrar.setFont(new Font("Bebas Neue", Font.PLAIN, 36));
-		frame.getContentPane().add(entrar);
+		final JPanel containerForm = new JPanel();
+		containerForm.setLayout(new FlowLayout());
+		final JPanel form = new JPanel();
+		form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
 
-		lblNomeDeUsurio = new JLabel("Nome de Usu\u00E1rio:");
-		lblNomeDeUsurio.setBounds(371, 197, 160, 20);
+
+		JLabel lblNomeDeUsurio = new JLabel("Nome de Usuário:");
 		lblNomeDeUsurio.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		frame.getContentPane().add(lblNomeDeUsurio);
+		form.add(lblNomeDeUsurio);
+
+		JTextField email = new JTextField();
 		lblNomeDeUsurio.setLabelFor(email);
-
-		email = new JTextField();
-		email.setBounds(371, 229, 247, 60);
 		email.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		email.setColumns(10);
-		frame.getContentPane().add(email);
+		form.add(email);
+		System.out.println(email.getSize());
 
-		passwordLabel = new JLabel("Senha:");
-		passwordLabel.setBounds(371, 315, 60, 20);
+		JLabel passwordLabel = new JLabel("Senha:");
 		passwordLabel.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		frame.getContentPane().add(passwordLabel);
-		passwordLabel.setLabelFor(passwordField);
+		form.add(passwordLabel);
 
-		passwordField = new JPasswordField();
-		passwordField.setBounds(371, 347, 247, 60);
+		JPasswordField passwordField = new JPasswordField();
+		passwordLabel.setLabelFor(passwordField);
 		passwordField.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		frame.getContentPane().add(passwordField);
+		form.add(passwordField);
 
 		JButton loginBtn = new JButton("Fazer Login");
-		loginBtn.setBounds(409, 432, 170, 44);
 		loginBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		loginBtn.setBackground(new Color(32, 178, 170));
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(passwordField.getPassword());
-				AuthController.login(email.getText(), String.valueOf(passwordField.getPassword()));
-		        // // Teste de logado (pode se tornar um try catch)
-		        // if (userLogged != null){
-		        //     System.out.println("Você está logado como " + userLogged.getName());
-		        //     return userLogged;
-		        // }else{
-		        //     System.out.println("Erro no Login - Verifique os parametros informados");
-		        //     return null;
-		        // }
+				if (AuthController.login(email.getText(), String.valueOf(passwordField.getPassword()))){
+					frame.setVisible(false);
+					if (AuthController.getUserLogged() instanceof Manager) new SchoolYearsView();
+					// else if(AuthController.getUserLogged() instanceof DepartmentCoordinator) new DepartmentCoordinatorView();
+					// else if(AuthController.getUserLogged() instanceof CourseCoordinator) new CourseCoordinatorView();
+					// else if(AuthController.getUserLogged() instanceof Teacher) new TeacherView();
+					// else if(AuthController.getUserLogged() instanceof Student) new StudentView();
+				}
 			}
 		});
-		frame.getContentPane().add(loginBtn);
+		form.add(loginBtn);
+		containerForm.add(form);
+		container.add(titleSection, BorderLayout.NORTH);
+		container.add(containerForm);
+
+
 	}
 }

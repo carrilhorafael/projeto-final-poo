@@ -17,7 +17,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class DepartmentsView {
+public class CoursesView {
 
 	private JFrame frame;
 	private JLabel title;
@@ -29,23 +29,12 @@ public class DepartmentsView {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DepartmentsView window = new DepartmentsView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
-	public DepartmentsView() {
+	public CoursesView() {
 		initialize();
 		frame.setVisible(true);
 	}
@@ -99,7 +88,7 @@ public class DepartmentsView {
 		lblTestinho.setBounds(36, 437, 397, 20);
 		frame.getContentPane().add(lblTestinho);
 
-		createBtn = new JButton("Fazer Logout");
+		createBtn = new JButton("Fazer logout");
 		createBtn.setForeground(Color.WHITE);
 		createBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -124,7 +113,5 @@ public class DepartmentsView {
 		deleteBtn.setBackground(new Color(32, 178, 170));
 		deleteBtn.setBounds(602, 480, 268, 44);
 		frame.getContentPane().add(deleteBtn);
-
-
 	}
 }

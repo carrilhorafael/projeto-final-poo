@@ -7,7 +7,7 @@ import activerecord.ActiveRecord;
 public abstract class User {
     private String name, cpf, email, password, registration, state, birthdate, nationality;
     private int id;
-    private ArrayList<String> errors;
+    private ArrayList<String> errors = new ArrayList<>();
     private static int next_user_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[1]);
 
     public User(){}
@@ -25,7 +25,7 @@ public abstract class User {
     }
 
     public String stringify(){
-        return this.id + " | " + this.name + " | " + this.cpf + " | " + this.email + " | " + this.password + " | " + this.registration + " | " + this.birthdate + " | " + this.state + " | " + this.nationality + " | " + this.getClass().toString().split("\\.")[2];
+        return this.id + " | " + this.name + " | " + this.cpf + " | " + this.email + " | " + this.password + " | " + this.registration + " | " + this.birthdate + " | " + this.state + " | " + this.nationality + " | " + this.getClass().toString().split("\\.")[1];
     }
 
     public boolean save(){
@@ -79,7 +79,7 @@ public abstract class User {
             this.errors.add("O cpf não pode ficar em branco");
             response = false;
         }else {
-            if(value.matches("[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}")){
+            if(!value.matches("[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}")){
                 this.errors.add("Formato errado de cpf. (Utilize XXX.XXX.XXX-XX)");
                 response = false;
             }
@@ -92,7 +92,7 @@ public abstract class User {
             this.errors.add("O email não pode ficar em branco");
             response = false;
         }else {
-            if(value.matches("[a-z]{6,}@id.uff.br")){
+            if(!value.matches("[a-z]{6,}@id.uff.br")){
                 this.errors.add("Utilize o email do iduff.");
                 response = false;
             }
@@ -105,7 +105,7 @@ public abstract class User {
             this.errors.add("A data de nascimento não pode ficar em branco");
             response = false;
         }else {
-            if(value.matches("[0-9]{2}/[0-9]{2}/[0-9]{4}")){
+            if(!value.matches("[0-9]{2}/[0-9]{2}/[0-9]{4}")){
                 this.errors.add("Formato errado de data. (Utilize DD/MM/AAAA)");
                 response = false;
             }
@@ -131,7 +131,7 @@ public abstract class User {
             this.errors.add("A matricula não pode ficar em branco");
             response = false;
         }else {
-            if(value.matches("[0-9]{3}.[0-9]{3}.[0-9]{3}")){
+            if(!value.matches("[0-9]{3}.[0-9]{3}.[0-9]{3}")){
                 this.errors.add("Formato errado de matricula. (Utilize XXX.XXX.XXX)");
                 response = false;
             }
