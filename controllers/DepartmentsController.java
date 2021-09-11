@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 import activerecord.ActiveRecord;
 import models.Department;
+import models.DepartmentCoordinator;
+import models.Teacher;
 
 public class DepartmentsController extends ApplicationController{
     public static Department create (String[] parameters){
         if(!raise_permissions("departments::create")) return null;
         Department department = Department.create(
-            parameters[0], //
-            parameters[1],
-            parameters[2],
-            parameters[3],
-            Integer.parseInt(parameters[4])
+            parameters[0], // String name
+            parameters[1], // String knowledge_area
+            parameters[2], // String campus
+            parameters[3], // String code
+            Integer.parseInt(parameters[4]) // int course_coordinator_id
         );
         if (department.save()){
             return department;
@@ -33,24 +35,47 @@ public class DepartmentsController extends ApplicationController{
     }
 
     public static Department show(int department_id){
-        if(!raise_permitions("departments::show")) return null;
-        Department response = setDepartment(department_id);
-        return response;
+        if(!raise_permissions("departments::show")) return null;
+        if(AuthController.getUserLogged() instanceof DepartmentCoordinator){
+            DepartmentCoordinator user_logged = (DepartmentCoordinator)AuthController.getUserLogged();
+            Department department = user_logged.getDepartment();
+            return department;
+        }else if(AuthController.getUserLogged() instanceof Teacher){
+            Teacher user_logged = (Teacher)AuthController.getUserLogged();
+            Department department = user_logged.getDepartment();
+            return department;
+        }else{
+            Department response = setDepartment(department_id);
+            return response;
+        }
     }
 
     public static void destroy(int department_id){
-        if(!raise_permitions("departments::destroy")) return;
-        Department department = setDepartment(department_id);
-        department.delete();
+        if(!raise_permissions("departments::destroy")) return;
+        if (AuthController.getUserLogged() instanceof DepartmentCoordinator){
+            DepartmentCoordinator user_logged = (DepartmentCoordinator)AuthController.getUserLogged();
+            Department department = user_logged.getDepartment();
+            department.delete();
+        }else {
+            Department department = setDepartment(department_id);
+            department.delete();
+        }
     }
 
     public static Department update(int department_id, String parameter, String value){
-        if(!raise_permitions("departments::update")) return null;
-        if (ActiveRecord.update("departments", department_id, parameter, value)){
-            Department department = setDepartment(department_id);
-            return department;
+        if(!raise_permissions("departments::update")) return null;
+        if (AuthController.getUserLogged() instanceof DepartmentCoordinator){
+            DepartmentCoordinator user_logged = (DepartmentCoordinator)AuthController.getUserLogged();
+            if(ActiveRecord.update("departments", user_logged.getDepartment().getId(), parameter, value))
+                return user_logged.getDepartment();
+            return null;
+        }else{
+            if (ActiveRecord.update("departments", department_id, parameter, value)){
+                Department department = setDepartment(department_id);
+                return department;
+            }
+            return null;
         }
-        return null;
     }
 
     private static Department setDepartment(int department_id){
