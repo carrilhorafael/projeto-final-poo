@@ -84,7 +84,9 @@ public class Course {
         return course_coordinator;
     }
     public ArrayList<Classroom> getClassrooms(){
-        ArrayList<String> classrooms_stringifieds = ActiveRecord.where("classrooms", "course_id", Integer.)
+        ArrayList<String> classroom_stringifieds = ActiveRecord.where("classrooms", "course_id", Integer.toString(this.id));
+        ArrayList<Classroom> response = Classroom.arraySerialize(classroom_stringifieds);
+        return response;
     }
     public ArrayList<String> getErrors() {
         return errors;

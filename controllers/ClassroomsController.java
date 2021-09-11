@@ -13,7 +13,8 @@ public class ClassroomsController extends ApplicationController{
             parameters[0], // String code
             parameters[1], // String room
             Integer.parseInt(parameters[2]), // int teacher_id
-            Integer.parseInt(parameters[3])  // int subject_id
+            Integer.parseInt(parameters[3]),  // int subject_id
+            Integer.parseInt(parameters[4])  // int course_id
         );
         if (classroom.save()){
             return classroom;
@@ -42,7 +43,7 @@ public class ClassroomsController extends ApplicationController{
 
     public static ArrayList <Classroom> index(){
         if(!raise_permissions("classrooms::index")) return null;
-        CourseCoordinator user_logged = (CourseCoordinator);
+        CourseCoordinator user_logged = (CourseCoordinator)AuthController.getUserLogged();
         ArrayList<Classroom> response = user_logged.getCourse().getClassrooms();
         return response;
     }

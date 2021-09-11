@@ -4,11 +4,20 @@ import java.util.ArrayList;
 
 import activerecord.ActiveRecord;
 import models.Course;
+import models.CourseCoordinator;
+import models.DepartmentCoordinator;
+import models.Student;
 
 public class CoursesController extends ApplicationController{
     public static Course create (String[] parameters){
         if(!raise_permissions("courses::create")) return null;
-        Course course = Course.create(parameters[0], parameters[1], parameters[2], parameters[3], Integer.parseInt(parameters[4]));
+        Course course = Course.create(
+            parameters[0], // String name
+            parameters[1], // String knowledge_area
+            parameters[2], // String campus
+            parameters[3], // String code
+            Integer.parseInt(parameters[4]) // int course_coordinator_id
+        );
         if (course.save()){
             return course;
         }else{
@@ -28,23 +37,47 @@ public class CoursesController extends ApplicationController{
 
     public static Course show(int course_id){
         if(!raise_permissions("courses::show")) return null;
-        Course response = setCourse(course_id);
-        return response;
+        if(AuthController.getUserLogged() instanceof CourseCoordinator){
+            CourseCoordinator user_logged = (CourseCoordinator)AuthController.getUserLogged();
+            Course course = user_logged.getCourse();
+            return course;
+        }else if (AuthController.getUserLogged() instanceof Student){
+            Student user_logged = (Student)AuthController.getUserLogged();
+            Course course = user_logged.getCourse();
+            return course;
+        }else{
+            Course course = setCourse(course_id);
+            return course;
+        }
     }
 
     public static void destroy(int course_id){
         if(!raise_permissions("courses::destroy")) return;
-        Course course = setCourse(course_id);
-        course.delete();
+        if (AuthController.getUserLogged() instanceof CourseCoordinator){
+            CourseCoordinator user_logged = (CourseCoordinator)AuthController.getUserLogged();
+            Course course = user_logged.getCourse();
+            course.delete();
+        }else {
+            Course course = setCourse(course_id);
+            course.delete();
+        }
     }
 
     public static Course update(int course_id, String parameter, String value){
-        if(!raise_permitions("courses::update")) return null;
-        if (ActiveRecord.update("courses", course_id, parameter, value)){
-            Course course = setCourse(course_id);
-            return course;
+        if(!raise_permissions("courses::update")) return null;
+        if (AuthController.getUserLogged() instanceof CourseCoordinator){
+            CourseCoordinator user_logged = (CourseCoordinator)AuthController.getUserLogged();
+            if (ActiveRecord.update("courses", user_logged.getCourse().getId(), parameter, value))
+                return user_logged.getCourse();
+            return null;
         }
-        return null;
+        else {
+            if (ActiveRecord.update("courses", course_id, parameter, value)){
+                Course course = setCourse(course_id);
+                return course;
+            }
+            return null;
+        }
     }
 
     private static Course setCourse(int course_id){

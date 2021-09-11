@@ -33,6 +33,7 @@ public class Classroom {
     }
 
     public void delete(){
+        this.getSubscriptions().forEach(subscription -> subscription.delete());
         ActiveRecord.delete("classroom", this.id);
     }
 
@@ -92,6 +93,11 @@ public class Classroom {
             students.add(student);
         });
         return students;
+    }
+    public ArrayList<Subscription> getSubscriptions(){
+        ArrayList<String> subscription_stringifieds = ActiveRecord.where("subscriptions", "classroom_id", Integer.toString(this.id));
+        ArrayList<Subscription> subscriptions = Subscription.arraySerialize(subscription_stringifieds);
+        return subscriptions;
     }
     public ArrayList<String> getErrors() {
         return errors;

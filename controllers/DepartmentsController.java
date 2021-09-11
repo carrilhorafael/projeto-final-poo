@@ -7,8 +7,14 @@ import models.Department;
 
 public class DepartmentsController extends ApplicationController{
     public static Department create (String[] parameters){
-        if(!raise_permitions("departments::create")) return null;
-        Department department = Department.create(parameters[0], parameters[1], parameters[2], parameters[3], Integer.parseInt(parameters[4]));
+        if(!raise_permissions("departments::create")) return null;
+        Department department = Department.create(
+            parameters[0], //
+            parameters[1],
+            parameters[2],
+            parameters[3],
+            Integer.parseInt(parameters[4])
+        );
         if (department.save()){
             return department;
         }else{
