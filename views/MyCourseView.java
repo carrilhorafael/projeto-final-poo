@@ -2,16 +2,15 @@ package views;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 import javax.swing.*;
 
 import controllers.AuthController;
 import models.Course;
 import models.CourseCoordinator;
+import views.components.ClassroomTableCard;
 import views.components.Header;
-import views.components.SubjectTableCard;
-import views.components.TeacherTableCard;
+import views.components.StudentTableCard;
 
 public class MyCourseView extends JFrame{
 	FlowLayout mainLayout = new FlowLayout();
@@ -28,7 +27,8 @@ public class MyCourseView extends JFrame{
 	}
 
 	public void reload(){
-		this.initialize(this);
+		new MyCourseView();
+		this.dispose();
 	}
 
 	private void initialize(JFrame container) {
@@ -84,7 +84,7 @@ public class MyCourseView extends JFrame{
 		studentsPanel.setLayout(studentsLayout);
 
 		if(course.getStudents().isEmpty()){
-			JLabel studentsTitle = new JLabel("Ainda não há professores cadastrados para o curso");
+			JLabel studentsTitle = new JLabel("Ainda não há alunos cadastrados para o curso");
 			studentsTitle.setHorizontalAlignment(SwingConstants.CENTER);
 			studentsTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 			studentsPanel.add(studentsTitle);
@@ -93,8 +93,8 @@ public class MyCourseView extends JFrame{
 			studentsTitle.setHorizontalAlignment(SwingConstants.CENTER);
 			studentsTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 			studentsPanel.add(studentsTitle);
-			course.getStudents().forEach(teacher -> {
-				studentsPanel.add(new TeacherTableCard(teacher, this));
+			course.getStudents().forEach(student -> {
+				studentsPanel.add(new StudentTableCard(student, this));
 			});
 		}
 
@@ -110,7 +110,7 @@ public class MyCourseView extends JFrame{
 		});
 		studentsPanel.add(createTeacherBtn);
 
-		main.add(subjectsPanel, BorderLayout.WEST);
+		main.add(classroomsPanel, BorderLayout.WEST);
 		main.add(studentsPanel, BorderLayout.EAST);
 
 		container.getContentPane().add(main);

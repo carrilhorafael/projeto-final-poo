@@ -30,7 +30,8 @@ public class ManageUniversityView extends JFrame{
 	}
 
 	public void reload(){
-		this.initialize(this);
+		new ManageUniversityView();
+		this.dispose();
 	}
 
 	private void initialize(final JFrame container) {

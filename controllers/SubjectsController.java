@@ -56,7 +56,7 @@ public class SubjectsController extends ApplicationController {
         if(!raise_permissions("subjects::destroy")) return;
         Subject subject = setSubject(subject_id);
         DepartmentCoordinator user_logged = (DepartmentCoordinator)AuthController.getUserLogged();
-        if(user_logged.getDepartment().equals(subject.getDepartment()))
+        if(user_logged.getDepartment().getId() == subject.getDepartment().getId())
         subject.delete();
 
     }

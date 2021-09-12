@@ -2,7 +2,6 @@ package views;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -30,7 +29,8 @@ public class MyDepartmentView extends JFrame{
 	}
 
 	public void reload(){
-		this.initialize(this);
+		new MyDepartmentView();
+		this.dispose();
 	}
 
 	private void initialize(JFrame container) {

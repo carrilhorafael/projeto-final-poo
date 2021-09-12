@@ -30,8 +30,8 @@ public class SchoolYearsView extends JFrame{
 	}
 
 	public void reload(){
-		// this.getContentPane().removeAll();
-		this.initialize(this);
+		new SchoolYearsView();
+		this.dispose();
 	}
 
 	private void initialize(final Container container) {

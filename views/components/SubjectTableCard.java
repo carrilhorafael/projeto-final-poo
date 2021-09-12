@@ -23,20 +23,11 @@ public class SubjectTableCard extends JPanel{
                 if(response == 0){
                     SubjectsController.destroy(subject.getId());
                 }
-                // container.reload();
-            }
-        });
-        JButton createClassroomBtn = new JButton("Criar turma");
-        createClassroomBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-        createClassroomBtn.setBackground(new Color(32, 178, 170));
-        createClassroomBtn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // new CreateClassroomView();
-                container.dispose();
+                container.reload();
             }
         });
         this.add(subjectLabel);
         this.add(deleteSubjectBtn);
-        this.add(createClassroomBtn);
+
     }
 }

@@ -1,11 +1,9 @@
 package views;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
 import javax.swing.*;
 
-import controllers.SchoolYearsController;
 import controllers.SubjectsController;
 import models.SchoolYear;
 import models.Subject;
