@@ -50,7 +50,7 @@ public class Teacher extends User {
     }
     public boolean validateDepartment(Department department){
         boolean response = true;
-        if(department != null){
+        if(department == null){
             this.appendError("O departamento deve existir");
             response = false;
         }

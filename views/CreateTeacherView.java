@@ -9,17 +9,17 @@ import models.abstracts.User;
 import java.awt.event.*;
 
 
-public class CreateCoordinatorView extends JFrame{
+public class CreateTeacherView extends JFrame{
 
 	FlowLayout mainLayout = new FlowLayout();
 	/**
 	 * Create the application.
 	 */
-	public CreateCoordinatorView(int typeCoordinator) {
+	public CreateTeacherView(int departmentId) {
 		super("Criar coordenador");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setExtendedState( this.getExtendedState()|JFrame.MAXIMIZED_BOTH );
-        initialize(this, typeCoordinator);
+        initialize(this, departmentId);
         this.pack();
         this.setVisible(true);
 	}
@@ -27,22 +27,23 @@ public class CreateCoordinatorView extends JFrame{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(JFrame frame, int typeCoordinator) {
+	private void initialize(JFrame frame, int departmentId) {
 		final JPanel main = new JPanel();
 		main.setLayout(mainLayout);
         main.setAlignmentY(FlowLayout.CENTER);
-
-		JLabel coordinatorTitle = new JLabel("Criar coordenador");
-		coordinatorTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		coordinatorTitle.setFont(new Font("Bebas Neue", Font.PLAIN, 36));
-		main.add(coordinatorTitle);
+		JPanel teacherPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JLabel teacherTitle = new JLabel("Criar professor");
+		teacherTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		teacherTitle.setFont(new Font("Bebas Neue", Font.PLAIN, 36));
+		teacherPanel.add(teacherTitle);
+		frame.getContentPane().add(teacherPanel);
 
 		JPanel formSection = new JPanel();
 		BoxLayout formlayout = new BoxLayout(formSection, BoxLayout.Y_AXIS);
 		formSection.setLayout(formlayout);
 		formSection.setAlignmentY(CENTER_ALIGNMENT);
 
-		JLabel lblName = new JLabel("Nome do Coordenador:");
+		JLabel lblName = new JLabel("Nome do professor:");
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblName.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblName);
@@ -53,7 +54,7 @@ public class CreateCoordinatorView extends JFrame{
 		name.setColumns(10);
 		formSection.add(name);
 
-		JLabel lblCPF = new JLabel("CPF do Coordenador:");
+		JLabel lblCPF = new JLabel("CPF do professor:");
 		lblCPF.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCPF.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblCPF);
@@ -64,7 +65,7 @@ public class CreateCoordinatorView extends JFrame{
 		cpf.setColumns(10);
 		formSection.add(cpf);
 
-		JLabel lblEmail = new JLabel("E-mail do Coordenador:");
+		JLabel lblEmail = new JLabel("E-mail do professor:");
 		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEmail.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblEmail);
@@ -75,7 +76,7 @@ public class CreateCoordinatorView extends JFrame{
 		email.setColumns(10);
 		formSection.add(email);
 
-		JLabel lblRegistration = new JLabel("Matrícula do Coordenador:");
+		JLabel lblRegistration = new JLabel("Matrícula do professor:");
 		lblRegistration.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegistration.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblRegistration);
@@ -97,7 +98,7 @@ public class CreateCoordinatorView extends JFrame{
 		birthdate.setColumns(10);
 		formSection.add(birthdate);
 
-		JLabel lblState = new JLabel("Estado do Coordenador:");
+		JLabel lblState = new JLabel("Estado do professor:");
 		lblState.setHorizontalAlignment(SwingConstants.CENTER);
 		lblState.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblState);
@@ -136,7 +137,7 @@ public class CreateCoordinatorView extends JFrame{
 		state.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(state);
 
-		JLabel lblNationality = new JLabel("Nacionalidade do Coordenador:");
+		JLabel lblNationality = new JLabel("Nacionalidade do professor:");
 		lblNationality.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNationality.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblNationality);
@@ -147,7 +148,7 @@ public class CreateCoordinatorView extends JFrame{
 		nationality.setColumns(10);
 		formSection.add(nationality);
 
-		JButton createBtn = new JButton("Criar Coordenador");
+		JButton createBtn = new JButton("Criar professor");
 		createBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		createBtn.setBackground(new Color(32, 178, 170));
 		createBtn.addActionListener(new ActionListener() {
@@ -159,15 +160,16 @@ public class CreateCoordinatorView extends JFrame{
 					registration.getText(),
 					birthdate.getText(),
 					state.getSelectedItem() + "",
-					nationality.getText()
+					nationality.getText(),
+					departmentId + ""
+
 				};
-				User created = UsersController.register(parameters, typeCoordinator);
+				User created = UsersController.register(parameters, 4);
 				if(created == null){
 					JOptionPane.showMessageDialog(null, "Erro: Permissão negada");
 				}else if(created.getErrors().isEmpty()){
 					JOptionPane.showMessageDialog(null, "Coordenador criado com sucesso");
-					if(typeCoordinator == 2) new CreateDepartmentView();
-					else if(typeCoordinator == 3) new CreateCourseView();
+
 					frame.dispose();
 				}else{
 					JOptionPane.showMessageDialog(null, "Erro: " + created.getErrors().get(0));
@@ -175,6 +177,7 @@ public class CreateCoordinatorView extends JFrame{
 			}
 		});
 		formSection.add(createBtn);
+		main.add(teacherPanel);
 		main.add(formSection);
 		frame.getContentPane().add(main);
 	}

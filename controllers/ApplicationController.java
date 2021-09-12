@@ -18,13 +18,13 @@ public class ApplicationController {
         "courses::show",
         "courses::destroy",
         "courses::update",
-        "coursecoordinator::register",
+        "coursecoordinators::register",
         "departments::create",
         "departments::index",
         "departments::show",
         "departments::destroy",
         "departments::update",
-        "departmentcoordinator::register"
+        "departmentcoordinators::register"
     };
     private final static String[] dep_coordinator_routes = {
         "departments::show",

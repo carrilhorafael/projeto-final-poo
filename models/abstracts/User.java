@@ -60,6 +60,15 @@ public abstract class User {
     public String getRegistration() {
         return registration;
     }
+    public String getBirthdate() {
+        return birthdate;
+    }
+    public String getNationality() {
+        return nationality;
+    }
+    public String getState() {
+        return state;
+    }
     public ArrayList<String> getErrors() {
         return errors;
     }

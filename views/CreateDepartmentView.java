@@ -119,7 +119,9 @@ public class CreateDepartmentView extends JFrame{
 					(coordenador.getSelectedItem()+"").split(" - ")[0]
 				};
 				Department created = DepartmentsController.create(parameters);
-				if(created.getErrors().isEmpty()){
+				if(created == null){
+					JOptionPane.showMessageDialog(null, "Erro: Permissão negada");
+				}else if(created.getErrors().isEmpty()){
 					JOptionPane.showMessageDialog(null, "Criado com sucesso");
 					new ManageUniversityView();
 					container.dispose();

@@ -3,7 +3,7 @@ id | name | cpf | email | password | registration | birthdate | state | national
 2 | Jorge | 112.111.111-11 | jorge@id.uff.br | 12345678 | 112.111.111 | 16/02/2000 | RJ | Brasil | CourseCoordinator
 3 | Matheus | 113.111.111-11 | matheus@id.uff.br | 12345678 | 113.111.111 | 16/02/2000 | RJ | Brasil | CourseCoordinator
 4 | Carlos | 114.111.111-11 | carlos@id.uff.br | 12345678 | 114.111.111 | 16/02/2000 | RJ | Brasil | CourseCoordinator
-5 | Chico | 115.111.111-11 | jorge@id.uff.br | 12345678 | 115.111.111 | 16/02/2000 | RJ | Brasil | DepartmentCoordinator
+5 | Chico | 115.111.111-11 | chico@id.uff.br | 12345678 | 115.111.111 | 16/02/2000 | RJ | Brasil | DepartmentCoordinator
 6 | Gabriel | 116.111.111-11 | matheus@id.uff.br | 12345678 | 116.111.111 | 16/02/2000 | RJ | Brasil | DepartmentCoordinator
 7 | Fabio | 117.111.111-11 | carlos@id.uff.br | 12345678 | 117.111.111 | 16/02/2000 | RJ | Brasil | DepartmentCoordinator
 8 | Guilherme | 118.111.111-11 | matheus@id.uff.br | 12345678 | 118.111.111 | 16/02/2000 | RJ | Brasil | DepartmentCoordinator
@@ -12,3 +12,4 @@ id | name | cpf | email | password | registration | birthdate | state | national
 11 | Debora | 118.111.111-11 | matheus@id.uff.br | 12345678 | 118.111.111 | 16/02/2000 | RJ | Brasil | CourseCoordinator
 12 | Isabela | 119.111.111-11 | carlos@id.uff.br | 12345678 | 119.111.111 | 16/02/2000 | RJ | Brasil | CourseCoordinator
 13 | Gabi | 145.145.145-11 | gabriela@id.uff.br | 14514514511 | 145.145.145 | 15/01/2001 | Rio de Janeiro | Brasileiro | CourseCoordinator
+14 | Renato | 122.111.111-11 | renato@id.uff.br | 12211111111 | 111.111.111 | 12/12/2000 | Rio de Janeiro | Argentino | Teacher

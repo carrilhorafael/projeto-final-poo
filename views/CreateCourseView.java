@@ -123,7 +123,9 @@ public class CreateCourseView extends JFrame{
 					(coordenador.getSelectedItem()+"").split(" - ")[0]
 				};
 				Course created = CoursesController.create(parameters);
-				if(created.getErrors().isEmpty()){
+				if(created == null){
+					JOptionPane.showMessageDialog(null, "Erro: Permissão negada");
+				}else if(created.getErrors().isEmpty()){
 					JOptionPane.showMessageDialog(null, "Criado com sucesso");
 					new ManageUniversityView();
 					container.dispose();
