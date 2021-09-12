@@ -5,9 +5,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.text.TableView.TableRow;
 
 import controllers.CoursesController;
 import controllers.DepartmentsController;
@@ -32,6 +29,11 @@ public class ManageUniversityView extends JFrame{
         this.setVisible(true);
 	}
 
+	public void reload(){
+		new ManageUniversityView();
+		this.dispose();
+	}
+
 	private void initialize(final Container container) {
 
 		container.add(new Header(this), BorderLayout.PAGE_END);
@@ -51,14 +53,21 @@ public class ManageUniversityView extends JFrame{
 		departmentsSection.setLayout(departmentslayout);
 		departmentsSection.setAlignmentY(CENTER_ALIGNMENT);
 
-		JLabel listTitle = new JLabel("Atualmente, os departamentos cadastrados são:");
-		listTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		departmentsSection.add(listTitle);
 
 		ArrayList<Department> departments = DepartmentsController.index();
-		departments.forEach(department -> {
-			departmentsSection.add(new DepartmentTableCard(department));
-		});
+		if(departments.isEmpty()){
+			JLabel listTitle = new JLabel("Ainda não há departamentos cadastrados.");
+			listTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+			departmentsSection.add(listTitle);
+		}
+		else{
+			JLabel listTitle = new JLabel("Atualmente, os departamentos cadastrados são:");
+			listTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+			departmentsSection.add(listTitle);
+			departments.forEach(department -> {
+				departmentsSection.add(new DepartmentTableCard(department, this));
+			});
+		}
 
 		JButton createDepartmentBtn = new JButton("Criar departamento");
 		createDepartmentBtn.setForeground(Color.WHITE);
@@ -76,14 +85,21 @@ public class ManageUniversityView extends JFrame{
 		coursesSection.setLayout(courseslayout);
 		coursesSection.setAlignmentY(CENTER_ALIGNMENT);
 
-		JLabel listCourseTitle = new JLabel("Atualmente, os cursos cadastrados são:");
-		listCourseTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		coursesSection.add(listCourseTitle);
 
 		ArrayList<Course> courses = CoursesController.index();
-		courses.forEach(course -> {
-			coursesSection.add(new CourseTableCard(course));
-		});
+		if(courses.isEmpty()){
+			JLabel listCourseTitle = new JLabel("Ainda não temos cursos cadastrados.");
+			listCourseTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+			coursesSection.add(listCourseTitle);
+		}
+		else{
+			JLabel listCourseTitle = new JLabel("Atualmente, os cursos cadastrados são:");
+			listCourseTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+			coursesSection.add(listCourseTitle);
+			courses.forEach(course -> {
+				coursesSection.add(new CourseTableCard(course));
+			});
+		}
 
 		JButton createCourseBtn = new JButton("Criar curso");
 		createCourseBtn.setForeground(Color.WHITE);

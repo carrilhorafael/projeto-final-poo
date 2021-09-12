@@ -9,6 +9,7 @@ import models.Course;
 public class CourseTableCard extends JPanel{
     public CourseTableCard(Course course){
         super(new FlowLayout(FlowLayout.CENTER));
+
         JLabel courseLabel = new JLabel(course.getName()+" | " + course.getKnowledgeArea() + " | " + course.getCode() + " | " + course.getCourseCoordinator().getName());
         courseLabel.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
         JButton deleteCourse = new JButton("Deletar curso");
@@ -17,6 +18,7 @@ public class CourseTableCard extends JPanel{
         deleteCourse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 CoursesController.destroy(course.getId());
+                JOptionPane.showConfirmDialog(null, "Curso deletado!");
             }
         });
         this.add(courseLabel);
