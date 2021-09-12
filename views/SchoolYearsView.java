@@ -35,9 +35,6 @@ public class SchoolYearsView extends JFrame{
 		this.dispose();
 	}
 
-
-
-
 	private void initialize(final Container container) {
 		container.add(new Header(this), BorderLayout.PAGE_START);
 
@@ -62,7 +59,7 @@ public class SchoolYearsView extends JFrame{
 			schoolYearLabel.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 			schoolyearsview.add(schoolYearLabel);
 			school_years.forEach(sy -> {
-				SchoolYearTableCard syCard = new SchoolYearTableCard(sy);
+				SchoolYearTableCard syCard = new SchoolYearTableCard(sy, this);
 				schoolyearsview.add(syCard);
 			});
 			schoolyearsview.add(new CreateSchoolYearForm(this));

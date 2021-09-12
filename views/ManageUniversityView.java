@@ -97,7 +97,7 @@ public class ManageUniversityView extends JFrame{
 			listCourseTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 			coursesSection.add(listCourseTitle);
 			courses.forEach(course -> {
-				coursesSection.add(new CourseTableCard(course));
+				coursesSection.add(new CourseTableCard(course, this));
 			});
 		}
 

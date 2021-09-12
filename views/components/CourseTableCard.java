@@ -5,9 +5,10 @@ import javax.swing.*;
 
 import controllers.CoursesController;
 import models.Course;
+import views.ManageUniversityView;
 
 public class CourseTableCard extends JPanel{
-    public CourseTableCard(Course course){
+    public CourseTableCard(Course course, ManageUniversityView container){
         super(new FlowLayout(FlowLayout.CENTER));
 
         JLabel courseLabel = new JLabel(course.getName()+" | " + course.getKnowledgeArea() + " | " + course.getCode() + " | " + course.getCourseCoordinator().getName());
@@ -19,6 +20,7 @@ public class CourseTableCard extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 CoursesController.destroy(course.getId());
                 JOptionPane.showConfirmDialog(null, "Curso deletado!");
+                container.reload();
             }
         });
         this.add(courseLabel);
