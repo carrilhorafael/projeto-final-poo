@@ -5,16 +5,16 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import controllers.DepartmentsController;
+import controllers.CoursesController;
 import controllers.UsersController;
-import models.Department;
-import models.DepartmentCoordinator;
+import models.Course;
+import models.CourseCoordinator;
 import views.components.Header;
 
-public class CreateDepartmentView extends JFrame{
+public class CreateCourseView extends JFrame{
 	FlowLayout mainLayout = new FlowLayout();
-	public CreateDepartmentView() {
-		super("Criar departamento");
+	public CreateCourseView() {
+		super("Criar curso");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setExtendedState( this.getExtendedState()|JFrame.MAXIMIZED_BOTH );
         initialize(this);
@@ -23,90 +23,94 @@ public class CreateDepartmentView extends JFrame{
 	}
 
 	private void initialize(JFrame container) {
-		container.add(new Header(this), BorderLayout.PAGE_END);
+		container.getContentPane().add(new Header(this), BorderLayout.PAGE_END);
 
 		final JPanel main = new JPanel();
 		main.setLayout(mainLayout);
         main.setAlignmentY(FlowLayout.CENTER);
 
-		JLabel departmentTitle = new JLabel("Criar departamento");
-		departmentTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		departmentTitle.setFont(new Font("Bebas Neue", Font.PLAIN, 36));
-		container.add(departmentTitle);
+		JLabel courseTitle = new JLabel("Criar curso");
+		courseTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		courseTitle.setFont(new Font("Bebas Neue", Font.PLAIN, 36));
+		main.add(courseTitle);
 
-		JPanel departmentsSection = new JPanel();
-		BoxLayout departmentslayout = new BoxLayout(departmentsSection, BoxLayout.Y_AXIS);
-		departmentsSection.setLayout(departmentslayout);
-		departmentsSection.setAlignmentY(CENTER_ALIGNMENT);
+		JPanel coursesSection = new JPanel();
+		BoxLayout courseslayout = new BoxLayout(coursesSection, BoxLayout.Y_AXIS);
+		coursesSection.setLayout(courseslayout);
+		coursesSection.setAlignmentY(CENTER_ALIGNMENT);
 
-		JLabel lblName = new JLabel("Nome do Departamento:");
+		JLabel lblName = new JLabel("Nome do curso:");
+		lblName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblName.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		departmentsSection.add(lblName);
+		coursesSection.add(lblName);
 
 		JTextField name = new JTextField();
 		lblName.setLabelFor(name);
 		name.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		// name.setColumns(10);
-		departmentsSection.add(name);
+		coursesSection.add(name);
 
 		JLabel lblArea = new JLabel("Área de conhecimento:");
+		lblArea.setHorizontalAlignment(SwingConstants.CENTER);
 		lblArea.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		departmentsSection.add(lblArea);
+		coursesSection.add(lblArea);
 
 		JTextField area = new JTextField();
 		lblArea.setLabelFor(area);
 		area.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		area.setColumns(10);
-		departmentsSection.add(area);
+		coursesSection.add(area);
 
 		JLabel lblCampus = new JLabel("Campus Sede:");
+		lblCampus.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCampus.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		departmentsSection.add(lblCampus);
+		coursesSection.add(lblCampus);
 
 		JTextField campus = new JTextField();
 		lblCampus.setLabelFor(campus);
 		campus.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		campus.setColumns(10);
-		departmentsSection.add(campus);
+		coursesSection.add(campus);
 
 		JLabel lblCode = new JLabel("Code:");
+		lblCode.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCode.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		departmentsSection.add(lblCode);
+		coursesSection.add(lblCode);
 
 		JTextField code = new JTextField();
 		lblCode.setLabelFor(code);
 		code.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		departmentsSection.add(code);
+		coursesSection.add(code);
 
 		JLabel lblCoordenador = new JLabel("Nome do Coordenador:");
+		lblCoordenador.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCoordenador.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		departmentsSection.add(lblCoordenador);
+		coursesSection.add(lblCoordenador);
 
 		JComboBox<String> coordenador = new JComboBox<>();
-		ArrayList<DepartmentCoordinator> department_coordinators = UsersController.indexDepartmentCoordinatorsAvailable();
-		if(!department_coordinators.isEmpty()){
-			department_coordinators.forEach(department -> {
-				coordenador.addItem(department.getId() + " - " + department.getName());
+		ArrayList<CourseCoordinator> course_coordinators = UsersController.indexCourseCoordinatorsAvailable();
+		if(!course_coordinators.isEmpty()){
+			course_coordinators.forEach(course -> {
+				coordenador.addItem(course.getId() + " - " + course.getName());
 			});
 		}else{
 			coordenador.setEnabled(false);
 		}
 		lblCoordenador.setLabelFor(coordenador);
 		coordenador.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		departmentsSection.add(coordenador);
-		JButton createCoordinatorBtn = new JButton("Criar coordenador para departamento");
+		coursesSection.add(coordenador);
+
+		JButton createCoordinatorBtn = new JButton("Criar coordenador para curso");
 		createCoordinatorBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		createCoordinatorBtn.setBackground(new Color(32, 178, 170));
 		createCoordinatorBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				new CreateCoordinatorView(2);
-				container.dispose();;
+				new CreateCoordinatorView(3);
+				container.dispose();
 			}
 		});
-		departmentsSection.add(createCoordinatorBtn);
+		coursesSection.add(createCoordinatorBtn);
 
-		createCoordinatorBtn.setBackground(new Color(32, 178, 170));
-		JButton createBtn = new JButton("Criar departamento");
+		JButton createBtn = new JButton("Criar curso");
 		createBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		createBtn.setBackground(new Color(32, 178, 170));
 		createBtn.addActionListener(new ActionListener() {
@@ -118,7 +122,7 @@ public class CreateDepartmentView extends JFrame{
 					code.getText(),
 					(coordenador.getSelectedItem()+"").split(" - ")[0]
 				};
-				Department created = DepartmentsController.create(parameters);
+				Course created = CoursesController.create(parameters);
 				if(created.getErrors().isEmpty()){
 					JOptionPane.showMessageDialog(null, "Criado com sucesso");
 					new ManageUniversityView();
@@ -128,9 +132,8 @@ public class CreateDepartmentView extends JFrame{
 				}
 			}
 		});
-		departmentsSection.add(createBtn);
-		main.add(departmentsSection);
+		coursesSection.add(createBtn);
+		main.add(coursesSection);
 		container.getContentPane().add(main);
-		// container.getContentPane().add(departmentsSection);
 	}
 }

@@ -2,8 +2,8 @@
 import activerecord.ActiveRecord;
 import controllers.AuthController;
 import controllers.UsersController;
-import views.CreateDepartmentView;
-import views.LoginView;
+import views.CreateCourseView;
+import views.ManageUniversityView;
 
 public class Iduff{
     public static void main (String[] args){
@@ -14,6 +14,6 @@ public class Iduff{
             UsersController.register(rafael_parameters, 1);
         }
         AuthController.login("rafael@id.uff.br", "12345678");
-        new CreateDepartmentView();
+        new ManageUniversityView();
     }
 }

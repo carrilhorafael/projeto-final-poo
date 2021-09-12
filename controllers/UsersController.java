@@ -57,15 +57,17 @@ public class UsersController extends ApplicationController{
     }
 
     private static Student createStudent(String[] parameters){
+        String password = parameters[1].replace(".", "");
+        password = password.replace("-", "");
         Student student = Student.create(
             parameters[0], // String name
             parameters[1], // String cpf
             parameters[2], // String email
-            parameters[3], // String password
-            parameters[4], // String registration
-            parameters[5], // String birthdate
-            parameters[6], // String state
-            parameters[7], // String nationality
+            password, // String password
+            parameters[3], // String registration
+            parameters[4], // String birthdate
+            parameters[5], // String state
+            parameters[6], // String nationality
             Integer.parseInt(parameters[8]) // int course_id
         );
         if (student.save()){
@@ -81,15 +83,17 @@ public class UsersController extends ApplicationController{
     }
 
     private static Teacher createTeacher(String[] parameters){
+        String password = parameters[1].replace(".", "");
+        password = password.replace("-", "");
         Teacher teacher = Teacher.create(
             parameters[0], // String name
             parameters[1], // String cpf
             parameters[2], // String email
-            parameters[3], // String password
-            parameters[4], // String registration
-            parameters[5], // String birthdate
-            parameters[6], // String state
-            parameters[7], // String nationality
+            password, // String password
+            parameters[3], // String registration
+            parameters[4], // String birthdate
+            parameters[5], // String state
+            parameters[6], // String nationality
             Integer.parseInt(parameters[8]) // int department_id
         );
         if (teacher.save()){
@@ -105,15 +109,17 @@ public class UsersController extends ApplicationController{
     }
 
     private static CourseCoordinator createCourseCoordinator(String[] parameters) {
+        String password = parameters[1].replace(".", "");
+        password = password.replace("-", "");
         CourseCoordinator course_coordinator = CourseCoordinator.create(
             parameters[0], // String name
             parameters[1], // String cpf
             parameters[2], // String email
-            parameters[3], // String password
-            parameters[4], // String registration
-            parameters[5], // String birthdate
-            parameters[6], // String state
-            parameters[7]  // String nationality
+            password, // String password
+            parameters[3], // String registration
+            parameters[4], // String birthdate
+            parameters[5], // String state
+            parameters[6]  // String nationality
         );
         if (course_coordinator.save()){
             return course_coordinator;
@@ -127,15 +133,17 @@ public class UsersController extends ApplicationController{
     }
 
     private static DepartmentCoordinator createDepartmentCoordinator(String[] parameters) {
+        String password = parameters[1].replace(".", "");
+        password = password.replace("-", "");
         DepartmentCoordinator department_coordinator = DepartmentCoordinator.create(
             parameters[0], // String name
             parameters[1], // String cpf
             parameters[2], // String email
-            parameters[3], // String password
-            parameters[4], // String registration
-            parameters[5], // String birthdate
-            parameters[6], // String state
-            parameters[7]  // String nationality
+            password, // String password
+            parameters[3], // String registration
+            parameters[4], // String birthdate
+            parameters[5], // String state
+            parameters[6]  // String nationality
         );
         if (department_coordinator.save()){
             return department_coordinator;
@@ -148,15 +156,17 @@ public class UsersController extends ApplicationController{
     }
 
     private static Manager createManager(String[] parameters){
+        String password = parameters[1].replace(".", "");
+        password = password.replace("-", "");
         Manager manager = Manager.create(
             parameters[0], // String name
             parameters[1], // String cpf
             parameters[2], // String email
-            parameters[3], // String password
-            parameters[4], // String registration
-            parameters[5], // String birthdate
-            parameters[6], // String state
-            parameters[7]  // String nationality
+            password, // String password
+            parameters[3], // String registration
+            parameters[4], // String birthdate
+            parameters[5], // String state
+            parameters[6]  // String nationality
         );
         if (manager.save()){
             return manager;

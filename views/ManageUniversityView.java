@@ -23,7 +23,7 @@ public class ManageUniversityView extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setExtendedState( this.getExtendedState()|JFrame.MAXIMIZED_BOTH );
 
-        initialize(this.getContentPane());
+        initialize(this);
 
         this.pack();
         this.setVisible(true);
@@ -34,7 +34,7 @@ public class ManageUniversityView extends JFrame{
 		this.dispose();
 	}
 
-	private void initialize(final Container container) {
+	private void initialize(final JFrame container) {
 
 		container.add(new Header(this), BorderLayout.PAGE_END);
 
@@ -75,6 +75,7 @@ public class ManageUniversityView extends JFrame{
 		createDepartmentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new CreateDepartmentView();
+				container.dispose();
 			}
 		});
 		departmentsSection.add(createDepartmentBtn);
@@ -106,13 +107,14 @@ public class ManageUniversityView extends JFrame{
 		createCourseBtn.setBackground(new Color(32, 178, 170));
 		createCourseBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Ir para a página de criar departamento.");
+				new CreateCourseView();
+				container.dispose();
 			}
 		});
 		coursesSection.add(createCourseBtn);
 
 		main.add(departmentsSection, BorderLayout.EAST);
 		main.add(coursesSection, BorderLayout.WEST);
-		container.add(main);
+		container.getContentPane().add(main);
 	}
 }
