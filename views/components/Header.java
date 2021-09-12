@@ -5,7 +5,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import controllers.AuthController;
-import views.CoursesView;
 import views.ManageUniversityView;
 import views.LoginView;
 import views.SchoolYearsView;
@@ -16,7 +15,7 @@ public class Header extends JPanel{
         FlowLayout layout = new FlowLayout();
 
         JPanel buttonsviews = new JPanel();
-        layout.setAlignment(layout.RIGHT);
+        layout.setAlignment(2);
         buttonsviews.setLayout(layout);
 
         this.setLayout(layout);

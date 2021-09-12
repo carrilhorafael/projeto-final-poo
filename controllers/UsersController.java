@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.ArrayList;
-
 import activerecord.ActiveRecord;
 import models.CourseCoordinator;
 import models.DepartmentCoordinator;

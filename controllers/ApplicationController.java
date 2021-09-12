@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.ArrayList;
-
 import models.CourseCoordinator;
 import models.DepartmentCoordinator;
 import models.Manager;

@@ -7,15 +7,12 @@ import controllers.SchoolYearsController;
 import models.SchoolYear;
 import views.SchoolYearsView;
 public class CreateSchoolYearForm extends JPanel{
-    private JDialog dialog;
+
     public CreateSchoolYearForm(SchoolYearsView container){
         super();
 		this.setLayout(new FlowLayout(FlowLayout.CENTER));
 		final JPanel form = new JPanel();
 		form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
-
-		JOptionPane message = new JOptionPane();
-		// form.add(successMessage);
 
 		JLabel lblYear = new JLabel("Ano:");
 		lblYear.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));

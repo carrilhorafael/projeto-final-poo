@@ -2,7 +2,6 @@
 import activerecord.ActiveRecord;
 import controllers.UsersController;
 import views.LoginView;
-import views.SchoolYearsView;
 
 public class Iduff{
     public static void main (String[] args){
