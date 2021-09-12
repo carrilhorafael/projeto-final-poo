@@ -1,6 +1,5 @@
 package views;
 
-import controllers.AuthController;
 import controllers.SchoolYearsController;
 import models.SchoolYear;
 import views.components.CreateSchoolYearForm;
@@ -8,7 +7,6 @@ import views.components.Header;
 import views.components.SchoolYearTableCard;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
