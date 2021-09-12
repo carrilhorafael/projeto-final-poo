@@ -32,6 +32,12 @@ public class SchoolYearsController extends ApplicationController{
         return response;
     }
 
+    public static SchoolYear planning(){
+        if(!raise_permissions("schoolyears::planning")) return null;
+        SchoolYear response = SchoolYear.serialize(ActiveRecord.find_by("schoolyears", "status", "Planejamento"));
+        return response;
+    }
+
     public static void destroy(int schoolyear_id){
         if(!raise_permissions("schoolyears::destroy")) return;
         SchoolYear schoolyear = setSchoolYear(schoolyear_id);

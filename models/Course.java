@@ -88,6 +88,16 @@ public class Course {
         ArrayList<Classroom> response = Classroom.arraySerialize(classroom_stringifieds);
         return response;
     }
+    public ArrayList<Student> getStudents(){
+        ArrayList<String> students_ids = ActiveRecord.where("studentscourses", "course_id", this.id+"");
+        ArrayList<Student> students = new ArrayList<>();
+        students_ids.forEach(si -> {
+            String student_stringified = ActiveRecord.find("users", Integer.parseInt(si.split(" \\| ")[0]));
+            Student student = Student.serialize(student_stringified);
+            students.add(student);
+        });
+        return students;
+    }
     public ArrayList<String> getErrors() {
         return errors;
     }

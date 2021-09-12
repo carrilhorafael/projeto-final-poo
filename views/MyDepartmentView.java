@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import controllers.AuthController;
+import controllers.SchoolYearsController;
 import models.Department;
 import models.DepartmentCoordinator;
+import models.SchoolYear;
 import views.components.Header;
 import views.components.SubjectTableCard;
 import views.components.TeacherTableCard;
@@ -67,13 +69,17 @@ public class MyDepartmentView extends JFrame{
 			});
 		}
 
+
+		SchoolYear planningSchoolYear = SchoolYearsController.planning();
 		JButton createSubjectBtn = new JButton("Criar matéria para o departamento");
-		createSubjectBtn.setForeground(Color.WHITE);
+		// createSubjectBtn.setForeground(Color.WHITE);
+		if(planningSchoolYear == null) createSubjectBtn.setEnabled(false);
 		createSubjectBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		createSubjectBtn.setBackground(new Color(32, 178, 170));
 		createSubjectBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// new CreateSubjectView();
+
+				new CreateSubjectView(department.getId(), planningSchoolYear);
 				container.dispose();
 			}
 		});
@@ -99,7 +105,7 @@ public class MyDepartmentView extends JFrame{
 		}
 
 		JButton createTeacherBtn = new JButton("Criar professor para o departamento");
-		createTeacherBtn.setForeground(Color.WHITE);
+		// createTeacherBtn.setForeground(Color.WHITE);
 		createTeacherBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		createTeacherBtn.setBackground(new Color(32, 178, 170));
 		createTeacherBtn.addActionListener(new ActionListener() {

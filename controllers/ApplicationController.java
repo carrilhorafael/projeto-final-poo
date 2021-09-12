@@ -36,6 +36,7 @@ public class ApplicationController {
         "subjects::destroy",
         "subjects::update",
         "teachers::register",
+        "schoolyears::planning"
     };
     private final static String[] course_coordinator_routes = {
         "courses::show",
