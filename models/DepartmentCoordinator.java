@@ -1,6 +1,8 @@
 package models;
 
 
+import java.util.ArrayList;
+
 import activerecord.ActiveRecord;
 import models.abstracts.User;
 
@@ -31,12 +33,22 @@ public class DepartmentCoordinator extends User{
         DepartmentCoordinator coordinator = new DepartmentCoordinator(coordinator_stringified.split(" \\| "));
         return coordinator;
     }
+    public static ArrayList<DepartmentCoordinator> arraySerialize(ArrayList<String> coordinator_stringifieds){
+        if(coordinator_stringifieds == null) return null;
+        ArrayList<DepartmentCoordinator> coordinators = new ArrayList<>();
+        coordinator_stringifieds.forEach(cs -> {
+            DepartmentCoordinator coordinator = DepartmentCoordinator.serialize(cs);
+            coordinators.add(coordinator);
+        });
+        return coordinators;
+    }
+
     public void delete(){
         ActiveRecord.delete("users", this.getId());
     }
 
     public Department getDepartment(){
-        String department_stringified = ActiveRecord.find_by("departments", "department_coordinator_id", Integer.toString(this.getId()));
+        String department_stringified = ActiveRecord.find_by("departments", "department_coordinator_id", this.getId()+"");
         Department department = Department.serialize(department_stringified);
         return department;
     }

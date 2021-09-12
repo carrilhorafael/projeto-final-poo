@@ -84,7 +84,7 @@ public class Course {
         return course_coordinator;
     }
     public ArrayList<Classroom> getClassrooms(){
-        ArrayList<String> classroom_stringifieds = ActiveRecord.where("classrooms", "course_id", Integer.toString(this.id));
+        ArrayList<String> classroom_stringifieds = ActiveRecord.where("classrooms", "course_id", this.id+"");
         ArrayList<Classroom> response = Classroom.arraySerialize(classroom_stringifieds);
         return response;
     }
@@ -131,7 +131,7 @@ public class Course {
         if(coordinator_stringified == null){
             this.errors.add("O coordenador não existe");
             response = false;
-        }else if(coordinator_stringified.split(" \\| ")[9].equals("CourseCoordinator")){
+        }else if(!coordinator_stringified.split(" \\| ")[9].equals("CourseCoordinator")){
             this.errors.add("O id informado não pertence à um coordenador de curso");
             response = false;
         }

@@ -1,143 +1,126 @@
 package views;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import controllers.DepartmentsController;
+import controllers.UsersController;
+import models.Department;
+import models.DepartmentCoordinator;
+import views.components.Header;
 
-
-public class CreateDepartmentView {
-
-	private JFrame frame;
-	private JLabel title;
-	private JLabel lblName;
-	private JTextField name;
-	private JLabel lblArea;
-	private JTextField area;
-	private JLabel lblCampus;
-	private JTextField campus;
-	private JLabel lblCoordenador;
-	private JTextField coordenador;
-	private JButton btnCreateCoord;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateDepartmentView window = new CreateDepartmentView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
+public class CreateDepartmentView extends JFrame{
+	FlowLayout mainLayout = new FlowLayout();
 	public CreateDepartmentView() {
-		initialize();
-		frame.setVisible(true);
+		super("Criar departamento");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setExtendedState( this.getExtendedState()|JFrame.MAXIMIZED_BOTH );
+        initialize(this.getContentPane());
+        this.pack();
+        this.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1000, 800);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	private void initialize(Container container) {
+		container.add(new Header(this), BorderLayout.PAGE_END);
 
-		title = new JLabel("criar departamento");
-		title.setBounds(307, 48, 372, 44);
-		title.setHorizontalAlignment(SwingConstants.CENTER);
-		title.setFont(new Font("Bebas Neue", Font.PLAIN, 36));
-		frame.getContentPane().add(title);
+		final JPanel main = new JPanel();
+		main.setLayout(mainLayout);
+        main.setAlignmentY(FlowLayout.CENTER);
 
-		lblName = new JLabel("Nome do Departamento:");
-		lblName.setBounds(47, 117, 402, 20);
+		JLabel departmentTitle = new JLabel("Criar departamento");
+		departmentTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		departmentTitle.setFont(new Font("Bebas Neue", Font.PLAIN, 36));
+		container.add(departmentTitle);
+
+		JPanel departmentsSection = new JPanel();
+		BoxLayout departmentslayout = new BoxLayout(departmentsSection, BoxLayout.Y_AXIS);
+		departmentsSection.setLayout(departmentslayout);
+		departmentsSection.setAlignmentY(CENTER_ALIGNMENT);
+
+		JLabel lblName = new JLabel("Nome do Departamento:");
 		lblName.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		frame.getContentPane().add(lblName);
+		departmentsSection.add(lblName);
+
+		JTextField name = new JTextField();
 		lblName.setLabelFor(name);
-
-		name = new JTextField();
-		name.setBounds(47, 148, 402, 60);
 		name.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		name.setColumns(10);
-		frame.getContentPane().add(name);
+		// name.setColumns(10);
+		departmentsSection.add(name);
 
-		lblArea = new JLabel("\u00C1rea de conhecimento:");
+		JLabel lblArea = new JLabel("Área de conhecimento:");
 		lblArea.setBounds(519, 117, 402, 20);
 		lblArea.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		frame.getContentPane().add(lblArea);
-		lblArea.setLabelFor(area);
+		departmentsSection.add(lblArea);
 
-		area = new JTextField();
-		area.setBounds(519, 148, 402, 60);
+		JTextField area = new JTextField();
+		lblArea.setLabelFor(area);
 		area.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		area.setColumns(10);
-		frame.getContentPane().add(area);
+		departmentsSection.add(area);
 
-		lblCampus = new JLabel("Campus Sede:");
+		JLabel lblCampus = new JLabel("Campus Sede:");
 		lblCampus.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		lblCampus.setBounds(47, 242, 402, 20);
-		frame.getContentPane().add(lblCampus);
-		lblCampus.setLabelFor(campus);
+		departmentsSection.add(lblCampus);
 
-		campus = new JTextField();
+		JTextField campus = new JTextField();
+		lblCampus.setLabelFor(campus);
 		campus.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		campus.setColumns(10);
 		campus.setBounds(47, 273, 402, 60);
-		frame.getContentPane().add(campus);
+		departmentsSection.add(campus);
 
-		lblCoordenador = new JLabel("Nome do Coordenador:");
+		JLabel lblCode = new JLabel("Code:");
+		lblCode.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		departmentsSection.add(lblCode);
+
+		JTextField code = new JTextField();
+		lblCode.setLabelFor(code);
+		code.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		departmentsSection.add(code);
+
+		JLabel lblCoordenador = new JLabel("Nome do Coordenador:");
 		lblCoordenador.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		lblCoordenador.setBounds(519, 242, 402, 20);
-		frame.getContentPane().add(lblCoordenador);
-		lblCoordenador.setLabelFor(coordenador);
+		departmentsSection.add(lblCoordenador);
 
-		coordenador = new JTextField();
+		JComboBox<String> coordenador = new JComboBox<>();
+		ArrayList<DepartmentCoordinator> department_coordinators = UsersController.indexDepartmentCoordinatorsAvailable();
+		if(!department_coordinators.isEmpty()){
+			department_coordinators.forEach(department -> {
+				coordenador.addItem(department.getId() + " - " + department.getName());
+			});
+		}
+		lblCoordenador.setLabelFor(coordenador);
 		coordenador.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		coordenador.setColumns(10);
-		coordenador.setBounds(519, 273, 402, 60);
-		frame.getContentPane().add(coordenador);
+		departmentsSection.add(coordenador);
 
 		JButton createBtn = new JButton("Criar departamento");
-		createBtn.setBounds(359, 374, 268, 44);
 		createBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		createBtn.setBackground(new Color(32, 178, 170));
 		createBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String[] parameters = {
+					name.getText(),
+					area.getText(),
+					campus.getText(),
+					code.getText(),
+					(coordenador.getSelectedItem()+"").split(" - ")[0]
+				};
+				Department created = DepartmentsController.create(parameters);
+				if(created.getErrors().isEmpty()){
+					JOptionPane.showMessageDialog(null, "Criado com sucesso");
+					new ManageUniversityView();
+					container.setVisible(false);;
+				}else{
+					JOptionPane.showMessageDialog(null, "Erro: " + created.getErrors().get(0));
+				}
 			}
 		});
-		frame.getContentPane().add(createBtn);
+		departmentsSection.add(createBtn);
 
-		JButton backToHome = new JButton("Voltar para o in�cio");
-		backToHome.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		backToHome.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		backToHome.setBackground(new Color(32, 178, 170));
-		backToHome.setBounds(359, 558, 268, 44);
-		frame.getContentPane().add(backToHome);
-
-		btnCreateCoord = new JButton("Criar Coordenador");
-		btnCreateCoord.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		btnCreateCoord.setBackground(new Color(32, 178, 170));
-		btnCreateCoord.setBounds(359, 468, 268, 44);
-		frame.getContentPane().add(btnCreateCoord);
+		main.add(departmentsSection);
+		container.add(main);
 	}
 }

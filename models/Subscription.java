@@ -8,7 +8,7 @@ import activerecord.ActiveRecord;
 public class Subscription {
     private Classroom classroom;
     private Student student;
-    private int n1, n2, n3;
+    private Double n1, n2, n3;
     private int id;
     private ArrayList<String> errors = new ArrayList<>();
     private static int next_subscription_id = Integer.parseInt(ActiveRecord.last("ids").split(" \\| ")[7]);
@@ -21,9 +21,9 @@ public class Subscription {
         Subscription subscription = new Subscription();
         subscription.setStudent(student_id);
         subscription.setClassroom(classroom_id);
-        subscription.setGrade("n1", 0);
-        subscription.setGrade("n2", 0);
-        subscription.setGrade("n3", 0);
+        subscription.setGrade("n1", 0.0);
+        subscription.setGrade("n2", 0.0);
+        subscription.setGrade("n3", 0.0);
         subscription.verifySchoolYearStatus();
         return subscription;
     }
@@ -44,6 +44,7 @@ public class Subscription {
     }
 
     public static Subscription serialize(String subscription_stringified){
+        if(subscription_stringified == null) return null;
         Subscription subscription = new Subscription(subscription_stringified.split(" \\| "));
         return subscription;
     }
@@ -62,13 +63,13 @@ public class Subscription {
     public int getId() {
         return id;
     }
-    public int getN1() {
+    public Double getN1() {
         return n1;
     }
-    public int getN2() {
+    public Double getN2() {
         return n2;
     }
-    public int getN3() {
+    public Double getN3() {
         return n3;
     }
     public Classroom getClassroom() {
@@ -101,9 +102,9 @@ public class Subscription {
         }
         return response;
     }
-    public boolean validateGrade(int grade){
+    public boolean validateGrade(Double grade){
         boolean response = true;
-        if (grade <= 0 && grade > 10){
+        if (grade <= 0.0 && grade > 10.0){
             this.errors.add("Esse não é um valor possivel para notas");
             response = false;
         }
@@ -127,14 +128,14 @@ public class Subscription {
         Classroom classroom = Classroom.serialize(classroom_stringified);
         if(validateClassroom(classroom)) this.classroom = classroom;
     }
-    public void setGrade(String node, int grade){
+    public void setGrade(String node, Double grade){
         if(validateGrade(grade)){
             if(node == "n1"){
-                this.n1 = grade;
+                this.n1 = Double.valueOf(new DecimalFormat("#,##0.00").format(this.n1));
             }else if(node == "n2"){
-                this.n2 = grade;
+                this.n2 = Double.valueOf(new DecimalFormat("#,##0.00").format(this.n2));
             }else{
-                this.n3 = grade;
+                this.n3 = Double.valueOf(new DecimalFormat("#,##0.00").format(this.n3));
             }
         }
     }

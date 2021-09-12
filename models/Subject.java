@@ -52,6 +52,7 @@ public class Subject {
     }
 
     public static Subject serialize(String subject_stringified){
+        if(subject_stringified == null) return null;
         Subject subject = new Subject(subject_stringified.split(" \\| "));
         return subject;
     }
@@ -84,7 +85,7 @@ public class Subject {
         return errors;
     }
     public ArrayList<Classroom> getClassrooms(){
-        ArrayList<String> classroom_stringifieds = ActiveRecord.where("classrooms", "subject_id", Integer.toString(this.id));
+        ArrayList<String> classroom_stringifieds = ActiveRecord.where("classrooms", "subject_id", this.id+"");
         ArrayList<Classroom> classrooms = Classroom.arraySerialize(classroom_stringifieds);
         return classrooms;
     }

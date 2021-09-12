@@ -1,5 +1,7 @@
 package controllers;
 
+import java.util.ArrayList;
+
 import activerecord.ActiveRecord;
 import models.CourseCoordinator;
 import models.DepartmentCoordinator;
@@ -29,20 +31,26 @@ public class UsersController extends ApplicationController{
             return null;
         }
     }
+    public static ArrayList<DepartmentCoordinator> indexDepartmentCoordinatorsAvailable(){
+        ArrayList<String> user_stringifieds = ActiveRecord.where("users", "role", "DepartmentCoordinator");
+        ArrayList<DepartmentCoordinator> department_coordinators = DepartmentCoordinator.arraySerialize(user_stringifieds);
+        ArrayList<DepartmentCoordinator> response = new ArrayList<>();
+        department_coordinators.forEach(coordinator -> {
+            if(coordinator.getDepartment() == null) response.add(coordinator);
 
+        });
+        return response;
+    }
+    public static ArrayList<CourseCoordinator> indexCourseCoordinatorsAvailable(){
+        ArrayList<String> user_stringifieds = ActiveRecord.where("users", "role", "CourseCoordinator");
+        ArrayList<CourseCoordinator> course_coordinators = CourseCoordinator.arraySerialize(user_stringifieds);
+        ArrayList<CourseCoordinator> response = new ArrayList<>();
+        course_coordinators.forEach(coordinator -> {
+            if(coordinator.getCourse() == null) response.add(coordinator);
+        });
+        return response;
+    }
 
-    // public static ArrayList <User> index(){
-    //     ArrayList<String> users_stringifieds = ActiveRecord.all("users");
-    //     ArrayList<User> response = new ArrayList<>();
-    //     if (users_stringifieds != null){
-    //         users_stringifieds.forEach(cs -> {
-    //             User user = new User(cs);
-    //             response.add(user);
-    //         });
-    //         return response;
-    //     }
-    //     return null;
-    // }
 
     public static boolean destroy(int user_id){
         return ActiveRecord.delete("classrooms", user_id);

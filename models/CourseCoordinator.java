@@ -1,6 +1,8 @@
 package models;
 
 
+import java.util.ArrayList;
+
 import activerecord.ActiveRecord;
 import models.abstracts.User;
 
@@ -30,6 +32,16 @@ public class CourseCoordinator extends User {
         if(coordinator_stringified == null || !coordinator_stringified.split(" \\| ")[9].equals("CourseCoordinator")) return null;
         CourseCoordinator coordinator = new CourseCoordinator(coordinator_stringified.split(" \\| "));
         return coordinator;
+    }
+
+    public static ArrayList<CourseCoordinator> arraySerialize(ArrayList<String> coordinator_stringifieds){
+        if(coordinator_stringifieds == null) return null;
+        ArrayList<CourseCoordinator> coordinators = new ArrayList<>();
+        coordinator_stringifieds.forEach(cs -> {
+            CourseCoordinator coordinator = CourseCoordinator.serialize(cs);
+            coordinators.add(coordinator);
+        });
+        return coordinators;
     }
 
     public void delete(){

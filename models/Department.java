@@ -50,6 +50,7 @@ public class Department {
         return department;
     }
     public static Department serialize(String department_stringified){
+        if(department_stringified == null) return null;
         Department department = new Department(department_stringified.split(" \\| "));
         return department;
     }
@@ -81,7 +82,7 @@ public class Department {
         return name;
     }
     public ArrayList<Teacher> getTeachers(){
-        ArrayList<String> teachers_ids = ActiveRecord.where("teachersdepartments", "department_id", Integer.toString(this.getId()));
+        ArrayList<String> teachers_ids = ActiveRecord.where("teachersdepartments", "department_id", this.id+"");
         ArrayList<Teacher> teachers = new ArrayList<>();
         teachers_ids.forEach(ti -> {
             String teacher_stringified = ActiveRecord.find("users", Integer.parseInt(ti.split(" \\| ")[0]));
@@ -91,7 +92,7 @@ public class Department {
         return teachers;
     }
     public ArrayList<Subject> getSubjects(){
-        ArrayList<String> subject_stringifieds = ActiveRecord.where("subjects", "department_id", Integer.toString(this.id));
+        ArrayList<String> subject_stringifieds = ActiveRecord.where("subjects", "department_id", this.id+"");
         return Subject.arraySerialize(subject_stringifieds);
     }
     public ArrayList<String> getErrors() {
@@ -133,10 +134,11 @@ public class Department {
     }
     public boolean validateCoordinator(String coordinator_stringified){
         boolean response = true;
+        System.out.println(coordinator_stringified);
         if(coordinator_stringified == null){
             this.errors.add("Coordenador deve existir");
             response = false;
-        }else if(coordinator_stringified.split(" \\| ")[9].equals("DepartmentCoordinator")){
+        }else if(!coordinator_stringified.split(" \\| ")[9].equals("DepartmentCoordinator")){
             this.errors.add("O id informado não pertence a um coordenador de departamento");
             response = false;
         }

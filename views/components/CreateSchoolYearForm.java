@@ -36,7 +36,7 @@ public class CreateSchoolYearForm extends JPanel{
 		lblStatus.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		form.add(lblStatus);
 
-		JComboBox status = new JComboBox();
+		JComboBox<String> status = new JComboBox<>();
 		status.addItem("Planejamento");
 		status.addItem("Inscrições");
 		status.addItem("Ativo");

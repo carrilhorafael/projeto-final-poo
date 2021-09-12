@@ -85,7 +85,7 @@ public class Classroom {
         return course;
     }
     public ArrayList<Student> getStudents(){
-        ArrayList<String> subscription_stringifieds = ActiveRecord.where("subscriptions", "classroom_id", Integer.toString(this.id));
+        ArrayList<String> subscription_stringifieds = ActiveRecord.where("subscriptions", "classroom_id", this.id+"");
         ArrayList<Student> students = new ArrayList<>();
         subscription_stringifieds.forEach(ss -> {
             String student_stringified = ActiveRecord.find("users", Integer.parseInt(ss.split(" \\| ")[1]));
@@ -95,7 +95,7 @@ public class Classroom {
         return students;
     }
     public ArrayList<Subscription> getSubscriptions(){
-        ArrayList<String> subscription_stringifieds = ActiveRecord.where("subscriptions", "classroom_id", Integer.toString(this.id));
+        ArrayList<String> subscription_stringifieds = ActiveRecord.where("subscriptions", "classroom_id", this.id+"");
         ArrayList<Subscription> subscriptions = Subscription.arraySerialize(subscription_stringifieds);
         return subscriptions;
     }

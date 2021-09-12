@@ -39,11 +39,10 @@ public class ManageUniversityView extends JFrame{
 		container.add(new Header(this), BorderLayout.PAGE_END);
 
 		final JPanel main = new JPanel();
-
 		main.setLayout(mainLayout);
         main.setAlignmentY(FlowLayout.CENTER);
 
-		JLabel title = new JLabel("Página de gestão de departamentos e cursos");
+		JLabel title = new JLabel("Página de gestão de universidade");
 		title.setHorizontalAlignment(SwingConstants.CENTER);
 		title.setFont(new Font("Bebas Neue", Font.PLAIN, 36));
 		container.add(title, BorderLayout.PAGE_START);
@@ -75,7 +74,7 @@ public class ManageUniversityView extends JFrame{
 		createDepartmentBtn.setBackground(new Color(32, 178, 170));
 		createDepartmentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Ir para a página de criar departamento.");
+				new CreateDepartmentView();
 			}
 		});
 		departmentsSection.add(createDepartmentBtn);

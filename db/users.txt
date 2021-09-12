@@ -6,3 +6,5 @@ id | name | cpf | email | password | registration | birthdate | state | national
 5 | Chico | 115.111.111-11 | jorge@id.uff.br | 12345678 | 115.111.111 | 16/02/2000 | RJ | Brasil | DepartmentCoordinator
 6 | Gabriel | 116.111.111-11 | matheus@id.uff.br | 12345678 | 116.111.111 | 16/02/2000 | RJ | Brasil | DepartmentCoordinator
 7 | Fabio | 117.111.111-11 | carlos@id.uff.br | 12345678 | 117.111.111 | 16/02/2000 | RJ | Brasil | DepartmentCoordinator
+8 | Guilherme | 118.111.111-11 | matheus@id.uff.br | 12345678 | 118.111.111 | 16/02/2000 | RJ | Brasil | DepartmentCoordinator
+9 | Felipe | 119.111.111-11 | carlos@id.uff.br | 12345678 | 119.111.111 | 16/02/2000 | RJ | Brasil | DepartmentCoordinator

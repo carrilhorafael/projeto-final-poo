@@ -1,3 +1,2 @@
 id | year | semester | status
 1 | 2021 | 2 | Inscrições
-2 | 2020 | 2 | Planejamento

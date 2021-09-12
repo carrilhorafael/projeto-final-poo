@@ -1,3 +1,4 @@
 id | name | knowledge_area | campus | code | department_coordinator_id
 1 | Teste de Departamento 1 | Area de Teste | Gragoatá | 001 | 5
 2 | Teste de Departamento 2 | Area de Teste | Gragoatá | 001 | 6
+4 | GMA | Matemática | Gragoatá | 001 | 7
