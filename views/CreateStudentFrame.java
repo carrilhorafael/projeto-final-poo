@@ -9,17 +9,17 @@ import models.abstracts.User;
 import java.awt.event.*;
 
 
-public class CreateTeacherFrame extends JFrame{
+public class CreateStudentFrame extends JFrame{
 
 	FlowLayout mainLayout = new FlowLayout();
 	/**
 	 * Create the application.
 	 */
-	public CreateTeacherFrame(int departmentId) {
-		super("Criar Professor");
+	public CreateStudentFrame(int courseId) {
+		super("Criar aluno");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setExtendedState( this.getExtendedState()|JFrame.MAXIMIZED_BOTH );
-        initialize(this, departmentId);
+        initialize(this, courseId);
         this.pack();
         this.setVisible(true);
 	}
@@ -27,12 +27,12 @@ public class CreateTeacherFrame extends JFrame{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(JFrame frame, int departmentId) {
+	private void initialize(JFrame frame, int courseId) {
 		final JPanel main = new JPanel();
 		main.setLayout(mainLayout);
         main.setAlignmentY(FlowLayout.CENTER);
 		JPanel teacherPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JLabel teacherTitle = new JLabel("Criar professor");
+		JLabel teacherTitle = new JLabel("Criar aluno");
 		teacherTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		teacherTitle.setFont(new Font("Bebas Neue", Font.PLAIN, 36));
 		teacherPanel.add(teacherTitle);
@@ -43,7 +43,7 @@ public class CreateTeacherFrame extends JFrame{
 		formSection.setLayout(formlayout);
 		formSection.setAlignmentY(CENTER_ALIGNMENT);
 
-		JLabel lblName = new JLabel("Nome do professor:");
+		JLabel lblName = new JLabel("Nome do aluno:");
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblName.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblName);
@@ -54,7 +54,7 @@ public class CreateTeacherFrame extends JFrame{
 		name.setColumns(10);
 		formSection.add(name);
 
-		JLabel lblCPF = new JLabel("CPF do professor:");
+		JLabel lblCPF = new JLabel("CPF do aluno:");
 		lblCPF.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCPF.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblCPF);
@@ -65,7 +65,7 @@ public class CreateTeacherFrame extends JFrame{
 		cpf.setColumns(10);
 		formSection.add(cpf);
 
-		JLabel lblEmail = new JLabel("E-mail do professor:");
+		JLabel lblEmail = new JLabel("E-mail do aluno:");
 		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEmail.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblEmail);
@@ -76,7 +76,7 @@ public class CreateTeacherFrame extends JFrame{
 		email.setColumns(10);
 		formSection.add(email);
 
-		JLabel lblRegistration = new JLabel("Matrícula do professor:");
+		JLabel lblRegistration = new JLabel("Matrícula do aluno:");
 		lblRegistration.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRegistration.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblRegistration);
@@ -98,7 +98,7 @@ public class CreateTeacherFrame extends JFrame{
 		birthdate.setColumns(10);
 		formSection.add(birthdate);
 
-		JLabel lblState = new JLabel("Estado do professor:");
+		JLabel lblState = new JLabel("Estado do aluno:");
 		lblState.setHorizontalAlignment(SwingConstants.CENTER);
 		lblState.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblState);
@@ -137,7 +137,7 @@ public class CreateTeacherFrame extends JFrame{
 		state.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(state);
 
-		JLabel lblNationality = new JLabel("Nacionalidade do professor:");
+		JLabel lblNationality = new JLabel("Nacionalidade do aluno:");
 		lblNationality.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNationality.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		formSection.add(lblNationality);
@@ -148,7 +148,7 @@ public class CreateTeacherFrame extends JFrame{
 		nationality.setColumns(10);
 		formSection.add(nationality);
 
-		JButton createBtn = new JButton("Criar professor");
+		JButton createBtn = new JButton("Criar aluno");
 		createBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		createBtn.setBackground(new Color(32, 178, 170));
 		createBtn.addActionListener(new ActionListener() {
@@ -161,15 +161,15 @@ public class CreateTeacherFrame extends JFrame{
 					birthdate.getText(),
 					state.getSelectedItem() + "",
 					nationality.getText(),
-					departmentId + ""
+					courseId + ""
 
 				};
-				User created = UsersController.register(parameters, 4);
+				User created = UsersController.register(parameters, 5);
 				if(created == null){
 					JOptionPane.showMessageDialog(null, "Erro: Permissão negada");
 				}else if(created.getErrors().isEmpty()){
-					JOptionPane.showMessageDialog(null, "Professor criado com sucesso");
-					new MyDepartmentFrame();
+					JOptionPane.showMessageDialog(null, "Aluno criado com sucesso");
+					new MyCourseFrame();
 					frame.dispose();
 				}else{
 					JOptionPane.showMessageDialog(null, "Erro: " + created.getErrors().get(0));

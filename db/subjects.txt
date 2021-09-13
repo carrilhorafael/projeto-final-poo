@@ -1,3 +1,2 @@
 id | name | ch | department_id | school_year_id
-1 | Programação Orientada a Objetos | 32 | 2 | 3
-2 | Programação Estruturada | 64 | 2 | 3
+4 | Programação Estruturada | 64 | 2 | 3

@@ -73,7 +73,7 @@ public class MyCourseFrame extends JFrame{
 		createClassroomBtn.setBackground(new Color(32, 178, 170));
 		createClassroomBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// new CreateClassroomView();
+				new CreateClassroomFrame(course.getId());
 				container.dispose();
 			}
 		});

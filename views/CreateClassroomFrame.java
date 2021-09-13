@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import controllers.ClassroomsController;
 import controllers.SubjectsController;
 import controllers.UsersController;
+import models.Classroom;
 import models.SchoolYear;
 import models.Subject;
 import models.Teacher;
@@ -84,15 +86,15 @@ public class CreateClassroomFrame extends JFrame{
                     code.getText(),
                     room.getText(),
                     (teacherSelect.getSelectedItem()+"").split(" - ")[0],
-                    courseId + "",
-                    schoolYear.getId() + ""
+                    (subjectSelect.getSelectedItem()+"").split(" - ")[0],
+                    courseId + ""
                 };
-                Subject created = SubjectsController.create(parameters);
+                Classroom created = ClassroomsController.create(parameters);
                 if(created == null){
                     JOptionPane.showMessageDialog(null, "Erro: Permissão negada");
                 }else if(created.getErrors().isEmpty()){
                     JOptionPane.showMessageDialog(null, "Criado com sucesso");
-                    new MyDepartmentFrame();
+                    new MyCourseFrame();
                     container.dispose();
                 }else{
                     JOptionPane.showMessageDialog(null, "Erro: " + created.getErrors().get(0));

@@ -2,4 +2,5 @@ id | name | cpf | email | password | registration | birthdate | state | national
 1 | Rafael Carrilho | 111.111.111-11 | rafael@id.uff.br | 11111111111 | 111.111.111 | 16/02/2000 | RJ | Brasil | Manager
 2 | Paula Fernandes | 111.111.111-12 | paulaf@id.uff.br | 11111111112 | 111.111.112 | 11/11/2000 | Rio de Janeiro | Brasileira | DepartmentCoordinator
 3 | Debora Ferreira | 111.111.111-13 | debora@id.uff.br | 11111111113 | 111.111.113 | 11/11/2000 | Rio de Janeiro | Brasileira | CourseCoordinator
-4 | Vania Oliveira | 111.111.111-14 | vaniao@id.uff.br | 11111111114 | 111.111.114 | 11/11/2000 | Paraíba | Argentina | Teacher
+5 | Vania | 111.111.111-14 | vaniao@id.uff.br | 11111111114 | 111.111.114 | 11/11/2000 | Rio de Janeiro | Brasileira | Teacher
+6 | Esteban | 111.111.111-15 | esteban@id.uff.br | 11111111115 | 111.111.115 | 11/11/2000 | Mato Grosso | Argentino | Teacher
