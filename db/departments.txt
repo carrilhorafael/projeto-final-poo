@@ -1,3 +1,2 @@
 id | name | knowledge_area | campus | code | department_coordinator_id
-1 | GMA | Matemática | Gragoatá | 132 | 2
-2 | Departamento de Estatistica | Matemática | Gragoatá | 132 | 3
+2 | TCC | Tecnologia | Praia Vermelha | 130 | 2

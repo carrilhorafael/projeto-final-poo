@@ -36,6 +36,16 @@ public class Teacher extends User {
         Teacher teacher = new Teacher(teacher_stringified.split(" \\| "));
         return teacher;
     }
+
+    public static ArrayList<Teacher> arraySerialize(ArrayList<String> teacher_stringifieds){
+        ArrayList<Teacher> response = new ArrayList<>();
+        teacher_stringifieds.forEach(ts -> {
+            Teacher teacher = Teacher.serialize(ts);
+            response.add(teacher);
+        });
+        return response;
+    }
+
     public void delete(){
         ActiveRecord.delete("users", this.getId());
     }

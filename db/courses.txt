@@ -1,2 +1,2 @@
 id | name | knowledge_area | campus | code | course_coordinator_id
-1 | Curso 1 | Tecnologia | Praia Vermelha | 111 | 4
+2 | Sistemas de Informação | Tecnologia | Praia Vermelha | 137 | 3

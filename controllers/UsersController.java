@@ -51,6 +51,10 @@ public class UsersController extends ApplicationController{
         });
         return response;
     }
+    public static ArrayList<Teacher> indexTeachers(){
+        ArrayList<String> user_stringifieds = ActiveRecord.where("users", "role", "Teacher");
+        return Teacher.arraySerialize(user_stringifieds);
+    }
 
 
     public static boolean destroy(int user_id){
