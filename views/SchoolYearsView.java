@@ -47,7 +47,7 @@ public class SchoolYearsView extends JFrame{
 
 		ArrayList<SchoolYear> school_years = SchoolYearsController.index();
 
-		if(school_years == null){
+		if(school_years.isEmpty()){
 			JLabel schoolYearNullLabel = new JLabel("Ainda não há periodos letivos cadastrados");
 			schoolYearNullLabel.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 			schoolyearsview.add(schoolYearNullLabel);

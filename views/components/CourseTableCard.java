@@ -18,9 +18,12 @@ public class CourseTableCard extends JPanel{
         deleteCourse.setBackground(new Color(32, 178, 170));
         deleteCourse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CoursesController.destroy(course.getId());
-                JOptionPane.showConfirmDialog(null, "Curso deletado!");
-                container.reload();
+                Object[] options = { "Confirmar", "Cancelar" };
+                int response = JOptionPane.showOptionDialog(null, "Deletar o curso irá apagar todas as turmas e alunos vinculados a ele. Confirma que quer deletar?", "Informação", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                if(response == 0){
+                    CoursesController.destroy(course.getId());
+                    container.reload();
+                }
             }
         });
         this.add(courseLabel);

@@ -17,9 +17,13 @@ public class DepartmentTableCard extends JPanel{
         deletedepartment.setBackground(new Color(32, 178, 170));
         deletedepartment.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                DepartmentsController.destroy(department.getId());
-                JOptionPane.showConfirmDialog(null, "Departamento deletado!");
-                container.reload();
+                Object[] options = { "Confirmar", "Cancelar" };
+                int response = JOptionPane.showOptionDialog(null, "Deletar o departamento irá apagar todas as matérias e professores vinculados a ele. Confirma que quer deletar?", "Informação", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                if(response == 0){
+                    DepartmentsController.destroy(department.getId());
+                    JOptionPane.showMessageDialog(null, "Departamento deletado!");
+                    container.reload();
+                }
             }
         });
         this.add(departmentLabel);

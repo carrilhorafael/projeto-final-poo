@@ -1,2 +1,1 @@
 teacher_id | department_id
-14 | 1

@@ -17,9 +17,12 @@ public class SchoolYearTableCard extends JPanel{
         deleteSy.setBackground(new Color(32, 178, 170));
         deleteSy.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                SchoolYearsController.destroy(schoolYear.getId());
-                JOptionPane.showConfirmDialog(null, "Periodo letivo deletado!");
-                container.reload();
+                Object[] options = { "Confirmar", "Cancelar" };
+                int response = JOptionPane.showOptionDialog(null, "Apagar o periodo letivo irá apagar todas as matérias e turmas vinculadas a ele. Confirma que quer apagar?", "Informação", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                if(response == 0){
+                    SchoolYearsController.destroy(schoolYear.getId());
+                    container.reload();
+                }
             }
         });
         this.add(syLabel);

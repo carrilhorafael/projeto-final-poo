@@ -19,11 +19,11 @@ public class SubjectTableCard extends JPanel{
         deleteSubjectBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Object[] options = { "Confirmar", "Cancelar" };
-                int response = JOptionPane.showOptionDialog(null, "Clique confirmar para continuar", "Informação", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                int response = JOptionPane.showOptionDialog(null, "Apagar a matéria irá apagar todas as turmas e inscrições vinculadas a essa materia. Confirma que quer apagar?", "Informação", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
                 if(response == 0){
                     SubjectsController.destroy(subject.getId());
+                    container.reload();
                 }
-                container.reload();
             }
         });
         this.add(subjectLabel);

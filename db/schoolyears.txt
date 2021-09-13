@@ -1,2 +1,4 @@
 id | year | semester | status
-1 | 2021 | 2 | Planejamento
+1 | 2020 | 2 | Fechado
+2 | 2021 | 1 | Ativo
+3 | 2021 | 2 | Planejamento

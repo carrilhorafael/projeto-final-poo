@@ -1,4 +1,2 @@
 id | name | knowledge_area | campus | code | course_coordinator_id
-1 | Teste de Curso 1 | Area de Teste | Gragoatá | 001 | 2
-2 | Teste de Curso 2 | Area de Teste | Gragoatá | 001 | 3
-3 | Teste de Curso 3 | Area de Teste | Gragoatá | 001 | 4
+1 | Curso 1 | Tecnologia | Praia Vermelha | 111 | 4

@@ -40,7 +40,7 @@ public class CreateSchoolYearForm extends JPanel{
 		status.addItem("Planejamento");
 		status.addItem("Inscrições");
 		status.addItem("Ativo");
-		status.addItem("Concluido");
+		status.addItem("Fechado");
 		lblStatus.setLabelFor(status);
 		status.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		form.add(status);

@@ -53,7 +53,6 @@ public class MyDepartmentView extends JFrame{
 		departmentLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		departmentLabel.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		subjectsPanel.add(departmentLabel);
-
 		if(department.getSubjects().isEmpty()){
 			JLabel subjectsTitle = new JLabel("Ainda não há matérias cadastradas para o departamento");
 			subjectsTitle.setHorizontalAlignment(SwingConstants.CENTER);

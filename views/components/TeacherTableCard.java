@@ -10,30 +10,6 @@ public class TeacherTableCard extends JPanel{
         super(new FlowLayout(FlowLayout.CENTER));
         JLabel teacherLabel = new JLabel(teacher.getName()+ " | Email: " + teacher.getEmail() + " | Nacionalidade: " + teacher.getNationality());
         teacherLabel.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-        // JButton deleteSubjectBtn = new JButton("Deletar matéria");
-        // deleteSubjectBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-        // deleteSubjectBtn.setBackground(new Color(32, 178, 170));
-        // deleteSubjectBtn.addActionListener(new ActionListener() {
-        //     public void actionPerformed(ActionEvent e) {
-        //         Object[] options = { "Confirmar", "Cancelar" };
-        //         int response = JOptionPane.showOptionDialog(null, "Clique confirmar para continuar", "Informação", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-        //         if(response == 0){
-        //             SubjectsController.destroy(teacher.getId());
-        //         }
-        //         // container.reload();
-        //     }
-        // });
-        // JButton createClassroomBtn = new JButton("Criar turma");
-        // createClassroomBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-        // createClassroomBtn.setBackground(new Color(32, 178, 170));
-        // createClassroomBtn.addActionListener(new ActionListener() {
-        //     public void actionPerformed(ActionEvent e) {
-        //         // new CreateClassroomView();
-        //         container.dispose();
-        //     }
-        // });
         this.add(teacherLabel);
-        // this.add(deleteSubjectBtn);
-        // this.add(createClassroomBtn);
     }
 }

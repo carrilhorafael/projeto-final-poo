@@ -1,6 +1,8 @@
 package views;
 
 import controllers.AuthController;
+import models.CourseCoordinator;
+import models.DepartmentCoordinator;
 import models.Manager;
 
 import java.awt.*;
@@ -64,8 +66,8 @@ public class LoginView {
 				if (AuthController.login(email.getText(), String.valueOf(passwordField.getPassword()))){
 					frame.setVisible(false);
 					if (AuthController.getUserLogged() instanceof Manager) new SchoolYearsView();
-					// else if(AuthController.getUserLogged() instanceof DepartmentCoordinator) new DepartmentCoordinatorView();
-					// else if(AuthController.getUserLogged() instanceof CourseCoordinator) new CourseCoordinatorView();
+					else if(AuthController.getUserLogged() instanceof DepartmentCoordinator) new MyDepartmentView();
+					else if(AuthController.getUserLogged() instanceof CourseCoordinator) new MyCourseView();
 					// else if(AuthController.getUserLogged() instanceof Teacher) new TeacherView();
 					// else if(AuthController.getUserLogged() instanceof Student) new StudentView();
 				}
