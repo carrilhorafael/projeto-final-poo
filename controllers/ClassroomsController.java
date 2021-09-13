@@ -65,7 +65,7 @@ public class ClassroomsController extends ApplicationController{
         if(!raise_permissions("classrooms::destroy")) return;
         CourseCoordinator user_logged = (CourseCoordinator)AuthController.getUserLogged();
         Classroom classroom = setClassroom(classroom_id);
-        if(classroom.getCourse().equals(user_logged.getCourse()))
+        if(classroom.getCourse().getId() == user_logged.getCourse().getId())
             classroom.delete();
     }
 
@@ -101,7 +101,7 @@ public class ClassroomsController extends ApplicationController{
         return Classroom.serialize(classroom_stringified);
     }
     private static Subscription setSubscription(int subscription_id){
-        String subscription_stringified = ActiveRecord.find("subscription", subscription_id);
+        String subscription_stringified = ActiveRecord.find("subscriptions", subscription_id);
         return Subscription.serialize(subscription_stringified);
     }
 }

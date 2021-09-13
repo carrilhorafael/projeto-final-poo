@@ -53,12 +53,12 @@ public class MyCourseFrame extends JFrame{
 		classroomsPanel.add(courseLabel);
 
 		if(course.getClassrooms().isEmpty()){
-			JLabel classroomsTitle = new JLabel("Ainda não há matérias cadastradas para o curso");
+			JLabel classroomsTitle = new JLabel("Ainda não há turmas cadastradas para o curso");
 			classroomsTitle.setHorizontalAlignment(SwingConstants.CENTER);
 			classroomsTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 			classroomsPanel.add(classroomsTitle);
 		}else{
-			JLabel classroomsTitle = new JLabel("Matérias cadastradas para o curso: ");
+			JLabel classroomsTitle = new JLabel("Turmas cadastradas para o curso: ");
 			classroomsTitle.setHorizontalAlignment(SwingConstants.CENTER);
 			classroomsTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 			classroomsPanel.add(classroomsTitle);
@@ -67,7 +67,7 @@ public class MyCourseFrame extends JFrame{
 			});
 		}
 
-		JButton createClassroomBtn = new JButton("Criar matéria para o curso");
+		JButton createClassroomBtn = new JButton("Criar turma para o curso");
 		createClassroomBtn.setForeground(Color.WHITE);
 		createClassroomBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 		createClassroomBtn.setBackground(new Color(32, 178, 170));
@@ -89,7 +89,7 @@ public class MyCourseFrame extends JFrame{
 			studentsTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 			studentsPanel.add(studentsTitle);
 		}else{
-			JLabel studentsTitle = new JLabel("Professores cadastrados para o curso: ");
+			JLabel studentsTitle = new JLabel("Alunos cadastrados do curso: ");
 			studentsTitle.setHorizontalAlignment(SwingConstants.CENTER);
 			studentsTitle.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
 			studentsPanel.add(studentsTitle);
@@ -98,17 +98,17 @@ public class MyCourseFrame extends JFrame{
 			});
 		}
 
-		JButton createTeacherBtn = new JButton("Criar professor para o curso");
-		createTeacherBtn.setForeground(Color.WHITE);
-		createTeacherBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
-		createTeacherBtn.setBackground(new Color(32, 178, 170));
-		createTeacherBtn.addActionListener(new ActionListener() {
+		JButton createStudentBtn = new JButton("Criar aluno para o curso");
+		createStudentBtn.setForeground(Color.WHITE);
+		createStudentBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+		createStudentBtn.setBackground(new Color(32, 178, 170));
+		createStudentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CreateTeacherFrame(course.getId());
+				new CreateStudentFrame(course.getId());
 				container.dispose();
 			}
 		});
-		studentsPanel.add(createTeacherBtn);
+		studentsPanel.add(createStudentBtn);
 
 		main.add(classroomsPanel, BorderLayout.WEST);
 		main.add(studentsPanel, BorderLayout.EAST);

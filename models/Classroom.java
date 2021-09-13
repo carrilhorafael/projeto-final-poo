@@ -34,7 +34,7 @@ public class Classroom {
 
     public void delete(){
         this.getSubscriptions().forEach(subscription -> subscription.delete());
-        ActiveRecord.delete("classroom", this.id);
+        ActiveRecord.delete("classrooms", this.id);
     }
 
     public static Classroom create(String code, String room, int teacher_id, int subject_id, int course_id){

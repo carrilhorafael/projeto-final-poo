@@ -73,7 +73,7 @@ public class UsersController extends ApplicationController{
             parameters[4], // String birthdate
             parameters[5], // String state
             parameters[6], // String nationality
-            Integer.parseInt(parameters[8]) // int course_id
+            Integer.parseInt(parameters[7]) // int course_id
         );
         if (student.save()){
             String students_course = student.getId() + " | " + student.getCourse().getId();

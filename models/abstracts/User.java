@@ -101,7 +101,7 @@ public abstract class User {
             this.errors.add("O email não pode ficar em branco");
             response = false;
         }else {
-            if(!value.matches("[a-z]{6,}@id.uff.br")){
+            if(!value.matches("[a-z]{2,}@id.uff.br")){
                 this.errors.add("Utilize o email do iduff.");
                 response = false;
             }

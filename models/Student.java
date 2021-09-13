@@ -43,7 +43,7 @@ public class Student extends User{
     }
     public boolean validateCourse(Course course){
         boolean response = true;
-        if(course != null){
+        if(course == null){
             this.appendError("O departamento deve existir");
             response = false;
         }

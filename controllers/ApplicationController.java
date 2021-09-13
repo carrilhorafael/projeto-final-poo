@@ -42,6 +42,7 @@ public class ApplicationController {
         "courses::show",
         "courses::destroy",
         "courses::update",
+        "subjects::index",
         "classrooms::create",
         "classrooms::index",
         "classrooms::show",

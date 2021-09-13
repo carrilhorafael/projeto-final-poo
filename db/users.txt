@@ -4,3 +4,5 @@ id | name | cpf | email | password | registration | birthdate | state | national
 3 | Debora Ferreira | 111.111.111-13 | debora@id.uff.br | 11111111113 | 111.111.113 | 11/11/2000 | Rio de Janeiro | Brasileira | CourseCoordinator
 5 | Vania | 111.111.111-14 | vaniao@id.uff.br | 11111111114 | 111.111.114 | 11/11/2000 | Rio de Janeiro | Brasileira | Teacher
 6 | Esteban | 111.111.111-15 | esteban@id.uff.br | 11111111115 | 111.111.115 | 11/11/2000 | Mato Grosso | Argentino | Teacher
+7 | Arthur | 111.111.111-19 | arthur@id.uff.br | 11111111119 | 111.111.119 | 11/11/2000 | Acre | Brasileiro | Student
+8 | Thiago | 111.111.111-20 | thiago@id.uff.br | 11111111120 | 111.111.120 | 01/01/2000 | Bahia | Argentino | Student

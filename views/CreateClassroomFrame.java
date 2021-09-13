@@ -61,21 +61,34 @@ public class CreateClassroomFrame extends JFrame{
         room.setColumns(10);
         formSection.add(room);
 
-        ArrayList<Teacher> teachers = UsersController.indexTeachers();
-        JComboBox<String> teacherSelect = new JComboBox<>();
-        if(!teachers.isEmpty()){
-            teachers.forEach(teacher -> {
-                teacherSelect.addItem(teacher.getId() + " - " + teacher.getName());
-            });
-        }
+        JLabel lblSubject = new JLabel("Materia:");
+        lblSubject.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+        formSection.add(lblSubject);
 
+        ArrayList<Teacher> teachers = UsersController.indexTeachers();
         ArrayList<Subject> subjects = SubjectsController.index();
         JComboBox<String> subjectSelect = new JComboBox<>();
+        subjectSelect.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
         if(!subjects.isEmpty()){
             subjects.forEach(subject -> {
                 subjectSelect.addItem(subject.getId() + " - " + subject.getName());
             });
         }
+        formSection.add(subjectSelect);
+
+        JLabel lblTeacher = new JLabel("Professor responsável:");
+        lblTeacher.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+        formSection.add(lblTeacher);
+
+        JComboBox<String> teacherSelect = new JComboBox<>();
+        teacherSelect.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
+        if(!teachers.isEmpty()){
+            teachers.forEach(teacher -> {
+                teacherSelect.addItem(teacher.getId() + " - " + teacher.getName());
+            });
+        }
+        formSection.add(teacherSelect);
+
 
         JButton createSubjectBtn = new JButton("Criar nova matéria");
         createSubjectBtn.setFont(new Font("Fira Code SemiBold", Font.PLAIN, 16));
